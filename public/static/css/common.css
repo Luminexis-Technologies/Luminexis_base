@@ -1,0 +1,381 @@
+/* === 全体指定 === */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #10131C;
+  color: #E0E1E0;
+  line-height: 1.7;
+}
+
+body:has(#origin:checked) {
+  overflow: hidden;
+  height: 100dvh;
+  /* 実測ビューポート高。iOS含め安定 */
+}
+
+@supports not (height: 100dvh) {
+  body:has(#origin:checked) {
+    height: 100vh;
+  }
+}
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+body:has(#origin:checked) {
+  background-attachment: scroll;
+}
+
+/* === リンク指定 === */
+
+a {
+  color: #E0E1E0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #5474AD;
+  text-decoration: underline;
+}
+
+a.inline-link {
+  text-decoration: underline;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* === header === */
+
+header {
+  width: 100%;
+  height: 12em;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5em 2em;
+}
+
+.left-content,
+.center-content,
+.right-content {
+  width: calc(100% / 3);
+}
+
+.sns-list {
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+}
+
+.sns-item {}
+
+.sns-item svg {
+  width: 4em;
+  height: 4em;
+  /* 色（SVGは color じゃなく fill） */
+  fill: #E0E1E0;
+  transition: fill 0.3s ease-in-out;
+}
+
+.sns-item svg:hover {
+  fill: #5474AD;
+}
+
+.np-logo {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.np-logo img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.center-content .logo {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.center-content .logo img {
+  width: auto;
+  height: 100%;
+}
+
+.center-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.h-menu .nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 1.5em;
+}
+
+/* nav オーバーレイ */
+
+.nav-wrapper {
+  display: flex;
+  gap: 1.5em;
+  position: relative;
+}
+
+.nav-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(16, 19, 28, 0.6);
+}
+
+.nav-wrapper span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.switch {
+  display: none;
+}
+
+.right-content {
+  height: auto;
+  display: flex;
+  justify-content: end;
+}
+
+.menu-switch {
+  line-height: 1;
+}
+
+.menu-switch svg {
+  width: 3em;
+  height: 3em;
+  /* 色（SVGは color じゃなく fill） */
+  fill: #E0E1E0;
+}
+
+
+header .right-content .menu-switch .cross {
+  display: none;
+}
+
+.switch:checked~header .right-content .menu-switch .bar {
+  display: none;
+}
+
+.switch:checked~header .right-content .menu-switch .cross {
+  display: block;
+}
+
+.close-bottom-area {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 1em;
+}
+
+
+.outside {
+  position: fixed;
+  width: 300px;
+  height: 100vh;
+  top: 0;
+  right: -300px;
+  background-color: #10131C;
+  z-index: 99;
+  padding: 1.5em 2em;
+  transition: right 0.3s ease;
+}
+
+/* カテゴリーオーバーレイ */
+
+.category-wrapper {
+  position: relative;
+}
+
+.category-overlay {
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  background-color: rgba(16, 19, 28, 0.6);
+}
+
+.category-wrapper span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.category-switch {
+  display: flex;
+  flex: none;
+  justify-content: center;
+  border: 1px solid #E0E1E0;
+  padding: 1em;
+  width: 100%;
+}
+
+
+.category-area {
+  display: none;
+}
+
+.category-item {
+  display: flex;
+  flex: none;
+  justify-content: center;
+  margin: 0.5em 0;
+  padding: 1em;
+  border: 1px solid #E0E1E0;
+}
+
+.category-item:last-child {
+  margin-bottom: 0;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(16, 19, 28, 0.6);
+  z-index: 98;
+  width: 100%;
+  height: 100vh;
+}
+
+.switch:checked~.outside {
+  right: 0;
+}
+
+.switch:checked~.overlay {
+  display: block;
+}
+
+#category-1:checked~#category_1 {
+  display: block;
+}
+
+main {
+  flex: 1;
+}
+
+/* === もっと見る === */
+
+.look-at-area {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.look-at {
+  display: inline-block;
+  padding: 0.6em 2.6em;
+  border: 1px solid #E0E1E0;
+  color: #E0E1E0;
+  text-decoration: none;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* === section === */
+
+section {
+  max-width: 768px;
+  margin: 2em auto;
+  padding: 2em;
+}
+
+section h1,
+h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+footer {
+  width: 100%;
+  padding: 2em 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+
+  body {
+    font-size: 0.875em;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.25em;
+  }
+
+  h3 {
+    font-size: 1.125em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.9375em;
+  }
+
+  h6 {
+    font-size: 0.875em;
+  }
+
+  header {
+    height: 7em;
+    align-items: center;
+  }
+
+  .left-content,
+  .right-content {
+    width: calc(100% / 2);
+  }
+
+  .sns-list {
+    display: none;
+  }
+
+  .np-logo {
+    display: block;
+  }
+
+  .center-content {
+    display: none;
+  }
+
+  .right-content {
+    align-items: center;
+  }
+}

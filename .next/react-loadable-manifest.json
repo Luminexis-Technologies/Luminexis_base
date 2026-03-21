@@ -1,0 +1,18 @@
+{
+  "app\\page.tsx -> @/components/canvas/MainCanvas": {
+    "id": 8302,
+    "files": [
+      "static/chunks/b536a0f1.1dcb2a09da2c089f.js",
+      "static/chunks/141.6c5635deec1a3d63.js",
+      "static/chunks/302.cd61e445f15ac176.js"
+    ]
+  },
+  "node_modules\\@react-three\\drei\\core\\VideoTexture.js -> hls.js": {
+    "id": null,
+    "files": []
+  },
+  "node_modules\\@react-three\\drei\\web\\FaceLandmarker.js -> @mediapipe/tasks-vision": {
+    "id": null,
+    "files": []
+  }
+}
