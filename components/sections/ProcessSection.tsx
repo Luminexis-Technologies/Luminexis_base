@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { PROCESS_STEPS } from '@/lib/constants'
+import { PROCESS_STEPS } from '@/lib/data'
 
 export default function ProcessSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -74,7 +74,7 @@ export default function ProcessSection() {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{step.icon}</span>
+                  {(() => { const Icon = step.icon; return <Icon className="w-5 h-5" style={{ color: '#7B61FF' }} /> })()}
                   <span className="font-mono text-sm font-bold" style={{ color: '#7B61FF' }}>{step.number}</span>
                 </div>
                 <h3 className="text-lg font-semibold text-fg mb-3">{step.title}</h3>

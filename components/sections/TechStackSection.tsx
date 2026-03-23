@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { TECH_STACK } from '@/lib/constants'
+import { TECH_STACK } from '@/lib/data'
 
 const CATEGORY_COLORS: Record<string, string> = {
   Frontend:       '#7B61FF',

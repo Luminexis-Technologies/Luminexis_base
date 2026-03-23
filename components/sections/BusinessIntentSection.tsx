@@ -2,28 +2,30 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { Target, Shuffle, ShieldCheck, TrendingUp } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-const INTENT_PILLARS = [
+const INTENT_PILLARS: { icon: LucideIcon; title: string; description: string; gradient: string }[] = [
   {
-    icon: '🎯',
+    icon: Target,
     title: 'Revenue Alignment',
     description: 'Every system is mapped to a measurable revenue outcome. No decorative builds.',
     gradient: 'from-nebula-500/20 to-transparent',
   },
   {
-    icon: '🔀',
+    icon: Shuffle,
     title: 'Decision Flow Control',
     description: 'User pathways engineered to guide decisions — not just display content.',
     gradient: 'from-stellar-400/20 to-transparent',
   },
   {
-    icon: '🛡️',
+    icon: ShieldCheck,
     title: 'Trust Architecture',
     description: 'Credibility signals built into structure — social proof, authority markers, consistency.',
     gradient: 'from-aurora-violet/20 to-transparent',
   },
   {
-    icon: '📈',
+    icon: TrendingUp,
     title: 'Scalability Planning',
     description: 'From day one, every system is designed to grow with your business trajectory.',
     gradient: 'from-aurora-cyan/20 to-transparent',
@@ -82,7 +84,7 @@ export default function BusinessIntentSection() {
               <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
                 style={{ background: 'linear-gradient(90deg, #7B61FF, #22D3EE)' }} />
 
-              <div className="text-3xl mb-4">{pillar.icon}</div>
+              {(() => { const Icon = pillar.icon; return <Icon className="w-7 h-7 mb-4" style={{ color: '#22D3EE' }} /> })()}
               <h3 className="text-lg font-semibold text-fg mb-3">{pillar.title}</h3>
               <p className="body-text text-sm">{pillar.description}</p>
             </div>

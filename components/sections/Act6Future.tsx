@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { LUMINEXIS_PRINCIPLES } from '@/lib/constants'
+import { Rocket } from 'lucide-react'
+import { LUMINEXIS_PRINCIPLES } from '@/lib/data'
 
 const ENGAGEMENT_TYPES = ['Interface Design', 'Frontend Engineering', 'Backend Systems', 'Full Digital Platform', 'Other']
 const BUDGET_OPTIONS = ['₹25K – ₹50K', '₹50K – ₹1L', '₹1L – ₹2.5L', '₹2.5L – ₹5L', '₹5L – ₹10L', '₹10L+']
@@ -13,7 +14,8 @@ export default function Act6Future() {
     name: '', email: '', company: '', engagement: '', budget: '', message: '',
   })
   const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
+  const [sending,   setSending]   = useState(false)
+  const [sendError, setSendError] = useState<string | null>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,23 +34,36 @@ export default function Act6Future() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSending(true)
+    setSendError(null)
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    if (!accessKey) {
+      setSendError('Email service is not configured. Please contact us directly.')
+      setSending(false)
+      return
+    }
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_KEY',
+          access_key: accessKey,
+          subject:    `[Luminexis] New inquiry from ${formState.name}`,
+          from_name:  'Luminexis Contact Form',
           ...formState,
         }),
       })
 
-      if (res.ok) {
+      const data = await res.json()
+      if (res.ok && data.success) {
         setSubmitted(true)
         setFormState({ name: '', email: '', company: '', engagement: '', budget: '', message: '' })
+      } else {
+        setSendError(data.message ?? 'Submission failed. Please try again.')
       }
     } catch {
-      // Handle silently
+      setSendError('Network error. Please check your connection and try again.')
     } finally {
       setSending(false)
     }
@@ -87,11 +102,11 @@ export default function Act6Future() {
 
         <div data-reveal className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
           {LUMINEXIS_PRINCIPLES.map((principle, i) => (
-            <div key={i} className="glass-card px-6 py-5 flex items-center gap-4 group">
+            <div key={principle.id} className="glass-card px-6 py-5 flex items-center gap-4 group">
               <span className="font-mono text-sm font-bold flex-shrink-0" style={{ color: '#7B61FF' }}>
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <p className="text-fg text-sm font-medium">{principle}</p>
+              <p className="text-fg text-sm font-medium">{principle.text}</p>
             </div>
           ))}
         </div>
@@ -110,7 +125,9 @@ export default function Act6Future() {
 
           {submitted ? (
             <div data-reveal className="honor-card p-12 text-center">
-              <div className="text-5xl mb-6">🚀</div>
+              <div className="flex justify-center mb-6">
+                <Rocket className="w-12 h-12 text-cyan-400 drop-shadow-[0_0_16px_rgba(34,211,238,0.5)]" />
+              </div>
               <h3 className="text-2xl font-bold text-fg mb-4">Message Received</h3>
               <p className="body-text max-w-md mx-auto">
                 We&apos;ll review your inquiry and respond within 24-48 hours. Expect a thoughtful reply.
@@ -184,6 +201,17 @@ export default function Act6Future() {
                   onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(123,97,255,0.2)'; e.currentTarget.style.boxShadow = 'none' }}
                 />
               </div>
+
+              {/* Error message */}
+              {sendError && (
+                <p className="mb-4 text-sm font-mono px-4 py-3 rounded-lg" style={{
+                  background: 'rgba(239,68,68,0.08)',
+                  border: '1px solid rgba(239,68,68,0.25)',
+                  color: '#f87171',
+                }}>
+                  {sendError}
+                </p>
+              )}
 
               <button
                 type="submit"

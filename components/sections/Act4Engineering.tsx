@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { METRICS } from '@/lib/constants'
+import { METRICS } from '@/lib/data'
 
 const STACK_LAYERS = [
   { label: 'Rendering',    items: ['Next.js 14', 'RSC', 'Streaming'],                  color: '#7B61FF' },
@@ -31,16 +31,16 @@ export default function Act4Engineering() {
       METRICS.forEach((metric, i) => {
         const el = counterRefs.current[i]
         if (!el) return
-        const numericValue = parseFloat(metric.value.replace(/[^0-9.]/g, ''))
         const obj = { val: 0 }
         gsap.to(obj, {
-          val: numericValue,
+          val: metric.value,
           duration: 2,
           ease: 'power2.out',
           scrollTrigger: { trigger: el, start: 'top 85%', once: true },
           onUpdate: () => {
-            const prefix = metric.value.startsWith('<') ? '<' : ''
-            el.textContent = prefix + Math.round(obj.val * 10) / 10 + metric.suffix
+            const prefix = metric.prefix ?? ''
+            const rounded = Math.round(obj.val * 10) / 10
+            el.textContent = prefix + rounded + metric.suffix
           },
         })
       })
@@ -80,7 +80,7 @@ export default function Act4Engineering() {
                 ref={(el) => { counterRefs.current[i] = el }}
                 className="block font-mono text-3xl md:text-4xl font-bold mb-2 gradient-text"
               >
-                {metric.value}{metric.suffix}
+                {metric.prefix ?? ''}{metric.value}{metric.suffix}
               </span>
               <span className="font-mono text-xs tracking-widest uppercase text-fg-muted">{metric.label}</span>
             </div>

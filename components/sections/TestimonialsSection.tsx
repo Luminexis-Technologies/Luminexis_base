@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { TESTIMONIALS } from '@/lib/constants'
+import { TESTIMONIALS } from '@/lib/data'
 
 export default function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null)

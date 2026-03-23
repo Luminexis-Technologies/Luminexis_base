@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
-import { AUTHORITY_STATS } from '@/lib/constants'
+import { motion } from 'framer-motion'
+import { AUTHORITY_STATS } from '@/lib/data'
 
 const TICKER_ITEMS = [
   '✦ Interface Design',
@@ -153,7 +154,10 @@ export default function Act1Chaos() {
       </div>
 
       {/* ── Marquee ticker strip ── */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
         className="relative z-10 overflow-hidden py-3.5"
         style={{
           borderTop: '1px solid rgba(123,97,255,0.15)',
@@ -173,7 +177,7 @@ export default function Act1Chaos() {
             </span>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

@@ -2,27 +2,29 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { Rocket, Telescope, Handshake, Gem } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-const STANDARDS = [
+const STANDARDS: { title: string; description: string; icon: LucideIcon }[] = [
   {
     title: 'Growth-Stage Companies',
     description: 'Businesses ready to invest in digital infrastructure that compounds value over time.',
-    icon: '🚀',
+    icon: Rocket,
   },
   {
     title: 'Clarity-Driven Leaders',
     description: 'Decision-makers who value structure, transparency, and measurable outcomes.',
-    icon: '🔭',
+    icon: Telescope,
   },
   {
     title: 'Long-Term Partnerships',
     description: 'We build relationships, not transactions. Our best work comes from ongoing collaboration.',
-    icon: '🤝',
+    icon: Handshake,
   },
   {
     title: 'Quality Over Quantity',
     description: 'We take on limited engagements to ensure every project receives our full attention.',
-    icon: '💎',
+    icon: Gem,
   },
 ]
 
@@ -72,7 +74,7 @@ export default function EngagementStandardSection() {
                 style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%)' }} />
 
               <div className="relative z-10">
-                <span className="text-3xl mb-4 block">{item.icon}</span>
+                {(() => { const Icon = item.icon; return <Icon className="w-7 h-7 mb-4" style={{ color: '#22D3EE' }} /> })()}
                 <h3 className="text-lg font-semibold text-fg mb-3">{item.title}</h3>
                 <p className="body-text text-sm">{item.description}</p>
               </div>

@@ -2,27 +2,29 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { Lock, Blocks, Zap, Globe } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-const RISK_ITEMS = [
+const RISK_ITEMS: { title: string; description: string; icon: LucideIcon }[] = [
   {
     title: 'No Spec Work',
     description: 'We don\'t gamble with your budget. Every engagement starts with a defined scope and clear deliverables.',
-    icon: '🔒',
+    icon: Lock,
   },
   {
     title: 'Architecture First',
     description: 'Structure is validated before development begins. No expensive pivots mid-build.',
-    icon: '🏗️',
+    icon: Blocks,
   },
   {
     title: 'Performance Guaranteed',
     description: 'Every system ships with verified performance benchmarks — not promises.',
-    icon: '⚡',
+    icon: Zap,
   },
   {
     title: 'Long-Term Viability',
     description: 'Built on proven standards and maintainable patterns. No vendor lock-in. No tech debt.',
-    icon: '🌍',
+    icon: Globe,
   },
 ]
 
@@ -71,7 +73,7 @@ export default function RiskReductionSection() {
               <div className="absolute top-0 right-0 w-32 h-32 rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.1) 0%, transparent 70%)' }} />
               <div className="flex items-start gap-4">
-                <span className="text-2xl flex-shrink-0 mt-1">{item.icon}</span>
+                {(() => { const Icon = item.icon; return <Icon className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#7B61FF' }} /> })()}
                 <div>
                   <h3 className="text-lg font-semibold text-fg mb-2">{item.title}</h3>
                   <p className="body-text text-sm">{item.description}</p>

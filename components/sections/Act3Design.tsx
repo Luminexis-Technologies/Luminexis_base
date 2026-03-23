@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { SERVICES } from '@/lib/constants'
+import { SERVICES } from '@/lib/data'
 
 export default function Act3Design() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -54,7 +54,7 @@ export default function Act3Design() {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-3xl">{service.icon}</span>
+                  {(() => { const Icon = service.icon; return <Icon className="w-8 h-8" style={{ color: '#7B61FF' }} /> })()}
                 </div>
                 <h3 className="text-xl font-semibold text-fg mb-3 group-hover:text-white transition-colors">{service.title}</h3>
                 <p className="body-text text-sm mb-5">{service.description}</p>

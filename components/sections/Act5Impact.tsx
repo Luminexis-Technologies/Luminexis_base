@@ -3,7 +3,8 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { PROJECTS } from '@/lib/constants'
+import { PROJECTS } from '@/lib/data'
+import type { Project } from '@/lib/types'
 
 const PROJECT_IMAGES: Record<string, string> = {
   'sri-hari-towing': '/assets/sriharitowing.png',
@@ -90,7 +91,7 @@ export default function Act5Impact() {
   )
 }
 
-function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
+function ProjectCard({ project }: { project: Project }) {
   return (
     <div data-reveal className="glass-card overflow-hidden group hover:-translate-y-2 transition-all duration-400 hover:shadow-card-hover">
       {/* ── Hero banner — real screenshot ── */}
@@ -130,7 +131,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
         </div>
         {/* Bottom-left icon + year */}
         <div className="absolute bottom-4 left-5 z-10 flex items-center gap-2">
-          <span className="text-2xl">{project.icon}</span>
+          {(() => { const Icon = project.icon; return <Icon className="w-5 h-5" style={{ color: project.accentColor, filter: `drop-shadow(0 0 6px ${project.accentColor}80)` }} /> })()}
           <span className="font-mono text-[10px] text-white/50">{project.year}</span>
         </div>
       </div>
@@ -146,6 +147,17 @@ function ProjectCard({ project }: { project: typeof PROJECTS[number] }) {
         </span>
 
         <p className="body-text text-sm mb-5 line-clamp-3">{project.description}</p>
+
+        {project.metrics && (
+          <div className="mb-4">
+            <span
+              className="inline-block font-mono text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md"
+              style={{ background: `${project.accentColor}18`, border: `1px solid ${project.accentColor}40`, color: project.accentColor }}
+            >
+              {project.metrics}
+            </span>
+          </div>
+        )}
 
         {project.tags && project.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-5">
