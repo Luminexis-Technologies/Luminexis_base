@@ -25,11 +25,11 @@ export const CHAT_NODES: Record<string, ChatNode> = {
   // ── Start ──
   start: {
     id: 'start',
-    message: 'Hey — looking to build a high-converting website or grow SEO?\n\nI can guide you in under 60 seconds.',
+    message: "✨ *Welcome to Luminexis.*\n\nHigh-performance digital experiences and dominant SEO are our obsession. Ready to scale your brand with a strategic roadmap in under 60 seconds?\n\nHow should we begin?",
     options: [
-      { label: 'Build a Website', next: 'web_type' },
-      { label: 'Improve SEO', next: 'seo_situation' },
-      { label: 'Talk to a Human', next: 'lead_name' },
+      { label: 'Explore Service Ecosystem', next: 'web_type' }, // Links to web/seo menu which I should probably create or keep as web_type
+      { label: 'Strategic Growth Plan', next: 'lead_name' },
+      { label: 'Connect with Expert', next: 'lead_name' },
     ],
   },
 
@@ -253,10 +253,10 @@ export const CHAT_NODES: Record<string, ChatNode> = {
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   thank_you: {
     id: 'thank_you',
-    message: "Thanks — this helps a lot.\n\nWe'll review your requirement and get back within 12–24 hours.\n\nWe take limited projects each month to maintain quality.",
+    message: "🎉 *You're all set.*\n\nThe Luminexis team will personally review your project and get back to you within *12–24 hours* with a strategic roadmap.\n\n✨ Let's build something extraordinary.",
     options: [
-      { label: 'Continue on WhatsApp', next: 'exit_whatsapp' },
-      { label: 'Send Email', next: 'exit_email' },
+      { label: 'Chat on WhatsApp', next: 'exit_whatsapp' },
+      { label: 'Priority Email', next: 'exit_email' },
     ],
   },
   exit_whatsapp: {

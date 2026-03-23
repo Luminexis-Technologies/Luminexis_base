@@ -23,6 +23,9 @@ export default function Chatbot() {
   const [isTyping, setIsTyping] = useState(false)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [started, setStarted] = useState(false)
+  const [history, setHistory] = useState<{ node: ChatNode | null; bubbles: Bubble[]; answers: Record<string, string> }[]>([])
+  const [submissionStatus, setSubmissionStatus] = useState<null | 'sending' | 'success' | 'error'>(null)
+  const [error, setError] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const idCounter = useRef(0)
@@ -89,9 +92,13 @@ export default function Chatbot() {
 
   // ── Handle option click ──
   const handleOption = (label: string, next: string) => {
+    // Save current state to history before moving forward
+    setHistory(prev => [...prev, { node: currentNode, bubbles, answers }])
+    
     addUserBubble(label)
     setAnswers(prev => ({ ...prev, [currentNode?.id ?? '']: label }))
     setCurrentNode(null)
+    setError('')
     setTimeout(() => goToNode(next), 200)
   }
 
@@ -101,8 +108,18 @@ export default function Chatbot() {
     if (!val) return
 
     // Validate input fields
-    if (currentNode?.inputField === 'email' && !isValidEmail(val)) return
-    if (currentNode?.inputField === 'whatsapp' && !isValidPhone(val)) return
+    if (currentNode?.inputField === 'email' && !isValidEmail(val)) {
+      setError('Please enter a valid email address.')
+      return
+    }
+    if (currentNode?.inputField === 'whatsapp' && !isValidPhone(val)) {
+      setError('Please enter a valid phone number.')
+      return
+    }
+
+    setError('')
+    // Save current state to history before moving forward
+    setHistory(prev => [...prev, { node: currentNode, bubbles, answers }])
 
     addUserBubble(val)
     setAnswers(prev => ({ ...prev, [currentNode?.id ?? '']: val }))
@@ -115,6 +132,63 @@ export default function Chatbot() {
     }
   }
 
+  // ── Back Navigation ──
+  const handleBack = () => {
+    if (history.length === 0) return
+    setIsTyping(false)
+    const lastState = history[history.length - 1]
+    setHistory(prev => prev.slice(0, -1))
+
+    setCurrentNode(lastState.node)
+    setBubbles(lastState.bubbles)
+    setAnswers(lastState.answers)
+    setError('')
+  }
+
+  // ── Lead Data Submission ──
+  const submitLeadData = async (data: Record<string, string>) => {
+    if (submissionStatus === 'success' || submissionStatus === 'sending') return
+    
+    setSubmissionStatus('sending')
+    console.log('--- SUBMITTING LEAD DATA ---', data)
+
+    try {
+      // 🚀 Using Web3Forms for direct email delivery (configured in .env.local)
+      const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+      
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: `[Luminexis ChatBot] New Lead: ${data.lead_name || 'N/A'}`,
+        from_name: 'Luminexis ChatBot',
+        ...data,
+        full_conversation: Object.entries(data)
+          .map(([key, val]) => `${key.toUpperCase().replace(/_/g, ' ')}: ${val}`)
+          .join('\n'),
+      }
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) throw new Error('Failed to send data')
+      
+      setSubmissionStatus('success')
+      console.log('Lead data captured successfully.')
+    } catch (err) {
+      console.error('Submission error:', err)
+      setSubmissionStatus('error')
+    }
+  }
+
+  // Auto-trigger submission when arriving at thank_you node
+  useEffect(() => {
+    if (currentNode?.id === 'thank_you' && submissionStatus === null) {
+      submitLeadData(answers)
+    }
+  }, [currentNode, answers, submissionStatus])
+
   // ── Restart ──
   const handleRestart = () => {
     setBubbles([])
@@ -123,6 +197,9 @@ export default function Chatbot() {
     setAnswers({})
     setInputValue('')
     setStarted(false)
+    setHistory([])
+    setSubmissionStatus(null)
+    setError('')
     idCounter.current = 0
     setTimeout(() => {
       setStarted(true)
@@ -225,9 +302,21 @@ export default function Chatbot() {
                 Online · replies instantly
               </p>
             </div>
-            <button onClick={handleRestart} title="Restart conversation"
-              className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-              style={{ color: 'var(--fg-muted)' }}
+            {history.length > 0 && (
+              <button 
+                onClick={handleBack} 
+                title="Go back"
+                className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-white/50 hover:text-white"
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(123,97,255,0.15)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            )}
+            <button onClick={handleRestart} title="Restart"
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-white/50 hover:text-white"
               onMouseEnter={e => (e.currentTarget.style.background = 'rgba(123,97,255,0.15)')}
               onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -302,6 +391,19 @@ export default function Chatbot() {
                     {opt.label}
                   </button>
                 ))}
+                {history.length > 0 && (
+                  <div className="w-full pt-1">
+                    <button 
+                      onClick={handleBack}
+                      className="text-[11px] text-white/40 hover:text-white/70 flex items-center gap-1.5 transition-colors"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      Go back to previous step
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -311,46 +413,90 @@ export default function Chatbot() {
                 <button
                   onClick={handleRestart}
                   className="text-[11px] font-mono tracking-wider uppercase transition-colors"
-                  style={{ color: 'var(--fg-muted)' }}
+                  style={{ color: '#94a3b8' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#22D3EE')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-muted)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}
                 >
                   ↻ Start over
                 </button>
+              </div>
+            )}
+            
+            {/* ── Status Indicator ── */}
+            {currentNode?.id === 'thank_you' && (
+              <div className="pt-4 border-t border-white/5">
+                {submissionStatus === 'sending' && (
+                  <p className="text-[10px] text-white/40 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" /> Capturing project details...
+                  </p>
+                )}
+                {submissionStatus === 'success' && (
+                  <p className="text-[10px] text-emerald-400/80 flex items-center gap-2">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    Requirement received securely
+                  </p>
+                )}
+                {submissionStatus === 'error' && (
+                  <p className="text-[10px] text-red-400/80">
+                    Failed to sync. Please use WhatsApp.
+                  </p>
+                )}
               </div>
             )}
           </div>
 
           {/* ── Input bar ── */}
           {showInput && !isTyping && (
-            <div
-              className="flex items-center gap-2 px-4 py-3 flex-shrink-0"
-              style={{ borderTop: '1px solid rgba(123,97,255,0.12)' }}
-            >
-              <input
-                ref={inputRef}
-                type={getInputType()}
-                value={inputValue}
-                onChange={e => setInputValue(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleSubmit()}
-                placeholder={getPlaceholder()}
-                className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 outline-none border-none"
-                autoComplete={currentNode?.inputField === 'email' ? 'email' : currentNode?.inputField === 'whatsapp' ? 'tel' : 'off'}
-              />
-              <button
-                onClick={handleSubmit}
-                disabled={!inputValue.trim()}
-                className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 disabled:opacity-30"
-                style={{
-                  background: inputValue.trim()
-                    ? 'linear-gradient(135deg, #7B61FF, #5B3DD9)'
-                    : 'rgba(123,97,255,0.1)',
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+            <div className="flex flex-col flex-shrink-0" style={{ borderTop: '1px solid rgba(123,97,255,0.12)' }}>
+              {error && (
+                <div className="px-4 py-1.5 bg-red-500 text-[10px] text-white font-bold animate-pulse">
+                  {error}
+                </div>
+              )}
+              {history.length > 0 && (
+                <div className="px-4 pt-3">
+                  <button 
+                    onClick={handleBack}
+                    className="text-[11px] text-white/40 hover:text-white/70 flex items-center gap-1.5 transition-colors"
+                  >
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                      <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Go back & change answer
+                  </button>
+                </div>
+              )}
+              <div className="flex items-center gap-2 px-4 py-3">
+                <input
+                  ref={inputRef}
+                  type={getInputType()}
+                  value={inputValue}
+                  onChange={e => {
+                    setInputValue(e.target.value)
+                    if (error) setError('')
+                  }}
+                  onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+                  placeholder={getPlaceholder()}
+                  className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 outline-none border-none"
+                  autoComplete={currentNode?.inputField === 'email' ? 'email' : currentNode?.inputField === 'whatsapp' ? 'tel' : 'off'}
+                />
+                <button
+                  onClick={handleSubmit}
+                  disabled={!inputValue.trim()}
+                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 disabled:opacity-30"
+                  style={{
+                    background: inputValue.trim()
+                      ? 'linear-gradient(135deg, #7B61FF, #5B3DD9)'
+                      : 'rgba(123,97,255,0.1)',
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
             </div>
           )}
 
