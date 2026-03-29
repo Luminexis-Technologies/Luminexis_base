@@ -2,17 +2,20 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
-  { label: 'Projects',    href: '#work' },
-  { label: 'Services',    href: '#act3' },
-  { label: 'Process',     href: '#process' },
-  { label: 'Engineering', href: '#act4' },
-  { label: 'Contact',     href: '#contact' },
+  { label: 'Projects',    href: '/projects' },
+  { label: 'Services',    href: '/services' },
+  { label: 'Process',     href: '/process' },
+  { label: 'Engineering', href: '/engineering' },
+  { label: 'Contact',     href: '/contact' },
 ]
 
 export default function Navigation() {
   const navRef = useRef<HTMLElement>(null)
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -25,12 +28,6 @@ export default function Navigation() {
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
-
-  const scrollTo = (href: string) => {
-    setMenuOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
 
   return (
     <nav
@@ -46,41 +43,46 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
         {/* Logo */}
-        <button onClick={() => scrollTo('#hero')} className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <SpaceLogo />
           <span className="font-semibold text-sm tracking-wide transition-colors duration-200 text-white group-hover:text-[#7B61FF]">
             Luminexis
           </span>
-        </button>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
-            <button
+            <Link
               key={link.href}
-              onClick={() => scrollTo(link.href)}
+              href={link.href}
               className="relative font-mono text-xs tracking-widest uppercase transition-colors duration-200 group"
-              style={{ color: 'var(--fg-muted)' }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#7B61FF' }}
-              onMouseLeave={e => { e.currentTarget.style.color = 'var(--fg-muted)' }}
+              style={{ color: pathname === link.href ? '#7B61FF' : 'var(--fg-muted)' }}
             >
               {link.label}
+              <span
+                className="absolute -bottom-1 left-0 h-px transition-all duration-300"
+                style={{ 
+                  background: 'linear-gradient(90deg, #7B61FF, #22D3EE)',
+                  width: pathname === link.href ? '100%' : '0'
+                }}
+              />
               <span
                 className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
                 style={{ background: 'linear-gradient(90deg, #7B61FF, #22D3EE)' }}
               />
-            </button>
+            </Link>
           ))}
         </div>
 
         {/* Right controls */}
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => scrollTo('#contact')}
+          <Link
+            href="/contact"
             className="hidden md:flex cta-primary text-xs py-2.5 px-5"
           >
             Start a Project
-          </button>
+          </Link>
 
           {/* Mobile menu toggle */}
           <button
@@ -106,20 +108,19 @@ export default function Navigation() {
       >
         <div className="px-6 py-5 space-y-4">
           {NAV_LINKS.map((link) => (
-            <button
+            <Link
               key={link.href}
-              onClick={() => scrollTo(link.href)}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
               className="block font-mono text-xs tracking-widest uppercase w-full text-left py-2 transition-colors duration-200"
-              style={{ color: 'var(--fg-muted)', borderBottom: '1px solid rgba(123,97,255,0.1)' }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#7B61FF' }}
-              onMouseLeave={e => { e.currentTarget.style.color = 'var(--fg-muted)' }}
+              style={{ color: pathname === link.href ? '#7B61FF' : 'var(--fg-muted)', borderBottom: '1px solid rgba(123,97,255,0.1)' }}
             >
               {link.label}
-            </button>
+            </Link>
           ))}
-          <button onClick={() => scrollTo('#contact')} className="cta-primary w-full justify-center text-xs py-3 mt-2">
+          <Link href="/contact" onClick={() => setMenuOpen(false)} className="cta-primary w-full justify-center text-xs py-3 mt-2">
             Start a Project
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
@@ -128,28 +129,9 @@ export default function Navigation() {
 
 function SpaceLogo() {
   return (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-      {/* Outer ring */}
-      <circle cx="14" cy="14" r="12" stroke="url(#logoGrad)" strokeWidth="1.5" fill="none" />
-      {/* Orbital path */}
-      <ellipse cx="14" cy="14" rx="8" ry="3" transform="rotate(-30 14 14)" stroke="#22D3EE" strokeWidth="0.8" fill="none" opacity="0.5" />
-      {/* Inner core */}
-      <circle cx="14" cy="14" r="4" fill="url(#coreGrad)" opacity="0.7" />
-      {/* Center dot */}
-      <circle cx="14" cy="14" r="2" fill="#7B61FF" style={{ filter: 'drop-shadow(0 0 4px rgba(123,97,255,0.8))' }} />
-      {/* Small orbiting dot */}
-      <circle cx="22" cy="10" r="1.5" fill="#22D3EE" style={{ filter: 'drop-shadow(0 0 3px rgba(34,211,238,0.8))' }} />
-      <defs>
-        <linearGradient id="logoGrad" x1="2" y1="2" x2="26" y2="26">
-          <stop offset="0%" stopColor="#7B61FF" />
-          <stop offset="100%" stopColor="#22D3EE" />
-        </linearGradient>
-        <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#A855F7" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#7B61FF" stopOpacity="0.1" />
-        </radialGradient>
-      </defs>
-    </svg>
+    <div className="relative w-9 h-9 rounded-full overflow-hidden border border-white/20 group-hover:border-[#7B61FF]/40 transition-all duration-300">
+      <img src="/static/img/user_logo.png" alt="Luminexis" className="w-full h-full object-cover" />
+    </div>
   )
 }
 

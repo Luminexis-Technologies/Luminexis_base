@@ -26,6 +26,7 @@ export default function Chatbot() {
   const [history, setHistory] = useState<{ node: ChatNode | null; bubbles: Bubble[]; answers: Record<string, string> }[]>([])
   const [submissionStatus, setSubmissionStatus] = useState<null | 'sending' | 'success' | 'error'>(null)
   const [error, setError] = useState('')
+  const [shouldShake, setShouldShake] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const idCounter = useRef(0)
@@ -110,10 +111,14 @@ export default function Chatbot() {
     // Validate input fields
     if (currentNode?.inputField === 'email' && !isValidEmail(val)) {
       setError('Please enter a valid email address.')
+      setShouldShake(true)
+      setTimeout(() => setShouldShake(false), 500)
       return
     }
     if (currentNode?.inputField === 'whatsapp' && !isValidPhone(val)) {
       setError('Please enter a valid phone number.')
+      setShouldShake(true)
+      setTimeout(() => setShouldShake(false), 500)
       return
     }
 
@@ -182,12 +187,17 @@ export default function Chatbot() {
     }
   }
 
-  // Auto-trigger submission when arriving at thank_you node
+  // Auto-trigger submission when lead info is arriving to avoid missing out on dropoffs
   useEffect(() => {
-    if (currentNode?.id === 'thank_you' && submissionStatus === null) {
+    const hasName = !!answers['lead_name']
+    const hasEmail = !!answers['lead_email']
+    const hasZap = !!answers['lead_whatsapp']
+    
+    // Trigger if we have at least Name & Email, or once they get to the final node
+    if (currentNode?.id === 'thank_you' || (hasName && hasEmail)) {
       submitLeadData(answers)
     }
-  }, [currentNode, answers, submissionStatus])
+  }, [currentNode, answers]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Restart ──
   const handleRestart = () => {
@@ -238,20 +248,10 @@ export default function Chatbot() {
         }}
       >
         {/* Chat / Close icon */}
-        <svg
-          width="24" height="24" viewBox="0 0 24 24" fill="none"
-          className="transition-transform duration-300"
-          style={{ transform: open ? 'rotate(90deg)' : 'rotate(0)' }}
-        >
-          {open ? (
-            <path d="M18 6L6 18M6 6l12 12" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-          ) : (
-            <>
-              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
-                stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </>
-          )}
-        </svg>
+        {/* User Logo */}
+        <div className="relative w-full h-full flex items-center justify-center p-1.5">
+          <img src="/static/img/user_logo.png" alt="Chat" className="w-full h-full object-contain rounded-full" />
+        </div>
 
         {/* Pulse ring when closed */}
         {!open && (
@@ -284,16 +284,10 @@ export default function Chatbot() {
               background: 'linear-gradient(135deg, rgba(123,97,255,0.08) 0%, transparent 100%)',
             }}
           >
-            {/* Pulsing status dot */}
+            {/* User Logo Status */}
             <div className="relative flex-shrink-0">
-              <div className="w-9 h-9 rounded-full flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #7B61FF, #22D3EE)' }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                    stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2"
+               <img src="/static/img/user_logo.png" alt="L" className="w-9 h-9 rounded-full border border-white/20" />
+               <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2"
                 style={{ background: '#22c55e', borderColor: 'rgba(11,13,23,0.95)' }} />
             </div>
             <div className="flex-1 min-w-0">
@@ -447,12 +441,18 @@ export default function Chatbot() {
             )}
           </div>
 
-          {/* ── Input bar ── */}
+          {/* Input bar */}
           {showInput && !isTyping && (
-            <div className="flex flex-col flex-shrink-0" style={{ borderTop: '1px solid rgba(123,97,255,0.12)' }}>
+            <div 
+              className={`flex flex-col flex-shrink-0 transition-all duration-200 ${shouldShake ? 'animate-shake' : ''}`} 
+              style={{ borderTop: '1px solid rgba(123,97,255,0.12)' }}
+            >
               {error && (
-                <div className="px-4 py-1.5 bg-red-500 text-[10px] text-white font-bold animate-pulse">
-                  {error}
+                <div className="px-4 py-2 bg-red-500/10 text-[11px] text-red-400 font-medium flex items-center gap-2" style={{ borderBottom: '1px solid rgba(239,68,68,0.1)' }}>
+                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                     <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+                   </svg>
+                   {error}
                 </div>
               )}
               {history.length > 0 && (
@@ -464,7 +464,7 @@ export default function Chatbot() {
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
                       <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    Go back & change answer
+                    Go back to previous step
                   </button>
                 </div>
               )}
@@ -521,6 +521,15 @@ export default function Chatbot() {
             opacity: 1;
             transform: translateY(0) scale(1);
           }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-4px); }
+          75% { transform: translateX(4px); }
+        }
+        .animate-shake {
+          animation: shake 0.2s cubic-bezier(.36,.07,.19,.97) both;
+          animation-iteration-count: 2;
         }
       `}</style>
     </>

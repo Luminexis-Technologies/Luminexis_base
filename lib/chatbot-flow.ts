@@ -29,13 +29,12 @@ export const CHAT_NODES: Record<string, ChatNode> = {
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     start: {
       id: 'start',
-      message: "✨ *Welcome to Luminexis.*\n\nHigh-performance digital experiences and dominant SEO are our obsession. Ready to scale your brand with a strategic roadmap in under 60 seconds?\n\nHow should we begin?",
+      message: "✨ **Welcome to the Luminexis Engineering Studio.**\n\nWe don't just create web pages — we architect high-performance digital ecosystems that outrank, outperform, and outlast the competition.\n\nReady to deploy your strategic growth roadmap?\n\nHow should we begin?",
       options: [
-        { label: 'Explore Service Ecosystem', next: 'web_type' },
-        { label: 'UI/UX Design', next: 'uiux_stage' },
-        { label: 'SEO & Growth', next: 'seo_situation' },
-        { label: 'Strategic Growth Plan', next: 'lead_name' },
-        { label: 'Connect with Expert', next: 'lead_name' },
+        { label: 'Architect Digital Ecosystem', next: 'web_type' },
+        { label: 'Premium UI/UX Engineering', next: 'uiux_stage' },
+        { label: 'Global SEO Scaling', next: 'seo_situation' },
+        { label: 'Direct Expert Consultation', next: 'lead_name' },
       ],
     },
 

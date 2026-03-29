@@ -18,14 +18,19 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Luminexis Technologies — Engineered Beyond Limits',
+  title: 'Luminexis Technologies — High-Performance Digital & UI/UX Engineering',
   description:
-    'We build digital systems with cosmic precision — structured, scalable, and built to orbit. Space-themed engineering studio.',
-  keywords: ['web engineering', 'digital product design', 'frontend engineering', 'space-themed portfolio'],
+    'We architect high-performance digital ecosystems with structural integrity and cosmic precision. Premium UI/UX Engineering & Global SEO Scaling for ambitious brands.',
+  keywords: ['high-performance web engineering', 'UI/UX design studio', 'SEO growth scaling', 'Luminexis Technologies', 'digital product ecosystem'],
+  icons: {
+    icon: '/static/img/user_logo.png',
+    apple: '/static/img/user_logo.png',
+  },
   openGraph: {
-    title: 'Luminexis Technologies',
-    description: 'Engineered Beyond Limits. Built for Orbit.',
+    title: 'Luminexis Technologies | Engineered for Impact',
+    description: 'Architecting high-performance digital systems that outperform and outrank. Premium Engineering Studio.',
     type: 'website',
+    images: ['/static/img/user_logo.png'],
   },
 }
 

@@ -1,17 +1,16 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { gsap } from '@/lib/gsap'
 import { Rocket } from 'lucide-react'
 import { LUMINEXIS_PRINCIPLES } from '@/lib/data'
 
-const ENGAGEMENT_TYPES = ['Interface Design', 'Frontend Engineering', 'Backend Systems', 'Full Digital Platform', 'Other']
-const BUDGET_OPTIONS = ['₹25K – ₹50K', '₹50K – ₹1L', '₹1L – ₹2.5L', '₹2.5L – ₹5L', '₹5L – ₹10L', '₹10L+']
+const ENGAGEMENT_TYPES = ['Interface Design', 'Frontend Engineering', 'Backend Systems', 'Full Digital Platform', 'SEO', 'Other']
 
 export default function Act6Future() {
   const sectionRef = useRef<HTMLElement>(null)
   const [formState, setFormState] = useState({
-    name: '', email: '', company: '', engagement: '', budget: '', message: '',
+    name: '', email: '', company: '', engagement: '', message: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [sending,   setSending]   = useState(false)
@@ -33,6 +32,19 @@ export default function Act6Future() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!formState.name || !formState.email || !formState.message) {
+      setSendError('Please fill in all mandatory fields.')
+      setSending(false)
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formState.email)) {
+      setSendError('Please enter a valid email address.')
+      setSending(false)
+      return
+    }
+
     setSending(true)
     setSendError(null)
 
@@ -58,7 +70,7 @@ export default function Act6Future() {
       const data = await res.json()
       if (res.ok && data.success) {
         setSubmitted(true)
-        setFormState({ name: '', email: '', company: '', engagement: '', budget: '', message: '' })
+        setFormState({ name: '', email: '', company: '', engagement: '', message: '' })
       } else {
         setSendError(data.message ?? 'Submission failed. Please try again.')
       }
@@ -157,31 +169,6 @@ export default function Act6Future() {
                 </div>
               </div>
 
-              {/* Budget */}
-              <div className="mb-6">
-                <label className="font-mono text-xs tracking-widest uppercase mb-3 block" style={{ color: 'var(--fg-muted)' }}>
-                  Budget Range
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {BUDGET_OPTIONS.map((opt) => (
-                    <button
-                      key={opt}
-                      type="button"
-                      onClick={() => updateField('budget', opt)}
-                      className="font-mono text-xs px-4 py-2.5 rounded-lg transition-all duration-200"
-                      style={{
-                        border: formState.budget === opt ? '1px solid rgba(123,97,255,0.5)' : '1px solid rgba(123,97,255,0.15)',
-                        background: formState.budget === opt ? 'rgba(123,97,255,0.1)' : 'rgba(6,6,15,0.6)',
-                        color: formState.budget === opt ? '#7B61FF' : 'var(--fg-muted)',
-                        boxShadow: formState.budget === opt ? '0 0 16px rgba(123,97,255,0.1)' : 'none',
-                      }}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               {/* Message */}
               <div className="mb-8">
                 <label className="font-mono text-xs tracking-widest uppercase mb-2 block" style={{ color: 'var(--fg-muted)' }}>
@@ -228,18 +215,6 @@ export default function Act6Future() {
             </form>
           )}
         </div>
-
-        {/* ── Footer ── */}
-        <footer data-reveal className="mt-24 pt-12 flex flex-col md:flex-row items-center justify-between gap-6"
-          style={{ borderTop: '1px solid rgba(123,97,255,0.1)' }}>
-          <div className="flex items-center gap-3">
-            <SpaceLogo />
-            <span className="font-semibold text-sm text-fg">Luminexis Technologies</span>
-          </div>
-          <p className="font-mono text-xs text-fg-muted">
-            © {new Date().getFullYear()} Luminexis. Engineered with precision.
-          </p>
-        </footer>
       </div>
     </section>
   )
@@ -265,20 +240,5 @@ function FormField({ label, value, onChange, placeholder, type = 'text', require
         onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(123,97,255,0.2)'; e.currentTarget.style.boxShadow = 'none' }}
       />
     </div>
-  )
-}
-
-function SpaceLogo() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-      <circle cx="14" cy="14" r="12" stroke="url(#footerGrad)" strokeWidth="1.5" fill="none" />
-      <circle cx="14" cy="14" r="2" fill="#7B61FF" style={{ filter: 'drop-shadow(0 0 4px rgba(123,97,255,0.8))' }} />
-      <defs>
-        <linearGradient id="footerGrad" x1="2" y1="2" x2="26" y2="26">
-          <stop offset="0%" stopColor="#7B61FF" />
-          <stop offset="100%" stopColor="#22D3EE" />
-        </linearGradient>
-      </defs>
-    </svg>
   )
 }

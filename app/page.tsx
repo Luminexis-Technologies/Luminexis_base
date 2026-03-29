@@ -17,6 +17,7 @@ import BusinessIntentSection from '@/components/sections/BusinessIntentSection'
 import RiskReductionSection from '@/components/sections/RiskReductionSection'
 import EngagementStandardSection from '@/components/sections/EngagementStandardSection'
 import Chatbot from '@/components/ui/Chatbot'
+import Footer from '@/components/ui/Footer'
 
 const MainCanvas = dynamic(() => import('@/components/canvas/MainCanvas'), {
   ssr: false,
@@ -84,6 +85,7 @@ export default function LuminexisPage() {
 
         {/* Authority Signal + Contact */}
         <Act6Future />
+        <Footer />
       </main>
 
       {/* Chatbot Widget */}

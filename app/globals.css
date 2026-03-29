@@ -17,8 +17,9 @@
     --accent-dim:   rgba(123, 97, 255, 0.1);
     --cyan:         #22D3EE;
     --cyan-dim:     rgba(34, 211, 238, 0.1);
-    --shadow-card:  0 4px 24px rgba(123, 97, 255, 0.06), 0 0 0 1px rgba(123, 97, 255, 0.12);
-    --shadow-hover: 0 8px 40px rgba(123, 97, 255, 0.15), 0 0 0 1px rgba(123, 97, 255, 0.3);
+    /* Simplified shadows for better Perf */
+    --shadow-card:  0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(123, 97, 255, 0.1);
+    --shadow-hover: 0 10px 40px rgba(123, 97, 255, 0.15), 0 0 0 1px rgba(123, 97, 255, 0.25);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -70,12 +71,12 @@
 
   /* ── Glass Card — Space theme ── */
   .glass-card {
-    background: rgba(17, 19, 41, 0.7);
+    background: rgba(17, 19, 41, 0.8);
     border: 1px solid var(--border);
     border-radius: 16px;
     box-shadow: var(--shadow-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     transition: border-color 0.32s ease, box-shadow 0.38s ease, transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -170,17 +171,17 @@
   /* ── Honor Card — nebula feature variant ── */
   .honor-card {
     position: relative;
-    background: linear-gradient(135deg, #0B0D17 0%, #151729 50%, #0E0F1F 100%);
-    border: 1px solid rgba(123, 97, 255, 0.2);
+    background: #0B0D17;
+    border: 1px solid rgba(123, 97, 255, 0.15);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 48px rgba(123, 97, 255, 0.08), 0 0 0 1px rgba(123, 97, 255, 0.12), inset 0 1px 0 rgba(180, 160, 255, 0.04);
-    transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
   }
 
   .honor-card:hover {
-    box-shadow: 0 16px 80px rgba(123, 97, 255, 0.15), 0 0 0 1px rgba(123, 97, 255, 0.3);
-    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
   }
 
   .honor-card::before {

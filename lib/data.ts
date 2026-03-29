@@ -178,11 +178,11 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
     quote:
-      "Luminexis didn't just build us a digital system — they engineered a platform. Our online engagements increased by 340% within the first two months. The performance and structure exceeded every expectation.",
-    author: 'Hari Prasad',
+      "What we received wasn’t just a website — it was a complete operational system. Sri Hari Towing Services now runs on a fast, structured digital foundation that consistently brings in real customer inquiries.",
+    author: 'Pruthvi',
     role: 'Owner',
-    company: 'Pruthvi',
-    engagement: 'Full-Stack Digital System',
+    company: 'Sri Hari Towing Services',
+    engagement: 'Digital System & Lead Infrastructure',
     rating: 5,
     variant: 'fade',
     delay: 0,
@@ -191,11 +191,11 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't2',
     quote:
-      "Their process is unlike any studio I've worked with. They mapped our architecture before the first interface was sketched. The result is a platform that actually scales with the business.",
-    author: 'Partner',
+      "Trimai Interiors needed more than a visual presence — we needed a digital identity. The final product reflects precision, clarity, and a level of refinement our clients immediately notice.",
+    author: 'Imran',
     role: 'Founder',
-    company: 'E-Commerce Platform',
-    engagement: 'Interface Structure',
+    company: 'Trimai Interiors',
+    engagement: 'Brand Experience Architecture',
     rating: 5,
     variant: 'fade',
     delay: 0.15,
@@ -204,18 +204,17 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't3',
     quote:
-      'The attention to engineering detail is remarkable. Sub-second load times, fluid interactions, zero downtime — delivered on schedule. This is what a structured digital system looks like.',
-    author: 'Partner',
-    role: 'CTO',
-    company: 'SaaS Platform',
-    engagement: 'Frontend Engineering Execution',
+      "Quest Neon stands as a high-performance interface system. Every interaction feels intentional — fast, fluid, and engineered with attention to detail that’s rare to find.",
+    author: 'Ravi B',
+    role: 'CEO',
+    company: 'Quest ',
+    engagement: 'Frontend System Engineering',
     rating: 5,
     variant: 'fade',
     delay: 0.3,
     hoverEffect: 'lift',
   },
 ]
-
 // ─────────────────────────────────────────────────────────────────────────────
 // ACTS (Section navigation)
 // ─────────────────────────────────────────────────────────────────────────────
