@@ -199,24 +199,24 @@ export default function Chatbot() {
     }
   }, [currentNode, answers]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ── Restart ──
-  const handleRestart = () => {
-    setBubbles([])
-    setCurrentNode(null)
-    setIsTyping(false)
-    setAnswers({})
-    setInputValue('')
-    setStarted(false)
-    setHistory([])
-    setSubmissionStatus(null)
-    setError('')
-    idCounter.current = 0
-    setTimeout(() => {
-      setStarted(true)
-      goToNode('start')
-    }, 100)
-  }
+    // --- Restart ---
+const handleRestart = () => {
+  // 🧹 CLEAR EVERYTHING
+  setBubbles([]);              // ✅ remove old messages
+  setHistory([]);              // ✅ clear navigation history
+  setAnswers({});              // ✅ clear collected answers
+  setSubmissionStatus(null);   // ✅ reset submission state
+  setCurrentNode(null);        // ✅ reset node
+  setInputValue('');           // ✅ clear input
+  setError('');                // ✅ clear errors
+  setIsTyping(false);          // ✅ stop typing animation
+  idCounter.current = 0;       // ✅ reset IDs
 
+  // 🚀 Restart fresh
+  setTimeout(() => {
+    goToNode('start');
+  }, 200);
+};
   // ── Input placeholder based on field type ──
   const getPlaceholder = () => {
     if (currentNode?.inputField === 'name') return 'Your name...'

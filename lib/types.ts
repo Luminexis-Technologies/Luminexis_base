@@ -152,4 +152,6 @@ export interface Project extends AnimationMeta {
   featured?: boolean
   /** Headline performance metric copy, e.g. "+340% engagement" */
   metrics?: string
+  /** Image preview for the project card */
+  thumbnail?: string
 }

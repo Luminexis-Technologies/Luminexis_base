@@ -6,12 +6,6 @@ import { motion, Variants } from 'framer-motion'
 import { PROJECTS } from '@/lib/data'
 import type { Project } from '@/lib/types'
 
-const PROJECT_IMAGES: Record<string, string> = {
-  'sri-hari-towing': '/assets/sriharitowing.png',
-  'trimai-interiors': '/assets/trimai.png',
-  'quest': '/assets/quest.png',
-}
-
 // Optimized Animation Variants
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -116,7 +110,7 @@ function ProjectCard({ project }: { project: Project }) {
       {/* ── Hero banner ── */}
       <div className="relative h-56 overflow-hidden">
         <Image
-          src={PROJECT_IMAGES[project.id] ?? project.bgGradient}
+          src={project.thumbnail ?? project.bgGradient}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"

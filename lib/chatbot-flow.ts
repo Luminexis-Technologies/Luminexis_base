@@ -1,330 +1,336 @@
-// ── Chatbot Conversation Tree ──
-// Each node has a message, optional options (buttons), and routing logic.
+// ── Types ──────────────────────
+export type ChatOption = {
+  label: string
+  next: string
+}
 
 export type ChatNode = {
   id: string
   message: string
-  options?: { label: string; next: string }[]
-  /** If true, show a text input instead of options */
+  options?: ChatOption[]
   freeText?: boolean
-  /** Where to go after free text submission */
   freeTextNext?: string
-  /** Input field type for lead capture */
   inputField?: 'name' | 'email' | 'whatsapp'
   inputNext?: string
-  /** External link to open */
   externalLink?: string
-  /** If true, this is a terminal node */
   end?: boolean
 }
 
+// ── Constants ──────────────────
 export const WHATSAPP_NUMBER = '918431077234'
 export const EMAIL_ADDRESS = 'info@luminexistechnologies.com'
 
+// ── Chat Nodes ─────────────────
 export const CHAT_NODES: Record<string, ChatNode> = {
-  // ── Start ──
 
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // START
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    start: {
-      id: 'start',
-      message: "✨ **Welcome to the Luminexis Engineering Studio.**\n\nWe don't just create web pages — we architect high-performance digital ecosystems that outrank, outperform, and outlast the competition.\n\nReady to deploy your strategic growth roadmap?\n\nHow should we begin?",
-      options: [
-        { label: 'Architect Digital Ecosystem', next: 'web_type' },
-        { label: 'Premium UI/UX Engineering', next: 'uiux_stage' },
-        { label: 'Global SEO Scaling', next: 'seo_situation' },
-        { label: 'Direct Expert Consultation', next: 'lead_name' },
-      ],
-    },
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // WEBSITE FLOW
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    web_type: {
-      id: 'web_type',
-      message: 'What are you planning to build?',
-      options: [
-        { label: 'Business Website', next: 'biz_goal' },
-        { label: 'E-commerce Store', next: 'ecom_product' },
-        { label: 'Landing Page', next: 'lp_purpose' },
-        { label: 'Not sure', next: 'unsure_goal' },
-        { label: "I'll explain my requirement", next: 'free_explain' },
-      ],
-    },
-
-    biz_goal: {
-      id: 'biz_goal',
-      message: "What's the main goal?",
-      options: [
-        { label: 'Generate leads', next: 'biz_content' },
-        { label: 'Showcase services', next: 'biz_content' },
-        { label: 'Build brand presence', next: 'biz_content' },
-      ],
-    },
-    biz_content: {
-      id: 'biz_content',
-      message: 'Do you have content ready?',
-      options: [
-        { label: 'Yes', next: 'biz_pages' },
-        { label: 'No', next: 'biz_pages' },
-      ],
-    },
-    biz_pages: {
-      id: 'biz_pages',
-      message: 'How many pages are you expecting?',
-      options: [
-        { label: '1–5', next: 'lead_name' },
-        { label: '5–10', next: 'lead_name' },
-        { label: '10+', next: 'lead_name' },
-        { label: 'Not sure', next: 'lead_name' },
-      ],
-    },
-
-    ecom_product: {
-      id: 'ecom_product',
-      message: 'What are you planning to sell?',
-      options: [
-        { label: 'Physical products', next: 'ecom_count' },
-        { label: 'Digital products', next: 'ecom_count' },
-        { label: 'Both', next: 'ecom_count' },
-      ],
-    },
-    ecom_count: {
-      id: 'ecom_count',
-      message: 'Approx number of products?',
-      options: [
-        { label: '1–10', next: 'ecom_payment' },
-        { label: '10–50', next: 'ecom_payment' },
-        { label: '50+', next: 'ecom_payment' },
-      ],
-    },
-    ecom_payment: {
-      id: 'ecom_payment',
-      message: 'Do you need payment & shipping setup?',
-      options: [
-        { label: 'Yes', next: 'lead_name' },
-        { label: 'No', next: 'lead_name' },
-        { label: 'Not sure', next: 'lead_name' },
-      ],
-    },
-
-    lp_purpose: {
-      id: 'lp_purpose',
-      message: "What's the purpose?",
-      options: [
-        { label: 'Ads conversion', next: 'lp_ads' },
-        { label: 'Lead generation', next: 'lp_ads' },
-        { label: 'Product launch', next: 'lp_ads' },
-      ],
-    },
-    lp_ads: {
-      id: 'lp_ads',
-      message: 'Will you be running ads?',
-      options: [
-        { label: 'Yes', next: 'lead_name' },
-        { label: 'No', next: 'lead_name' },
-        { label: 'Planning to', next: 'lead_name' },
-      ],
-    },
-
-    unsure_goal: {
-      id: 'unsure_goal',
-      message: "What's your goal?",
-      options: [
-        { label: 'Get leads', next: 'unsure_existing' },
-        { label: 'Sell products', next: 'unsure_existing' },
-        { label: 'Build online presence', next: 'unsure_existing' },
-      ],
-    },
-    unsure_existing: {
-      id: 'unsure_existing',
-      message: 'Do you have a website currently?',
-      options: [
-        { label: 'Yes', next: 'lead_name' },
-        { label: 'No', next: 'lead_name' },
-      ],
-    },
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // UI/UX FLOW
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    uiux_stage: {
-      id: 'uiux_stage',
-      message: "What do you need help with in UI/UX?",
-      options: [
-        { label: 'New Design (from scratch)', next: 'uiux_type' },
-        { label: 'Redesign existing product', next: 'uiux_existing' },
-        { label: 'Improve conversions (CRO)', next: 'uiux_conversion' },
-        { label: "I'll explain my requirement", next: 'free_explain' },
-      ],
-    },
-
-    uiux_type: {
-      id: 'uiux_type',
-      message: "What are you designing?",
-      options: [
-        { label: 'Website UI', next: 'uiux_pages' },
-        { label: 'Mobile App UI', next: 'uiux_pages' },
-        { label: 'Dashboard / SaaS UI', next: 'uiux_pages' },
-      ],
-    },
-
-    uiux_pages: {
-      id: 'uiux_pages',
-      message: "How many screens/pages approximately?",
-      options: [
-        { label: '1–5', next: 'lead_name' },
-        { label: '5–15', next: 'lead_name' },
-        { label: '15+', next: 'lead_name' },
-        { label: 'Not sure', next: 'lead_name' },
-      ],
-    },
-
-    uiux_existing: {
-      id: 'uiux_existing',
-      message: "What needs improvement?",
-      options: [
-        { label: 'Visual design', next: 'lead_name' },
-        { label: 'User experience', next: 'lead_name' },
-        { label: 'Both UI & UX', next: 'lead_name' },
-      ],
-    },
-
-    uiux_conversion: {
-      id: 'uiux_conversion',
-      message: "What’s your main goal?",
-      options: [
-        { label: 'Increase leads', next: 'lead_name' },
-        { label: 'Improve sales', next: 'lead_name' },
-        { label: 'Reduce bounce rate', next: 'lead_name' },
-      ],
-    },
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // SEO FLOW
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    seo_situation: {
-      id: 'seo_situation',
-      message: "What's your current situation?",
-      options: [
-        { label: 'New website', next: 'seo_new' },
-        { label: 'Low traffic', next: 'seo_low_leads' },
-        { label: 'Rankings dropped', next: 'seo_drop_when' },
-        { label: 'Not sure', next: 'seo_unsure' },
-        { label: "I'll explain my requirement", next: 'free_explain' },
-      ],
-    },
-
-    seo_new: {
-      id: 'seo_new',
-      message: 'Do you want to start SEO from scratch?',
-      options: [
-        { label: 'Yes', next: 'lead_name' },
-        { label: 'Need guidance', next: 'lead_name' },
-      ],
-    },
-
-    seo_low_leads: {
-      id: 'seo_low_leads',
-      message: 'Are you getting leads currently?',
-      options: [
-        { label: 'Yes, but low', next: 'seo_low_prev' },
-        { label: 'No', next: 'seo_low_prev' },
-      ],
-    },
-    seo_low_prev: {
-      id: 'seo_low_prev',
-      message: 'Have you done SEO before?',
-      options: [
-        { label: 'Yes', next: 'lead_name' },
-        { label: 'No', next: 'lead_name' },
-      ],
-    },
-
-    seo_drop_when: {
-      id: 'seo_drop_when',
-      message: 'When did this happen?',
-      options: [
-        { label: 'Recently', next: 'seo_drop_changes' },
-        { label: 'Long back', next: 'seo_drop_changes' },
-        { label: 'Not sure', next: 'seo_drop_changes' },
-      ],
-    },
-    seo_drop_changes: {
-      id: 'seo_drop_changes',
-      message: 'Any recent changes made to the website?',
-      options: [
-        { label: 'Yes', next: 'lead_name' },
-        { label: 'No', next: 'lead_name' },
-      ],
-    },
-
-    seo_unsure: {
-      id: 'seo_unsure',
-      message: "What's your main goal?",
-      options: [
-        { label: 'More traffic', next: 'lead_name' },
-        { label: 'More leads', next: 'lead_name' },
-        { label: 'Brand visibility', next: 'lead_name' },
-      ],
-    },
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // FREE TEXT
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    free_explain: {
-      id: 'free_explain',
-      message: 'No problem — tell us a bit about what you\'re looking for.',
-      freeText: true,
-      freeTextNext: 'lead_name',
-    },
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // LEAD CAPTURE
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    lead_name: {
-      id: 'lead_name',
-      message: "Great — let's get to know you.\n\nWhat's your name?",
-      inputField: 'name',
-      inputNext: 'lead_email',
-    },
-    lead_email: {
-      id: 'lead_email',
-      message: 'Your email?',
-      inputField: 'email',
-      inputNext: 'lead_whatsapp',
-    },
-    lead_whatsapp: {
-      id: 'lead_whatsapp',
-      message: 'Your WhatsApp number?',
-      inputField: 'whatsapp',
-      inputNext: 'thank_you',
-    },
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    // FINAL
-    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    thank_you: {
-      id: 'thank_you',
-      message: "🎉 *You're all set.*\n\nThe Luminexis team will personally review your project and get back to you within *12–24 hours* with a strategic roadmap.\n\n✨ Let's build something extraordinary.",
-      options: [
-        { label: 'Chat on WhatsApp', next: 'exit_whatsapp' },
-        { label: 'Priority Email', next: 'exit_email' },
-      ],
-    },
-
-    exit_whatsapp: {
-      id: 'exit_whatsapp',
-      message: "Great — let's continue on WhatsApp.",
-      externalLink: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi, I just checked your website and I'd like to discuss my project.")}`,
-      end: true,
-    },
-
-    exit_email: {
-      id: 'exit_email',
-      message: 'Perfect — you can share detailed requirements via email.',
-      externalLink: `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent('Project Inquiry from Website')}`,
-      end: true,
+  // START
+  start: {
+    id: 'start',
+    message:
+      "👋 *Welcome to Luminexis*\n\nWe design high-performance websites, UI/UX systems, SEO growth engines, and business automation.\n\n💡 Tell me what you're looking for — I’ll guide you step-by-step.",
+    options: [
+      { label: '🌐 Build a Website', next: 'web_type' },
+      { label: '🎨 UI/UX Design', next: 'uiux_stage' },
+      { label: '🚀 SEO & Growth', next: 'seo_situation' },
+      { label: '⚙️ Business Automation', next: 'automation_type' },
+      { label: '💬 Talk to Expert', next: 'lead_name' },
+    ],
   },
+
+  // WEBSITE FLOW
+  web_type: {
+    id: 'web_type',
+    message: "Great choice 👍\n\nWhat are you planning to build?",
+    options: [
+      { label: 'Business Website', next: 'biz_goal' },
+      { label: 'E-commerce Store', next: 'ecom_product' },
+      { label: 'Landing Page', next: 'lp_purpose' },
+      { label: 'Not sure yet', next: 'unsure_goal' },
+      { label: "I'll explain", next: 'free_explain' },
+    ],
+  },
+
+  biz_goal: {
+    id: 'biz_goal',
+    message: "What's your primary goal?",
+    options: [
+      { label: 'Get more leads', next: 'biz_content' },
+      { label: 'Show my services', next: 'biz_content' },
+      { label: 'Build strong brand presence', next: 'biz_content' },
+    ],
+  },
+
+  biz_content: {
+    id: 'biz_content',
+    message: "Do you already have content ready?",
+    options: [
+      { label: 'Yes', next: 'biz_pages' },
+      { label: 'No', next: 'biz_pages' },
+    ],
+  },
+
+  biz_pages: {
+    id: 'biz_pages',
+    message: "How many pages do you need?",
+    options: [
+      { label: '1–5', next: 'lead_name' },
+      { label: '5–10', next: 'lead_name' },
+      { label: '10+', next: 'lead_name' },
+      { label: 'Not sure', next: 'lead_name' },
+    ],
+  },
+
+  // ECOMMERCE
+  ecom_product: {
+    id: 'ecom_product',
+    message: "Nice 🛒\n\nWhat will you sell?",
+    options: [
+      { label: 'Physical', next: 'ecom_count' },
+      { label: 'Digital', next: 'ecom_count' },
+      { label: 'Both', next: 'ecom_count' },
+    ],
+  },
+
+  ecom_count: {
+    id: 'ecom_count',
+    message: "Approx product count?",
+    options: [
+      { label: '1–10', next: 'ecom_features' },
+      { label: '10–50', next: 'ecom_features' },
+      { label: '50+', next: 'ecom_features' },
+    ],
+  },
+
+  ecom_features: {
+    id: 'ecom_features',
+    message: "What do you need help with?",
+    options: [
+      { label: 'Payments & Shipping', next: 'lead_name' },
+      { label: 'Full store setup', next: 'lead_name' },
+      { label: 'Design/UI only', next: 'lead_name' },
+    ],
+  },
+
+  // LANDING PAGE
+  lp_purpose: {
+    id: 'lp_purpose',
+    message: "What's the goal?",
+    options: [
+      { label: 'Run ads', next: 'lp_ads' },
+      { label: 'Generate leads', next: 'lp_ads' },
+      { label: 'Launch product', next: 'lp_ads' },
+    ],
+  },
+
+  lp_ads: {
+    id: 'lp_ads',
+    message: "Will you run ads?",
+    options: [
+      { label: 'Yes', next: 'lead_name' },
+      { label: 'Planning', next: 'lead_name' },
+      { label: 'No', next: 'lead_name' },
+    ],
+  },
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // BUSINESS AUTOMATION (NEW)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  automation_type: {
+    id: 'automation_type',
+    message:
+      "Smart move ⚙️\n\nWhat would you like to automate?",
+    options: [
+      { label: 'Sales & CRM', next: 'automation_sales' },
+      { label: 'Operations / Workflow', next: 'automation_ops' },
+      { label: 'Marketing Automation', next: 'automation_marketing' },
+      { label: 'Customer Support', next: 'automation_support' },
+      { label: 'Full Business Automation', next: 'automation_scale' },
+      { label: "I'll explain", next: 'free_explain' },
+    ],
+  },
+
+  automation_sales: {
+    id: 'automation_sales',
+    message: "What do you want to improve in sales?",
+    options: [
+      { label: 'Lead tracking (CRM)', next: 'automation_tools' },
+      { label: 'Auto follow-ups', next: 'automation_tools' },
+      { label: 'Pipeline & conversions', next: 'automation_tools' },
+    ],
+  },
+
+  automation_ops: {
+    id: 'automation_ops',
+    message: "Which operations?",
+    options: [
+      { label: 'Workflow automation', next: 'automation_tools' },
+      { label: 'Order / inventory flow', next: 'automation_tools' },
+      { label: 'Dashboards & reports', next: 'automation_tools' },
+    ],
+  },
+
+  automation_marketing: {
+    id: 'automation_marketing',
+    message: "Marketing automation needs?",
+    options: [
+      { label: 'Email funnels', next: 'automation_tools' },
+      { label: 'Ad tracking', next: 'automation_tools' },
+      { label: 'Lead nurturing', next: 'automation_tools' },
+    ],
+  },
+
+  automation_support: {
+    id: 'automation_support',
+    message: "Support improvements?",
+    options: [
+      { label: 'Chatbots / AI', next: 'automation_tools' },
+      { label: 'Ticketing system', next: 'automation_tools' },
+      { label: 'Auto responses', next: 'automation_tools' },
+    ],
+  },
+
+  automation_scale: {
+    id: 'automation_scale',
+    message: "Project complexity?",
+    options: [
+      { label: 'Simple', next: 'automation_tools' },
+      { label: 'Moderate', next: 'automation_tools' },
+      { label: 'Advanced system', next: 'automation_tools' },
+      { label: 'Not sure', next: 'automation_tools' },
+    ],
+  },
+
+  automation_tools: {
+    id: 'automation_tools',
+    message: "Do you use any tools currently?",
+    options: [
+      { label: 'CRM tools', next: 'lead_name' },
+      { label: 'E-commerce platforms', next: 'lead_name' },
+      { label: 'Custom tools', next: 'lead_name' },
+      { label: 'None', next: 'lead_name' },
+    ],
+  },
+
+  // UI/UX
+  uiux_stage: {
+    id: 'uiux_stage',
+    message: "What do you need?",
+    options: [
+      { label: 'New design', next: 'uiux_type' },
+      { label: 'Redesign', next: 'uiux_existing' },
+      { label: 'Improve conversions', next: 'uiux_conversion' },
+      { label: "I'll explain", next: 'free_explain' },
+    ],
+  },
+
+  uiux_type: {
+    id: 'uiux_type',
+    message: "What are you designing?",
+    options: [
+      { label: 'Website', next: 'uiux_pages' },
+      { label: 'Mobile App', next: 'uiux_pages' },
+      { label: 'Dashboard', next: 'uiux_pages' },
+    ],
+  },
+
+  uiux_pages: {
+    id: 'uiux_pages',
+    message: "How many screens?",
+    options: [
+      { label: '1–5', next: 'lead_name' },
+      { label: '5–15', next: 'lead_name' },
+      { label: '15+', next: 'lead_name' },
+      { label: 'Not sure', next: 'lead_name' },
+    ],
+  },
+
+  uiux_existing: {
+    id: 'uiux_existing',
+    message: "What needs improvement?",
+    options: [
+      { label: 'Design', next: 'lead_name' },
+      { label: 'UX', next: 'lead_name' },
+      { label: 'Both', next: 'lead_name' },
+    ],
+  },
+
+  uiux_conversion: {
+    id: 'uiux_conversion',
+    message: "Goal?",
+    options: [
+      { label: 'More leads', next: 'lead_name' },
+      { label: 'More sales', next: 'lead_name' },
+      { label: 'Reduce bounce', next: 'lead_name' },
+    ],
+  },
+
+  // SEO
+  seo_situation: {
+    id: 'seo_situation',
+    message: "Current situation?",
+    options: [
+      { label: 'New site', next: 'lead_name' },
+      { label: 'Low traffic', next: 'lead_name' },
+      { label: 'Ranking dropped', next: 'lead_name' },
+      { label: 'Not sure', next: 'lead_name' },
+      { label: "I'll explain", next: 'free_explain' },
+    ],
+  },
+
+  // FREE INPUT
+  free_explain: {
+    id: 'free_explain',
+    message: "Tell me your requirement 👇",
+    freeText: true,
+    freeTextNext: 'lead_name',
+  },
+
+  // LEAD FLOW
+  lead_name: {
+    id: 'lead_name',
+    message: "Your name?",
+    inputField: 'name',
+    inputNext: 'lead_email',
+  },
+
+  lead_email: {
+    id: 'lead_email',
+    message: "Your email?",
+    inputField: 'email',
+    inputNext: 'lead_whatsapp',
+  },
+
+  lead_whatsapp: {
+    id: 'lead_whatsapp',
+    message: "WhatsApp number?",
+    inputField: 'whatsapp',
+    inputNext: 'thank_you',
+  },
+
+  // FINAL
+  thank_you: {
+    id: 'thank_you',
+    message:
+      "🎉 Done!\n\nWe’ll contact you within 12–24 hours.",
+    options: [
+      { label: '💬 WhatsApp', next: 'exit_whatsapp' },
+      { label: '📧 Email', next: 'exit_email' },
+    ],
+  },
+
+  exit_whatsapp: {
+    id: 'exit_whatsapp',
+    message: "Opening WhatsApp...",
+    externalLink: `https://wa.me/${WHATSAPP_NUMBER}`,
+    end: true,
+  },
+
+  exit_email: {
+    id: 'exit_email',
+    message: "Opening email...",
+    externalLink: `mailto:${EMAIL_ADDRESS}`,
+    end: true,
+  },
+
 }
