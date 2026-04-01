@@ -9,10 +9,40 @@ type Bubble = { id: number; role: BubbleRole; text: string }
 
 // ── Validation helpers ──
 function isValidEmail(v: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+  const email = v.trim()
+
+  // Strict email pattern
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
+
+  // Extra checks for edge cases
+  if (!regex.test(email)) return false
+
+  // ❌ Prevent consecutive dots
+  if (email.includes('..')) return false
+
+  // ❌ Prevent starting/ending with dot
+  if (email.startsWith('.') || email.endsWith('.')) return false
+
+  return true
 }
 function isValidPhone(v: string) {
-  return /^[\d+\-()\s]{7,15}$/.test(v)
+  // Remove all non-digits
+  const cleaned = v.replace(/\D/g, '')
+
+  // Rules:
+  // ✅ Allow 10-digit Indian numbers
+  // ✅ Allow numbers with country code (91)
+  // ✅ Must start with 6–9 (valid Indian mobile range)
+
+  if (cleaned.length === 10) {
+    return /^[6-9]\d{9}$/.test(cleaned)
+  }
+
+  if (cleaned.length === 12 && cleaned.startsWith('91')) {
+    return /^[6-9]\d{9}$/.test(cleaned.slice(2))
+  }
+
+  return false
 }
 
 export default function Chatbot() {
