@@ -8,31 +8,41 @@ type BubbleRole = 'bot' | 'user'
 type Bubble = { id: number; role: BubbleRole; text: string }
 
 // ── Validation helpers ──
+// -email
 function isValidEmail(v: string) {
-  const email = v.trim()
+  const email = v.trim().toLowerCase()
 
-  // Strict email pattern
-  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-  // Extra checks for edge cases
   if (!regex.test(email)) return false
 
-  // ❌ Prevent consecutive dots
+  // ❌ No consecutive dots
   if (email.includes('..')) return false
 
-  // ❌ Prevent starting/ending with dot
+  // ❌ No leading/trailing dot
   if (email.startsWith('.') || email.endsWith('.')) return false
+
+  // ❌ Prevent invalid domain patterns
+  const [local, domain] = email.split('@')
+
+  if (!local || !domain) return false
+
+  // ❌ Domain must have at least one dot
+  if (!domain.includes('.')) return false
+
+  // ❌ Prevent domains like ".com" or "com."
+  if (domain.startsWith('.') || domain.endsWith('.')) return false
 
   return true
 }
+
+//mobile no
+
 function isValidPhone(v: string) {
   // Remove all non-digits
   const cleaned = v.replace(/\D/g, '')
 
-  // Rules:
-  // ✅ Allow 10-digit Indian numbers
-  // ✅ Allow numbers with country code (91)
-  // ✅ Must start with 6–9 (valid Indian mobile range)
+ 
 
   if (cleaned.length === 10) {
     return /^[6-9]\d{9}$/.test(cleaned)
