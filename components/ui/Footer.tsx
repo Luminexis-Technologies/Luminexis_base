@@ -115,14 +115,24 @@ export default function Footer() {
 function SpaceLogo() {
   return (
     <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20 transition-all duration-300">
-      <Image
-        src="/static/img/user_logo.png"
-        alt="software development company in Bangalore"
-        width={32}
-        height={32}
-        className="w-full h-full object-cover"
-        loading="lazy"
-      />
+      <div className="adaptive-logo-container">
+        <Image
+          src="/logo-light.png"
+          alt="software development company in Bangalore Light"
+          width={32}
+          height={32}
+          className="adaptive-logo-light"
+          loading="lazy"
+        />
+        <Image
+          src="/logo-dark.png"
+          alt="software development company in Bangalore"
+          width={32}
+          height={32}
+          className="adaptive-logo-dark"
+          loading="lazy"
+        />
+      </div>
     </div>
   )
 }

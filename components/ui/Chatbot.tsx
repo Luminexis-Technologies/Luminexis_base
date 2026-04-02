@@ -289,8 +289,9 @@ const handleRestart = () => {
       >
         {/* Chat / Close icon */}
         {/* User Logo */}
-        <div className="relative w-full h-full flex items-center justify-center p-1.5">
-          <img src="/static/img/user_logo.png" alt="SEO services in Delhi India" className="w-full h-full object-contain rounded-full" />
+        <div className="relative w-full h-full flex items-center justify-center p-1.5 adaptive-logo-container">
+          <img src="/logo-light.png" alt="SEO services in Delhi India" className="w-full h-full object-contain rounded-full adaptive-logo-light" />
+          <img src="/logo-dark.png" alt="SEO services in Delhi India" className="w-full h-full object-contain rounded-full adaptive-logo-dark" />
         </div>
 
         {/* Pulse ring when closed */}
@@ -325,8 +326,11 @@ const handleRestart = () => {
             }}
           >
             {/* User Logo Status */}
-            <div className="relative flex-shrink-0">
-               <img src="/static/img/user_logo.png" alt="UI UX design company in India" className="w-9 h-9 rounded-full border border-white/20" />
+            <div className="relative flex-shrink-0 w-9 h-9">
+               <div className="adaptive-logo-container border border-white/20 rounded-full overflow-hidden">
+                 <img src="/logo-light.png" alt="UI UX design company in India" className="adaptive-logo-light" />
+                 <img src="/logo-dark.png" alt="UI UX design company in India" className="adaptive-logo-dark" />
+               </div>
                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2"
                 style={{ background: '#22c55e', borderColor: 'rgba(11,13,23,0.95)' }} />
             </div>

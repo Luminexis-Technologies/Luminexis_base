@@ -50,13 +50,13 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/static/img/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/static/img/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/static/img/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo-light.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/logo-dark.png', media: '(prefers-color-scheme: light)' },
     ],
     apple: [
-      { url: '/static/img/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   openGraph: {
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/preview.jpg',
+        url: '/logo-dark.png',
         width: 1200,
         height: 630,
         alt: 'UI/UX, Web & Software Development Company in India',
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Luminexis Technologies | Web Development & Software Engineering India',
     description: 'Leading web development company in India. Custom software, UI/UX design, and enterprise solutions.',
-    images: ['/static/img/premium_logo.png'],
+    images: ['/logo-dark.png'],
     creator: '@luminexis',
   },
   robots: {
@@ -185,9 +185,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
         {/* Favicon system */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" href="/logo-dark.png" media="(prefers-color-scheme: light)" />
+        <link rel="icon" href="/logo-light.png" media="(prefers-color-scheme: dark)" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Organization structured data */}

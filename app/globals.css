@@ -370,4 +370,47 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .skip-to-content:focus {
   top: 0;
+}
+
+/* ── AUTO LOGO SWITCHING SYSTEM (Adaptive Contrast) ── */
+.adaptive-logo-container {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.adaptive-logo-light,
+.adaptive-logo-dark {
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Base Light Mode Environment (Browsers running light mode) */
+@media (prefers-color-scheme: light) {
+  .adaptive-logo-light {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .adaptive-logo-dark {
+    opacity: 1;
+    filter: brightness(0) drop-shadow(0 0 1px rgba(0,0,0,0.1)); /* Forces dark tone */
+  }
+}
+
+/* Base Dark Mode Environment (Browsers running dark mode) */
+@media (prefers-color-scheme: dark) {
+  .adaptive-logo-light {
+    opacity: 1;
+    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.3)); /* Forces white tone with glow */
+  }
+  .adaptive-logo-dark {
+    opacity: 0;
+    pointer-events: none;
+  }
 }

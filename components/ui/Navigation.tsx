@@ -134,14 +134,24 @@ export default function Navigation() {
 function SpaceLogo() {
   return (
     <div className="relative w-9 h-9 rounded-full overflow-hidden border border-white/20 group-hover:border-[#7B61FF]/40 transition-all duration-300">
-      <Image
-        src="/static/img/user_logo.png"
-        alt="UI UX design company in India"
-        width={36}
-        height={36}
-        className="w-full h-full object-cover"
-        priority
-      />
+      <div className="adaptive-logo-container">
+        <Image
+          src="/logo-light.png"
+          alt="Luminexis Platform Mode Light"
+          width={36}
+          height={36}
+          className="adaptive-logo-light"
+          priority
+        />
+        <Image
+          src="/logo-dark.png"
+          alt="UI UX design company in India"
+          width={36}
+          height={36}
+          className="adaptive-logo-dark"
+          priority
+        />
+      </div>
     </div>
   )
 }

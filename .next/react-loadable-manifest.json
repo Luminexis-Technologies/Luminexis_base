@@ -3,7 +3,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -71,21 +71,21 @@
   "app\\ClientHome.tsx -> @/components/ui/Chatbot": {
     "id": 6540,
     "files": [
-      "static/chunks/6540-2d023a227af7641a.js",
-      "static/chunks/8059.e236292b03e2a1f9.js"
+      "static/chunks/6540-4b50da424511767b.js",
+      "static/chunks/8059.141dcf5585c4dde2.js"
     ]
   },
   "app\\ClientHome.tsx -> @/components/ui/Footer": {
     "id": 9865,
     "files": [
-      "static/chunks/9865.93625ed413bc8796.js"
+      "static/chunks/9865.7efc23f2ec13dd1d.js"
     ]
   },
   "app\\about\\AboutContent.tsx -> @/components/canvas/MainCanvas": {
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -93,7 +93,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -101,7 +101,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -109,7 +109,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -117,7 +117,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -125,7 +125,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -133,7 +133,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -141,7 +141,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
@@ -149,7 +149,7 @@
     "id": 8302,
     "files": [
       "static/chunks/b536a0f1.ceb75f5656d0f07d.js",
-      "static/chunks/1245.65288fcaa5b5a18d.js",
+      "static/chunks/1245.bb5bab9c35cf0ced.js",
       "static/chunks/8302.d48d48a933254781.js"
     ]
   },
