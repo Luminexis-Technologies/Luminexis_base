@@ -290,7 +290,7 @@ const handleRestart = () => {
         {/* Chat / Close icon */}
         {/* User Logo */}
         <div className="relative w-full h-full flex items-center justify-center p-1.5">
-          <img src="/static/img/user_logo.png" alt="Chat" className="w-full h-full object-contain rounded-full" />
+          <img src="/static/img/user_logo.png" alt="SEO services in Delhi India" className="w-full h-full object-contain rounded-full" />
         </div>
 
         {/* Pulse ring when closed */}
@@ -326,7 +326,7 @@ const handleRestart = () => {
           >
             {/* User Logo Status */}
             <div className="relative flex-shrink-0">
-               <img src="/static/img/user_logo.png" alt="L" className="w-9 h-9 rounded-full border border-white/20" />
+               <img src="/static/img/user_logo.png" alt="UI UX design company in India" className="w-9 h-9 rounded-full border border-white/20" />
                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2"
                 style={{ background: '#22c55e', borderColor: 'rgba(11,13,23,0.95)' }} />
             </div>

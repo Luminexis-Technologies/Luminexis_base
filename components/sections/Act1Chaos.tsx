@@ -23,8 +23,8 @@ export default function Act1Chaos() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         containerRef.current!.querySelectorAll('[data-reveal]'),
-        { opacity: 0, y: 40, filter: 'blur(6px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.1, stagger: 0.14, ease: 'power3.out', delay: 0.2 }
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 1.1, stagger: 0.14, ease: 'power3.out', delay: 0.2 }
       )
     }, containerRef)
     return () => ctx.revert()
@@ -33,9 +33,9 @@ export default function Act1Chaos() {
   const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS]
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col overflow-hidden starfield">
+    <section id="hero" aria-label="Hero section — Luminexis Technologies" className="relative min-h-screen flex flex-col overflow-hidden starfield">
       {/* ── Ambient nebula glows ── */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="absolute top-0 inset-x-0"
           style={{
@@ -88,24 +88,25 @@ export default function Act1Chaos() {
         </h1>
 
         {/* Sub copy */}
-        <p data-reveal className="body-text text-lg max-w-2xl mb-14 leading-relaxed">
-          We engineer digital platforms with{' '}
-          <span className="text-fg font-medium">precision</span>,{' '}
-          <span className="text-fg font-medium">performance</span>, and cosmic-level
-          attention to detail — built to endure, not to be replaced.
+        <p data-reveal className="body-text text-lg max-w-3xl mb-8 leading-relaxed">
+          We build high-performance digital experiences and scalable software solutions for startups and enterprises across India, including Bangalore, Mumbai, Delhi, Hyderabad, Chennai, and Pune, helping brands achieve measurable growth through UI/UX design, web development, software development, and SEO services.
+        </p>
+        
+        <p data-reveal className="body-text text-md max-w-2xl mb-14 leading-relaxed font-medium" style={{ color: 'var(--fg-muted)' }}>
+          We specialize in building scalable SaaS platforms, enterprise software systems, and high-performance web applications tailored for startups and businesses across India.
         </p>
 
         {/* CTAs */}
         <div data-reveal className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-20">
-          <a href="#contact" className="cta-primary group">
-            Launch Your Project
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-200 group-hover:translate-x-1">
+          <a href="#contact" className="cta-primary group" aria-label="Launch your project — contact us">
+            Start Your Project
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-          <a href="#work" className="cta-secondary group">
-            View Our Work
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="opacity-0 group-hover:opacity-100 transition-all duration-200 -ml-2 group-hover:ml-0">
+          <a href="#work" className="cta-secondary group" aria-label="Explore our web development and SEO services in India">
+            Explore our web development and SEO services in India
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="opacity-0 group-hover:opacity-100 transition-all duration-200 -ml-2 group-hover:ml-0">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>

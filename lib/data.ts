@@ -273,9 +273,9 @@ export const SERVICES: Service[] = [
   {
     id: 'digital-product',
     icon: Layers,
-    title: 'Interface Design',
+    title: 'UI/UX Design',
     description:
-      'UX research, information architecture, and interface systems crafted around user behavior and commercial intent.',
+      'UI/UX Design for startups and enterprises across India, including Bangalore and Hyderabad.',
     tags: ['UX Research', 'UI Systems', 'Conversion Design'],
     highlight: false,
     gradient: 'linear-gradient(135deg, rgba(34,211,238,0.06) 0%, rgba(99,102,241,0.04) 100%)',
@@ -286,9 +286,9 @@ export const SERVICES: Service[] = [
   {
     id: 'frontend',
     icon: Code2,
-    title: 'Frontend Engineering',
+    title: 'Web Development',
     description:
-      'Component architecture, performance-first rendering pipelines, and interaction systems built for interstellar scale.',
+      'Web Development services in India for scalable platforms in Mumbai and Chennai.',
     tags: ['React', 'Next.js', 'GSAP', 'Three.js'],
     highlight: true,
     gradient: 'linear-gradient(135deg, rgba(34,211,238,0.10) 0%, rgba(99,102,241,0.07) 100%)',
@@ -299,9 +299,9 @@ export const SERVICES: Service[] = [
   {
     id: 'backend',
     icon: Server,
-    title: 'Backend Systems',
+    title: 'Software Development',
     description:
-      'Scalable API design, database architecture, and infrastructure built to support long-term platform growth.',
+      'Software Development services including SaaS, enterprise applications, and automation systems.',
     tags: ['Node.js', 'PostgreSQL', 'REST', 'GraphQL'],
     highlight: false,
     gradient: 'linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(168,85,247,0.04) 100%)',
@@ -312,9 +312,9 @@ export const SERVICES: Service[] = [
   {
     id: 'platforms',
     icon: Rocket,
-    title: 'Full Digital Platforms',
+    title: 'SEO Services',
     description:
-      'End-to-end system engineering — from structural planning through deployment and performance validation.',
+      'SEO Services in India helping businesses rank in Delhi, Pune, and across major cities.',
     tags: ['Full-Stack', 'DevOps', 'CI/CD'],
     highlight: false,
     gradient: 'linear-gradient(135deg, rgba(168,85,247,0.06) 0%, rgba(34,211,238,0.04) 100%)',

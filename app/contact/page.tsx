@@ -14,7 +14,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Luminexis | Start Your Project',
     description: 'Ready to build high-performance digital systems? Contact us today.',
-  }
+  },
+  alternates: {
+    canonical: 'https://luminexistechnologies.com/contact',
+  },
 }
 
 export default function Page() {

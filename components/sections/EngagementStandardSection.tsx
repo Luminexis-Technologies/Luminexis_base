@@ -46,8 +46,8 @@ export default function EngagementStandardSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="section-container py-32 nebula-bg">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+    <section ref={sectionRef} aria-label="Who we work with" className="section-container py-32 nebula-bg">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[15%] left-[15%] w-[400px] h-[400px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 60%)', filter: 'blur(60px)' }} />
       </div>

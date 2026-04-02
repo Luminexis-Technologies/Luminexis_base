@@ -30,9 +30,9 @@ const itemVariants: Variants = {
 
 export default function Act3Design() {
   return (
-    <section id="act3" className="section-container py-32 overflow-hidden">
+    <section id="act3" aria-label="Our services" className="section-container py-32 overflow-hidden">
       {/* Background - Simplified */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full opacity-10"
           style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)' }} />
       </div>

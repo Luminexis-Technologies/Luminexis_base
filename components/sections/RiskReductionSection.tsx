@@ -46,8 +46,8 @@ export default function RiskReductionSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="section-container py-32">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+    <section ref={sectionRef} aria-label="Risk reduction and structural integrity" className="section-container py-32">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute bottom-[10%] left-[5%] w-[500px] h-[500px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 70%)', filter: 'blur(60px)' }} />
       </div>

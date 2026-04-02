@@ -86,9 +86,9 @@ export default function Act6Future() {
   }
 
   return (
-    <section ref={sectionRef} id="act6" className="relative py-32 overflow-hidden">
+    <section ref={sectionRef} id="act6" aria-label="Contact and Principles" className="relative py-32 overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-0 left-[50%] -translate-x-1/2 w-[800px] h-[800px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.06) 0%, transparent 50%)', filter: 'blur(100px)' }} />
         <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full"
@@ -152,10 +152,11 @@ export default function Act6Future() {
                 <FormField label="Email" value={formState.email} onChange={(v) => updateField('email', v)} placeholder="you@company.com" type="email" required />
                 <FormField label="Company" value={formState.company} onChange={(v) => updateField('company', v)} placeholder="Company name" />
                 <div className="flex flex-col gap-2">
-                  <label className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
+                  <label htmlFor="engagement" className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
                     Engagement Type
                   </label>
                   <select
+                    id="engagement"
                     value={formState.engagement}
                     onChange={(e) => updateField('engagement', e.target.value)}
                     className="w-full px-4 py-3 rounded-lg bg-transparent text-fg text-sm outline-none transition-all duration-200"
@@ -171,10 +172,11 @@ export default function Act6Future() {
 
               {/* Message */}
               <div className="mb-8">
-                <label className="font-mono text-xs tracking-widest uppercase mb-2 block" style={{ color: 'var(--fg-muted)' }}>
+                <label htmlFor="message" className="font-mono text-xs tracking-widest uppercase mb-2 block" style={{ color: 'var(--fg-muted)' }}>
                   Project Details
                 </label>
                 <textarea
+                  id="message"
                   value={formState.message}
                   onChange={(e) => updateField('message', e.target.value)}
                   placeholder="Tell us about your project, goals, and timeline..."
@@ -225,10 +227,11 @@ function FormField({ label, value, onChange, placeholder, type = 'text', require
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
+      <label htmlFor={`field-${label.toLowerCase()}`} className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
         {label} {required && <span style={{ color: '#7B61FF' }}>*</span>}
       </label>
       <input
+        id={`field-${label.toLowerCase()}`}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}

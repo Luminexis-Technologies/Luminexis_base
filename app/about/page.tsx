@@ -15,7 +15,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Luminexis Technologies | Our Mission & Expertise',
     description: 'Bridging the gap between software engineering and immersive UI/UX design. Learn our story.',
-  }
+  },
+  alternates: {
+    canonical: 'https://luminexistechnologies.com/about',
+  },
 }
 
 export default function Page() {

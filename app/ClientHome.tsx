@@ -1,47 +1,58 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, memo } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import dynamic from 'next/dynamic'
 import Navigation from '@/components/ui/Navigation'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 import Act1Chaos from '@/components/sections/Act1Chaos'
-import Act3Design from '@/components/sections/Act3Design'
-import Act4Engineering from '@/components/sections/Act4Engineering'
-import Act5Impact from '@/components/sections/Act5Impact'
-import Act6Future from '@/components/sections/Act6Future'
-import ProcessSection from '@/components/sections/ProcessSection'
-import TechStackSection from '@/components/sections/TechStackSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
-import BusinessIntentSection from '@/components/sections/BusinessIntentSection'
-import RiskReductionSection from '@/components/sections/RiskReductionSection'
-import EngagementStandardSection from '@/components/sections/EngagementStandardSection'
-import Chatbot from '@/components/ui/Chatbot'
-import Footer from '@/components/ui/Footer'
+
+// ── Lazy-load below-fold sections for performance (code splitting) ──
+const BusinessIntentSection = dynamic(() => import('@/components/sections/BusinessIntentSection'), { ssr: true })
+const RiskReductionSection = dynamic(() => import('@/components/sections/RiskReductionSection'), { ssr: true })
+const ProcessSection = dynamic(() => import('@/components/sections/ProcessSection'), { ssr: true })
+const Act3Design = dynamic(() => import('@/components/sections/Act3Design'), { ssr: true })
+const TechStackSection = dynamic(() => import('@/components/sections/TechStackSection'), { ssr: true })
+const Act4Engineering = dynamic(() => import('@/components/sections/Act4Engineering'), { ssr: true })
+const Act5Impact = dynamic(() => import('@/components/sections/Act5Impact'), { ssr: true })
+const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'), { ssr: true })
+const EngagementStandardSection = dynamic(() => import('@/components/sections/EngagementStandardSection'), { ssr: true })
+const Act6Future = dynamic(() => import('@/components/sections/Act6Future'), { ssr: true })
+const Footer = dynamic(() => import('@/components/ui/Footer'), { ssr: true })
+const Chatbot = dynamic(() => import('@/components/ui/Chatbot'), { ssr: false, loading: () => null })
 
 const MainCanvas = dynamic(() => import('@/components/canvas/MainCanvas'), {
   ssr: false,
   loading: () => null,
 })
 
-export default function LuminexisPage() {
+function LuminexisPage() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const mainRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    let ticking = false
     const update = () => {
-      const scrollTop   = window.scrollY
+      const scrollTop = window.scrollY
       const totalHeight = document.body.scrollHeight - window.innerHeight
-      const progress    = totalHeight > 0 ? Math.min(scrollTop / totalHeight, 1) : 0
+      const progress = totalHeight > 0 ? Math.min(scrollTop / totalHeight, 1) : 0
       setScrollProgress(progress)
+      ticking = false
     }
 
-    window.addEventListener('scroll', update, { passive: true })
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update)
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
     update()
     ScrollTrigger.refresh()
 
     return () => {
-      window.removeEventListener('scroll', update)
+      window.removeEventListener('scroll', onScroll)
       ScrollTrigger.getAll().forEach((t) => t.kill())
     }
   }, [])
@@ -52,8 +63,8 @@ export default function LuminexisPage() {
       <Navigation />
       <ScrollProgress progress={scrollProgress} />
 
-      <main ref={mainRef} className="scroll-content">
-        {/* Hero — Structured Digital Systems */}
+      <main ref={mainRef} className="scroll-content" role="main">
+        {/* Hero — Above the Fold (LCP critical) */}
         <Act1Chaos />
 
         {/* Business Intent — Commercial Foundation */}
@@ -88,9 +99,10 @@ export default function LuminexisPage() {
         <Footer />
       </main>
 
-      {/* Chatbot Widget */}
+      {/* Chatbot Widget — non-critical, lazy loaded */}
       <Chatbot />
     </>
   )
 }
 
+export default memo(LuminexisPage)

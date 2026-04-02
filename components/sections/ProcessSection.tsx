@@ -22,8 +22,8 @@ export default function ProcessSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="process" className="section-container py-32 nebula-bg">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+    <section ref={sectionRef} id="process" aria-label="Our development process" className="section-container py-32 nebula-bg">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[30%] left-[50%] -translate-x-1/2 w-[600px] h-[600px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.06) 0%, transparent 60%)', filter: 'blur(80px)' }} />
       </div>

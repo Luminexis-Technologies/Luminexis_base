@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
@@ -33,6 +34,7 @@ export default function Navigation() {
   return (
     <nav
       ref={navRef}
+      aria-label="Main navigation"
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
         background: scrolled ? 'rgba(6, 6, 15, 0.92)' : 'transparent',
@@ -90,7 +92,8 @@ export default function Navigation() {
             className="md:hidden w-9 h-9 flex items-center justify-center"
             style={{ color: 'var(--fg)' }}
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
           >
             <HamburgerIcon open={menuOpen} />
           </button>
@@ -131,7 +134,14 @@ export default function Navigation() {
 function SpaceLogo() {
   return (
     <div className="relative w-9 h-9 rounded-full overflow-hidden border border-white/20 group-hover:border-[#7B61FF]/40 transition-all duration-300">
-      <img src="/static/img/user_logo.png" alt="Luminexis" className="w-full h-full object-cover" />
+      <Image
+        src="/static/img/user_logo.png"
+        alt="UI UX design company in India"
+        width={36}
+        height={36}
+        className="w-full h-full object-cover"
+        priority
+      />
     </div>
   )
 }

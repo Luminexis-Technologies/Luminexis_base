@@ -283,4 +283,91 @@
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* ── Responsive Typography with clamp() ── */
+.text-responsive-hero {
+  font-size: clamp(2rem, 5vw + 1rem, 5.5rem);
+  line-height: 1.05;
+}
+
+.text-responsive-heading {
+  font-size: clamp(1.75rem, 4vw + 0.5rem, 4rem);
+  line-height: 1.1;
+}
+
+.text-responsive-body {
+  font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
+  line-height: 1.7;
+}
+
+/* ── Accessibility — Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cosmic-drift, .animate-float-slow {
+    animation: none !important;
+  }
+}
+
+/* ── Mobile Performance — Reduce heavy effects ── */
+@media (max-width: 768px) {
+  .nebula-bg {
+    background: none;
+  }
+
+  .starfield::before {
+    display: none;
+  }
+
+  #luminexis-canvas {
+    opacity: 0.25;
+  }
+
+  .cosmic-drift {
+    animation: none;
+  }
+
+  /* Touch-friendly interactive elements */
+  .cta-primary, .cta-secondary {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Reduce backdrop-filter on mobile for GPU performance */
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* ── Focus styles for keyboard navigation ── */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Skip to content link (accessibility) ── */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+  top: 0;
 }

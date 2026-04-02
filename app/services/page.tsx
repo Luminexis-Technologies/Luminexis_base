@@ -15,7 +15,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Custom Web & Software Development Services | Luminexis India',
     description: 'Scalable software and web systems designed for performance and rank. Leading Indian development studio.',
-  }
+  },
+  alternates: {
+    canonical: 'https://luminexistechnologies.com/services',
+  },
 }
 
 export default function Page() {

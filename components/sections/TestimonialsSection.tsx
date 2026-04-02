@@ -48,9 +48,9 @@ export default function TestimonialsSection() {
   const t = TESTIMONIALS[active]
 
   return (
-    <section className="section-container py-32 overflow-hidden">
+    <section aria-label="Client testimonials" className="section-container py-32 overflow-hidden">
       {/* Background glow simplified */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[30%] left-[50%] -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-10"
           style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.08) 0%, transparent 60%)' }} />
       </div>

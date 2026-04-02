@@ -29,8 +29,8 @@ export default function TechStackSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="section-container py-32 nebula-bg">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+    <section ref={sectionRef} aria-label="Technology stack" className="section-container py-32 nebula-bg">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute bottom-[20%] right-[15%] w-[500px] h-[500px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 60%)', filter: 'blur(80px)' }} />
       </div>

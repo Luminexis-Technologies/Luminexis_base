@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Instagram, Linkedin, Mail, MessageSquare } from 'lucide-react'
 
 export default function Footer() {
@@ -22,10 +23,10 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="mt-32 pt-20 pb-12 px-6 md:px-12 lg:px-24 bg-[#05060F] relative overflow-hidden" style={{ borderTop: '1px solid rgba(123,97,255,0.1)' }}>
+    <footer className="mt-32 pt-20 pb-12 px-6 md:px-12 lg:px-24 bg-[#05060F] relative overflow-hidden" role="contentinfo" aria-label="Site footer" style={{ borderTop: '1px solid rgba(123,97,255,0.1)' }}>
       {/* Subtle background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(123,97,255,0.3), transparent)' }} />
-      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 rounded-full blur-[100px] pointer-events-none opacity-20" style={{ background: 'radial-gradient(circle, #7B61FF 0%, transparent 70%)' }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(123,97,255,0.3), transparent)' }} aria-hidden="true" />
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 rounded-full blur-[100px] pointer-events-none opacity-20" style={{ background: 'radial-gradient(circle, #7B61FF 0%, transparent 70%)' }} aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
@@ -114,7 +115,14 @@ export default function Footer() {
 function SpaceLogo() {
   return (
     <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20 transition-all duration-300">
-      <img src="/static/img/user_logo.png" alt="Luminexis" className="w-full h-full object-cover" />
+      <Image
+        src="/static/img/user_logo.png"
+        alt="software development company in Bangalore"
+        width={32}
+        height={32}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
     </div>
   )
 }

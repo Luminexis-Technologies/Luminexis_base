@@ -1,13 +1,13 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/engineering/page": "app/engineering/page.js",
-  "/projects/page": "app/projects/page.js",
   "/process/page": "app/process/page.js",
-  "/contact/page": "app/contact/page.js",
+  "/projects/page": "app/projects/page.js",
+  "/engineering/page": "app/engineering/page.js",
   "/about/page": "app/about/page.js",
+  "/contact/page": "app/contact/page.js",
   "/services/page": "app/services/page.js",
-  "/software-development-services/page": "app/software-development-services/page.js",
-  "/ui-ux-design-services/page": "app/ui-ux-design-services/page.js",
+  "/page": "app/page.js",
   "/web-development-company-india/page": "app/web-development-company-india/page.js",
-  "/page": "app/page.js"
+  "/ui-ux-design-services/page": "app/ui-ux-design-services/page.js",
+  "/software-development-services/page": "app/software-development-services/page.js"
 }

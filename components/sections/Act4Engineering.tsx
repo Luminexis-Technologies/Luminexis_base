@@ -38,9 +38,9 @@ const itemVariants: Variants = {
 
 export default function Act4Engineering() {
   return (
-    <section id="act4" className="section-container py-32 overflow-hidden">
+    <section id="act4" aria-label="Engineering metrics and tech stack" className="section-container py-32 overflow-hidden">
       {/* Background - Simplified */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full opacity-10"
           style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.06) 0%, transparent 60%)' }} />
         <div className="absolute bottom-[10%] right-[10%] w-[300px] h-[300px] rounded-full opacity-10"

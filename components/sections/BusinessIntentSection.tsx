@@ -50,9 +50,9 @@ export default function BusinessIntentSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="intent" className="section-container py-32 nebula-bg">
+    <section ref={sectionRef} id="intent" aria-label="Commercial foundation and business intent" className="section-container py-32 nebula-bg">
       {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.06) 0%, transparent 70%)', filter: 'blur(60px)' }} />
       </div>

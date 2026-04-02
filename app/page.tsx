@@ -2,21 +2,33 @@ import type { Metadata } from 'next'
 import LuminexisPage from './ClientHome'
 
 export const metadata: Metadata = {
-  title: 'Web Development Company in India | Luminexis Technologies',
-  description: 'Leading Web Development Company in India. We build high-performance digital ecosystems, custom software, and premium UI/UX designs for global brands.',
+  title: 'Luminexis Technologies | #1 UI/UX, Web & Software Development Company in India',
+  description: 'Luminexis Technologies is a premium UI/UX design, web development, software development, and SEO company in India serving Bangalore, Mumbai, Delhi, Hyderabad, Chennai, and Pune. We build high-conversion digital products for startups and enterprises.',
   keywords: [
-    'Web Development Company in India',
-    'Custom Software Development Bangalore',
-    'Full Stack Web Development',
-    'UI/UX Design India',
+    'web development company in India',
+    'software development company in India',
+    'UI/UX design company in India',
+    'SaaS development India',
+    'enterprise software India',
+    'custom web development Bangalore',
+    'best web developers in India',
+    'full stack development India',
+    'React development India',
+    'Next.js development company',
+    'web development company Bangalore',
+    'web development company Mumbai',
+    'web development company Delhi',
+    'digital product engineering India',
     'Luminexis Technologies',
-    'Best Web Developers in India',
-    'Digital Product Engineering'
   ],
   openGraph: {
     title: 'Web Development Company in India | Luminexis Technologies',
-    description: 'We architect high-performance digital systems that outperform and outrank. Premium Web Engineering Studio in India.',
-  }
+    description: 'We architect high-performance digital systems — custom software, UI/UX design, and SaaS solutions. Premium web engineering studio serving India and global brands.',
+    url: 'https://luminexistechnologies.com',
+  },
+  alternates: {
+    canonical: 'https://luminexistechnologies.com',
+  },
 }
 
 export default function Page() {

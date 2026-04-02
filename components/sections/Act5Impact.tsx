@@ -35,9 +35,9 @@ export default function Act5Impact() {
   const ongoingProjects = PROJECTS.filter(p => p.status === 'Ongoing')
 
   return (
-    <section id="work" className="section-container py-32 nebula-bg overflow-hidden">
+    <section id="work" aria-label="Our projects and case studies" className="section-container py-32 nebula-bg overflow-hidden">
       {/* Background effects - Simplified for performance */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[15%] right-[10%] w-[400px] h-[400px] rounded-full opacity-20"
           style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 60%)' }} />
         <div className="absolute bottom-[15%] left-[8%] w-[350px] h-[350px] rounded-full opacity-20"
@@ -111,7 +111,7 @@ function ProjectCard({ project }: { project: Project }) {
       <div className="relative h-56 overflow-hidden">
         <Image
           src={project.thumbnail ?? project.bgGradient}
-          alt={project.title}
+          alt={`web development services in Mumbai - ${project.title}`}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           loading="lazy"
