@@ -29,18 +29,6 @@
       "static/chunks/7072-c9dfb9e115d9028e.js",
       "static/chunks/app/engineering/page-4c32053abe4863b4.js"
     ],
-    "/process/page": [
-      "static/chunks/webpack-7a865ce78914e0c7.js",
-      "static/chunks/fd9d1056-b52fc528664e45d6.js",
-      "static/chunks/7023-9f3e64ea7e9f2340.js",
-      "static/chunks/main-app-e4ab6ff95c95a6eb.js",
-      "static/chunks/c15bf2b0-a39a802b3d135e92.js",
-      "static/chunks/2380-afa53c2a39f49dc8.js",
-      "static/chunks/4865-0c79d1147d38094d.js",
-      "static/chunks/6540-4b50da424511767b.js",
-      "static/chunks/7072-c9dfb9e115d9028e.js",
-      "static/chunks/app/process/page-66fd79e4257b8684.js"
-    ],
     "/projects/page": [
       "static/chunks/webpack-7a865ce78914e0c7.js",
       "static/chunks/fd9d1056-b52fc528664e45d6.js",
@@ -49,10 +37,22 @@
       "static/chunks/c15bf2b0-a39a802b3d135e92.js",
       "static/chunks/2380-afa53c2a39f49dc8.js",
       "static/chunks/718-94863fe8f6c6b10a.js",
+      "static/chunks/4865-0c79d1147d38094d.js",
+      "static/chunks/6540-4b50da424511767b.js",
+      "static/chunks/7072-c9dfb9e115d9028e.js",
+      "static/chunks/app/projects/page-17f6e1e66ea95629.js"
+    ],
+    "/process/page": [
+      "static/chunks/webpack-7a865ce78914e0c7.js",
+      "static/chunks/fd9d1056-b52fc528664e45d6.js",
+      "static/chunks/7023-9f3e64ea7e9f2340.js",
+      "static/chunks/main-app-e4ab6ff95c95a6eb.js",
+      "static/chunks/c15bf2b0-a39a802b3d135e92.js",
+      "static/chunks/2380-afa53c2a39f49dc8.js",
       "static/chunks/2603-0353879aff94c64d.js",
       "static/chunks/6540-4b50da424511767b.js",
       "static/chunks/7072-c9dfb9e115d9028e.js",
-      "static/chunks/app/projects/page-4756413254decdda.js"
+      "static/chunks/app/process/page-6b8f6d539d18f765.js"
     ],
     "/about/page": [
       "static/chunks/webpack-7a865ce78914e0c7.js",
@@ -90,6 +90,18 @@
       "static/chunks/7072-c9dfb9e115d9028e.js",
       "static/chunks/app/contact/page-18e7d48f0be960af.js"
     ],
+    "/ui-ux-design-services/page": [
+      "static/chunks/webpack-7a865ce78914e0c7.js",
+      "static/chunks/fd9d1056-b52fc528664e45d6.js",
+      "static/chunks/7023-9f3e64ea7e9f2340.js",
+      "static/chunks/main-app-e4ab6ff95c95a6eb.js",
+      "static/chunks/c15bf2b0-a39a802b3d135e92.js",
+      "static/chunks/2380-afa53c2a39f49dc8.js",
+      "static/chunks/718-94863fe8f6c6b10a.js",
+      "static/chunks/7326-5a6fcaa0834cf279.js",
+      "static/chunks/6540-4b50da424511767b.js",
+      "static/chunks/app/ui-ux-design-services/page-108ddc81b922c381.js"
+    ],
     "/services/page": [
       "static/chunks/webpack-7a865ce78914e0c7.js",
       "static/chunks/fd9d1056-b52fc528664e45d6.js",
@@ -103,19 +115,7 @@
       "static/chunks/7072-c9dfb9e115d9028e.js",
       "static/chunks/app/services/page-5363090114117865.js"
     ],
-    "/ui-ux-design-services/page": [
-      "static/chunks/webpack-7a865ce78914e0c7.js",
-      "static/chunks/fd9d1056-b52fc528664e45d6.js",
-      "static/chunks/7023-9f3e64ea7e9f2340.js",
-      "static/chunks/main-app-e4ab6ff95c95a6eb.js",
-      "static/chunks/c15bf2b0-a39a802b3d135e92.js",
-      "static/chunks/2380-afa53c2a39f49dc8.js",
-      "static/chunks/718-94863fe8f6c6b10a.js",
-      "static/chunks/7326-5a6fcaa0834cf279.js",
-      "static/chunks/6540-4b50da424511767b.js",
-      "static/chunks/app/ui-ux-design-services/page-108ddc81b922c381.js"
-    ],
-    "/software-development-services/page": [
+    "/web-development-company-india/page": [
       "static/chunks/webpack-7a865ce78914e0c7.js",
       "static/chunks/fd9d1056-b52fc528664e45d6.js",
       "static/chunks/7023-9f3e64ea7e9f2340.js",
@@ -125,9 +125,9 @@
       "static/chunks/718-94863fe8f6c6b10a.js",
       "static/chunks/2212-89a28adb30534748.js",
       "static/chunks/6540-4b50da424511767b.js",
-      "static/chunks/app/software-development-services/page-2aed7847d2824aa6.js"
+      "static/chunks/app/web-development-company-india/page-360511cb756a3400.js"
     ],
-    "/web-development-company-india/page": [
+    "/software-development-services/page": [
       "static/chunks/webpack-7a865ce78914e0c7.js",
       "static/chunks/fd9d1056-b52fc528664e45d6.js",
       "static/chunks/7023-9f3e64ea7e9f2340.js",
@@ -137,7 +137,7 @@
       "static/chunks/718-94863fe8f6c6b10a.js",
       "static/chunks/7825-b85b7fb1c9495909.js",
       "static/chunks/6540-4b50da424511767b.js",
-      "static/chunks/app/web-development-company-india/page-2cc1d897520756e9.js"
+      "static/chunks/app/software-development-services/page-cbda9cd9ed5686e0.js"
     ]
   }
 }
