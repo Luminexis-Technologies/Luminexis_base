@@ -399,7 +399,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
   .adaptive-logo-dark {
     opacity: 1;
-    filter: brightness(0) drop-shadow(0 0 1px rgba(0,0,0,0.1)); /* Forces dark tone */
+    /* Native image renders as provided */
   }
 }
 
@@ -407,7 +407,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media (prefers-color-scheme: dark) {
   .adaptive-logo-light {
     opacity: 1;
-    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.3)); /* Forces white tone with glow */
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); /* Optional glow */
   }
   .adaptive-logo-dark {
     opacity: 0;
