@@ -1,28 +1,23 @@
-'use client'
+import type { Metadata } from 'next'
+import ServicesPage from './ServicesContent'
 
-import dynamic from 'next/dynamic'
-import Navigation from '@/components/ui/Navigation'
-import Act3Design from '@/components/sections/Act3Design'
-import TechStackSection from '@/components/sections/TechStackSection'
-import Chatbot from '@/components/ui/Chatbot'
-import Footer from '@/components/ui/Footer'
+export const metadata: Metadata = {
+  title: 'Web & Software Development Services | Luminexis India',
+  description: 'Premium Web & Software Development Services in India. Custom Full Stack Apps, Native UI/UX Design, and High-Performance Engineering for Scale.',
+  keywords: [
+    'Custom Web Development',
+    'Full Stack App Development',
+    'UI/UX Design services',
+    'Custom Software Solutions',
+    'Web Engineering India',
+    'Bangalore software studio'
+  ],
+  openGraph: {
+    title: 'Custom Web & Software Development Services | Luminexis India',
+    description: 'Scalable software and web systems designed for performance and rank. Leading Indian development studio.',
+  }
+}
 
-const MainCanvas = dynamic(() => import('@/components/canvas/MainCanvas'), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 bg-[#05070F]" />,
-})
-
-export default function ServicesPage() {
-  return (
-    <>
-      <MainCanvas scrollProgress={0.4} />
-      <Navigation />
-      <main className="relative z-10 pt-16">
-        <Act3Design />
-        <TechStackSection />
-        <Footer />
-      </main>
-      <Chatbot />
-    </>
-  )
+export default function Page() {
+  return <ServicesPage />
 }
