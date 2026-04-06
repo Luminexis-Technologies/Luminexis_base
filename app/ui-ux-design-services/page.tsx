@@ -2,25 +2,22 @@ import type { Metadata } from 'next'
 import UIUXContent from './UIUXContent'
 
 export const metadata: Metadata = {
-  title: 'Premium UI/UX Design Company in India | User-Centric Design Services',
-  description: 'Best UI/UX design company in India. Luminexis creates immersive, conversion-focused digital experiences with premium interface design, UX research, and design systems in Bangalore, Mumbai, Delhi, Hyderabad, Chennai, and Pune.',
+  title: 'Premium UI/UX Design Services | User-Centric Digital Experiences',
+  description: 'Luminexis creates immersive, conversion-focused digital experiences with premium interface design, UX research, and scalable design systems for startups and enterprises across industries.',
   keywords: [
-    'UI/UX design company in India',
-    'UI UX design services India',
-    'best UI designers Bangalore',
-    'user-centric UX design studio India',
-    'immersive digital experiences India',
-    'web and mobile UI design India',
-    'UI/UX design company Mumbai',
-    'UI/UX design company Delhi',
-    'UI/UX design company Hyderabad',
-    'conversion-focused design India',
-    'design systems India',
+    'UI/UX design services',
+    'modern UI development',
+    'user-centric digital experiences',
+    'premium UX research',
+    'interface design studio',
+    'conversion-focused design',
+    'scalable design systems',
+    'web and mobile UI design',
     'Luminexis UI/UX design',
   ],
   openGraph: {
-    title: 'Premium UI/UX Design Company in India | Luminexis Technologies',
-    description: 'Immersive, user-centric design services. Premium UI/UX design studio serving Bangalore, Mumbai, Delhi, and all major Indian cities.',
+    title: 'Premium UI/UX Design Services | Luminexis Technologies',
+    description: 'Immersive, user-centric design services. Premium UI/UX design studio for modern digital businesses.',
     url: 'https://luminexistechnologies.com/ui-ux-design-services',
   },
   alternates: {

@@ -30,13 +30,13 @@ export default function ProcessSection() {
 
       <div className="max-w-6xl w-full mx-auto relative z-10">
         <div data-reveal className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #22D3EE, transparent)' }} />
+          <span className="w-8 h-px"  />
           <span className="act-label mb-0">The Luminexis Method</span>
         </div>
 
         <h2 data-reveal className="headline-lg mb-6">
           Structure Before{' '}
-          <span className="gradient-text">Execution.</span>
+          <span className="text-black">Execution.</span>
         </h2>
 
         <p data-reveal className="body-text max-w-2xl mb-16">
@@ -74,8 +74,8 @@ export default function ProcessSection() {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
-                  {(() => { const Icon = step.icon; return <Icon className="w-5 h-5" style={{ color: '#7B61FF' }} /> })()}
-                  <span className="font-mono text-sm font-bold" style={{ color: '#7B61FF' }}>{step.number}</span>
+                  {(() => { const Icon = step.icon; return <Icon className="w-5 h-5"  /> })()}
+                  <span className="font-mono text-sm font-bold" >{step.number}</span>
                 </div>
                 <h3 className="text-lg font-semibold text-fg mb-3">{step.title}</h3>
                 <p className="body-text text-sm">{step.description}</p>
@@ -83,7 +83,7 @@ export default function ProcessSection() {
 
               {/* Bottom accent */}
               <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
-                style={{ background: 'linear-gradient(90deg, #7B61FF, #22D3EE)' }} />
+                 />
             </div>
           ))}
         </div>

@@ -2,19 +2,21 @@ import type { Metadata } from 'next'
 import ServicesPage from './ServicesContent'
 
 export const metadata: Metadata = {
-  title: 'Web & Software Development Services | Luminexis India',
-  description: 'Premium Web & Software Development Services in India. Custom Full Stack Apps, Native UI/UX Design, and High-Performance Engineering for Scale.',
+  title: 'Web & Software Development Services | Luminexis Technologies',
+  description: 'Scalable web development, custom software engineering, and premium UI/UX design services for startups and modern digital businesses worldwide.',
   keywords: [
     'Custom Web Development',
     'Full Stack App Development',
     'UI/UX Design services',
     'Custom Software Solutions',
-    'Web Engineering India',
-    'Bangalore software studio'
+    'AI Chatbot Development',
+    'SaaS Development',
+    'Enterprise Software',
   ],
   openGraph: {
-    title: 'Custom Web & Software Development Services | Luminexis India',
-    description: 'Scalable software and web systems designed for performance and rank. Leading Indian development studio.',
+    title: 'Custom Web & Software Development Services | Luminexis Technologies',
+    description: 'Scalable software and web systems designed for performance and global scale.',
+    url: 'https://luminexistechnologies.com/services',
   },
   alternates: {
     canonical: 'https://luminexistechnologies.com/services',

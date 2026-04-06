@@ -61,7 +61,7 @@ export default function ScrollProgress({ progress }: { progress: number }) {
           />
           <span
             className="font-mono text-[9px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
-            style={{ color: '#7B61FF' }}
+            
           >
             {section.label}
           </span>

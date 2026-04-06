@@ -1,26 +1,27 @@
-'use client'
+import type { Metadata } from 'next'
+import ProjectsPageContent from './ProjectsPageContent'
 
-import dynamic from 'next/dynamic'
-import Navigation from '@/components/ui/Navigation'
-import Act5Impact from '@/components/sections/Act5Impact'
-import Chatbot from '@/components/ui/Chatbot'
-import Footer from '@/components/ui/Footer'
+export const metadata: Metadata = {
+  title: 'Our Work | Web & Software Development Portfolio | Luminexis',
+  description: 'Explore our portfolio of high-performance web applications, custom software solutions, and user-centric UI/UX designs for global brands and startups.',
+  keywords: [
+    'web development portfolio',
+    'software engineering case studies',
+    'custom web application projects',
+    'UI/UX design portfolio',
+    'Luminexis technologies work',
+    'enterprise software portfolio',
+  ],
+  openGraph: {
+    title: 'Our Work | Luminexis technologies Portfolio',
+    description: 'A showcased portfolio of high-performance digital systems and scalable software solutions.',
+    url: 'https://luminexistechnologies.com/projects',
+  },
+  alternates: {
+    canonical: 'https://luminexistechnologies.com/projects',
+  },
+}
 
-const MainCanvas = dynamic(() => import('@/components/canvas/MainCanvas'), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 bg-[#05070F]" />,
-})
-
-export default function ProjectsPage() {
-  return (
-    <>
-      <MainCanvas scrollProgress={0.77} />
-      <Navigation />
-      <main className="relative z-10 pt-16">
-        <Act5Impact />
-        <Footer />
-      </main>
-      <Chatbot />
-    </>
-  )
+export default function Page() {
+  return <ProjectsPageContent />
 }

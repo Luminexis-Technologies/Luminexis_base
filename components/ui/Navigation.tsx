@@ -7,12 +7,11 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
-  { label: 'About',       href: '/about' },
-  { label: 'Projects',    href: '/projects' },
-  { label: 'Services',    href: '/services' },
-  { label: 'Process',     href: '/process' },
-  { label: 'Engineering', href: '/engineering' },
-  { label: 'Contact',     href: '/contact' },
+  { label: 'HOME',       href: '/' },
+  { label: 'SERVICES',   href: '/services' },
+  { label: 'WORK',       href: '/projects' },
+  { label: 'PROCESS',    href: '/process' },
+  { label: 'CONTACT',    href: '/contact' },
 ]
 
 export default function Navigation() {
@@ -37,20 +36,19 @@ export default function Navigation() {
       aria-label="Main navigation"
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled ? 'rgba(6, 6, 15, 0.92)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(123,97,255,0.15)' : '1px solid transparent',
-        boxShadow: scrolled ? '0 4px 32px rgba(123,97,255,0.06)' : 'none',
+        background: scrolled ? 'rgba(255, 255, 255, 0.96)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(10px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(10px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(0,0,0,0.05)' : '1px solid transparent',
+        boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.03)' : 'none',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <SpaceLogo />
-          <span className="font-semibold text-sm tracking-wide transition-colors duration-200 text-white group-hover:text-[#7B61FF]">
-            Luminexis
-          </span>
+            <span className="text-xl font-bold tracking-[0.15em] uppercase text-black">
+              LUMINEXIS.
+            </span>
         </Link>
 
         {/* Desktop links */}
@@ -59,34 +57,27 @@ export default function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className="relative font-mono text-xs tracking-widest uppercase transition-colors duration-200 group"
-              style={{ color: pathname === link.href ? '#7B61FF' : 'var(--fg-muted)' }}
+              className="relative font-bold text-xs tracking-[0.15em] uppercase transition-colors duration-200 group"
+              style={{ color: pathname === link.href ? '#000000' : 'var(--fg-muted)' }}
             >
               {link.label}
               <span
                 className="absolute -bottom-1 left-0 h-px transition-all duration-300"
                 style={{ 
-                  background: 'linear-gradient(90deg, #7B61FF, #22D3EE)',
+                  background: '#000',
                   width: pathname === link.href ? '100%' : '0'
                 }}
               />
               <span
                 className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
-                style={{ background: 'linear-gradient(90deg, #7B61FF, #22D3EE)' }}
+                style={{ background: '#000' }}
               />
             </Link>
           ))}
         </div>
 
         {/* Right controls */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/contact"
-            className="hidden md:flex cta-primary text-xs py-2.5 px-5"
-          >
-            Start a Project
-          </Link>
-
+        <div className="flex items-center gap-6">
           {/* Mobile menu toggle */}
           <button
             className="md:hidden w-9 h-9 flex items-center justify-center"
@@ -105,9 +96,9 @@ export default function Navigation() {
         className="md:hidden overflow-hidden transition-all duration-300"
         style={{
           maxHeight: menuOpen ? '400px' : '0',
-          background: 'rgba(6, 6, 15, 0.97)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: menuOpen ? '1px solid rgba(123,97,255,0.15)' : 'none',
+          background: 'rgba(255, 255, 255, 0.98)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: menuOpen ? '1px solid rgba(0,0,0,0.05)' : 'none',
         }}
       >
         <div className="px-6 py-5 space-y-4">
@@ -116,49 +107,21 @@ export default function Navigation() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="block font-mono text-xs tracking-widest uppercase w-full text-left py-2 transition-colors duration-200"
-              style={{ color: pathname === link.href ? '#7B61FF' : 'var(--fg-muted)', borderBottom: '1px solid rgba(123,97,255,0.1)' }}
+              className="block font-bold text-xs tracking-widest uppercase w-full text-left py-3 transition-colors duration-200"
+              style={{ color: pathname === link.href ? '#000000' : 'var(--fg-muted)', borderBottom: '1px solid rgba(0,0,0,0.05)' }}
             >
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setMenuOpen(false)} className="cta-primary w-full justify-center text-xs py-3 mt-2">
-            Start a Project
-          </Link>
         </div>
       </div>
     </nav>
   )
 }
 
-function SpaceLogo() {
-  return (
-    <div className="relative w-9 h-9 rounded-full overflow-hidden border border-white/20 group-hover:border-[#7B61FF]/40 transition-all duration-300">
-      <div className="adaptive-logo-container">
-        <Image
-          src="/logo-light.png"
-          alt="Luminexis Platform Mode Light"
-          width={36}
-          height={36}
-          className="adaptive-logo-light"
-          priority
-        />
-        <Image
-          src="/logo-dark.png"
-          alt="UI UX design company in India"
-          width={36}
-          height={36}
-          className="adaptive-logo-dark"
-          priority
-        />
-      </div>
-    </div>
-  )
-}
-
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2">
       {open ? (
         <>
           <line x1="3" y1="3" x2="15" y2="15"/>

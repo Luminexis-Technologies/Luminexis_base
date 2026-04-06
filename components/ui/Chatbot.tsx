@@ -39,20 +39,9 @@ function isValidEmail(v: string) {
 //mobile no
 
 function isValidPhone(v: string) {
-  // Remove all non-digits
+  // Broad international support: 7 to 15 digits
   const cleaned = v.replace(/\D/g, '')
-
- 
-
-  if (cleaned.length === 10) {
-    return /^[6-9]\d{9}$/.test(cleaned)
-  }
-
-  if (cleaned.length === 12 && cleaned.startsWith('91')) {
-    return /^[6-9]\d{9}$/.test(cleaned.slice(2))
-  }
-
-  return false
+  return cleaned.length >= 7 && cleaned.length <= 15
 }
 
 export default function Chatbot() {
@@ -261,7 +250,7 @@ const handleRestart = () => {
   const getPlaceholder = () => {
     if (currentNode?.inputField === 'name') return 'Your name...'
     if (currentNode?.inputField === 'email') return 'your@email.com'
-    if (currentNode?.inputField === 'whatsapp') return '+91 XXXXX XXXXX'
+    if (currentNode?.inputField === 'whatsapp') return 'Your phone number...'
     return 'Type your message...'
   }
 
@@ -281,23 +270,23 @@ const handleRestart = () => {
         aria-label={open ? 'Close chat' : 'Open chat'}
         className="fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group"
         style={{
-          background: 'linear-gradient(135deg, #7B61FF 0%, #5B3DD9 50%, #A855F7 100%)',
+          background: '#000000',
           boxShadow: open
-            ? '0 4px 20px rgba(123,97,255,0.3)'
-            : '0 4px 24px rgba(123,97,255,0.4), 0 0 48px rgba(123,97,255,0.15)',
+            ? '0 10px 30px rgba(0,0,0,0.15)'
+            : '0 10px 40px rgba(0,0,0,0.2)',
         }}
       >
         {/* Chat / Close icon */}
         {/* User Logo */}
         <div className="relative w-full h-full flex items-center justify-center p-1.5 adaptive-logo-container">
-          <img src="/logo-light.png" alt="SEO services in Delhi India" className="w-full h-full object-contain rounded-full adaptive-logo-light" />
-          <img src="/logo-dark.png" alt="SEO services in Delhi India" className="w-full h-full object-contain rounded-full adaptive-logo-dark" />
+          <img src="/logo-light.png" alt="Luminexis Tech Solutions Logo" className="w-full h-full object-contain rounded-full adaptive-logo-light" />
+          <img src="/logo-dark.png" alt="Luminexis Tech Solutions Logo" className="w-full h-full object-contain rounded-full adaptive-logo-dark" />
         </div>
 
         {/* Pulse ring when closed */}
         {!open && (
           <span className="absolute inset-0 rounded-full animate-ping opacity-20"
-            style={{ background: 'linear-gradient(135deg, #7B61FF, #A855F7)' }} />
+             style={{ background: '#000000' }} />
         )}
       </button>
 
@@ -308,35 +297,35 @@ const handleRestart = () => {
           style={{
             width: 'min(380px, calc(100vw - 48px))',
             height: 'min(560px, calc(100vh - 140px))',
-            background: 'rgba(11, 13, 23, 0.95)',
-            border: '1px solid rgba(123, 97, 255, 0.2)',
-            borderRadius: '20px',
-            boxShadow: '0 16px 80px rgba(0,0,0,0.5), 0 0 60px rgba(123,97,255,0.08), inset 0 1px 0 rgba(180,160,255,0.06)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            animation: 'chatOpen 0.35s cubic-bezier(0.16,1,0.3,1) forwards',
+            background: '#ffffff',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            borderRadius: '24px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1), 0 0 1px rgba(0,0,0,0.1)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            animation: 'chatOpen 0.4s cubic-bezier(0.16,1,0.3,1) forwards',
           }}
         >
           {/* ── Header ── */}
           <div
-            className="flex items-center gap-3 px-5 py-4 flex-shrink-0"
+            className="flex items-center gap-3 px-6 py-5 flex-shrink-0"
             style={{
-              borderBottom: '1px solid rgba(123,97,255,0.15)',
-              background: 'linear-gradient(135deg, rgba(123,97,255,0.08) 0%, transparent 100%)',
+              borderBottom: '1px solid rgba(0,0,0,0.05)',
+              background: 'rgba(255,255,255,0.8)',
             }}
           >
             {/* User Logo Status */}
             <div className="relative flex-shrink-0 w-9 h-9">
-               <div className="adaptive-logo-container border border-white/20 rounded-full overflow-hidden">
-                 <img src="/logo-light.png" alt="UI UX design company in India" className="adaptive-logo-light" />
-                 <img src="/logo-dark.png" alt="UI UX design company in India" className="adaptive-logo-dark" />
+               <div className="adaptive-logo-container border border-black/20 rounded-full overflow-hidden">
+                 <img src="/logo-light.png" alt="Luminexis Brand Identity" className="adaptive-logo-light" />
+                 <img src="/logo-dark.png" alt="Luminexis Brand Identity" className="adaptive-logo-dark" />
                </div>
                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2"
-                style={{ background: '#22c55e', borderColor: 'rgba(11,13,23,0.95)' }} />
+                style={{ background: '#22c55e', borderColor: '#ffffff' }} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white leading-tight">Luminexis</p>
-              <p className="text-[11px] leading-tight" style={{ color: 'rgba(34,211,238,0.8)' }}>
+              <p className="text-sm font-semibold text-black leading-tight">Luminexis</p>
+              <p className="text-[11px] leading-tight text-[#6e6e73]">
                 Online · replies instantly
               </p>
             </div>
@@ -344,8 +333,8 @@ const handleRestart = () => {
               <button 
                 onClick={handleBack} 
                 title="Go back"
-                className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-white/50 hover:text-white"
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(123,97,255,0.15)')}
+                className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-fg-muted hover:text-black"
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.05)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -354,8 +343,8 @@ const handleRestart = () => {
               </button>
             )}
             <button onClick={handleRestart} title="Restart"
-              className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-white/50 hover:text-white"
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(123,97,255,0.15)')}
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-fg-muted hover:text-black"
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.05)')}
               onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                 <path d="M1 4v6h6M23 20v-6h-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -371,14 +360,14 @@ const handleRestart = () => {
                 <div
                   className="max-w-[85%] px-4 py-3 text-[13px] leading-relaxed whitespace-pre-line"
                   style={b.role === 'bot' ? {
-                    background: 'rgba(17, 19, 41, 0.8)',
-                    border: '1px solid rgba(123,97,255,0.12)',
-                    borderRadius: '4px 16px 16px 16px',
-                    color: 'var(--fg)',
+                    background: '#F2F2F7',
+                    border: '1px solid rgba(0,0,0,0.03)',
+                    borderRadius: '18px 18px 18px 4px',
+                    color: '#000000',
                   } : {
-                    background: 'linear-gradient(135deg, #7B61FF, #5B3DD9)',
-                    borderRadius: '16px 4px 16px 16px',
-                    color: '#fff',
+                    background: '#000000',
+                    borderRadius: '18px 18px 4px 18px',
+                    color: '#ffffff',
                   }}
                 >
                   {b.text}
@@ -391,13 +380,12 @@ const handleRestart = () => {
               <div className="flex justify-start">
                 <div className="flex items-center gap-1.5 px-4 py-3"
                   style={{
-                    background: 'rgba(17, 19, 41, 0.8)',
-                    border: '1px solid rgba(123,97,255,0.12)',
-                    borderRadius: '4px 16px 16px 16px',
+                    background: '#F2F2F7',
+                    borderRadius: '18px 18px 18px 4px',
                   }}>
-                  <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#7B61FF', animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#7B61FF', animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: '#7B61FF', animationDelay: '300ms' }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8e8e93] animate-bounce" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8e8e93] animate-bounce [animation-delay:0.2s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8e8e93] animate-bounce [animation-delay:0.4s]" />
                 </div>
               </div>
             )}
@@ -411,19 +399,17 @@ const handleRestart = () => {
                     onClick={() => handleOption(opt.label, opt.next)}
                     className="text-[12px] font-medium tracking-wide px-4 py-2.5 rounded-full transition-all duration-200 hover:scale-[1.03] active:scale-[0.97]"
                     style={{
-                      background: 'rgba(123,97,255,0.08)',
-                      border: '1px solid rgba(123,97,255,0.25)',
-                      color: '#c4b5fd',
+                      background: '#ffffff',
+                      border: '1px solid rgba(0,0,0,0.1)',
+                      color: '#000000',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.background = 'rgba(123,97,255,0.2)'
-                      e.currentTarget.style.borderColor = 'rgba(123,97,255,0.5)'
-                      e.currentTarget.style.color = '#fff'
+                      e.currentTarget.style.background = '#f5f5f7'
+                      e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)'
                     }}
                     onMouseLeave={e => {
-                      e.currentTarget.style.background = 'rgba(123,97,255,0.08)'
-                      e.currentTarget.style.borderColor = 'rgba(123,97,255,0.25)'
-                      e.currentTarget.style.color = '#c4b5fd'
+                      e.currentTarget.style.background = '#ffffff'
+                      e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'
                     }}
                   >
                     {opt.label}
@@ -433,7 +419,7 @@ const handleRestart = () => {
                   <div className="w-full pt-1">
                     <button 
                       onClick={handleBack}
-                      className="text-[11px] text-white/40 hover:text-white/70 flex items-center gap-1.5 transition-colors"
+                      className="text-[11px] text-fg-muted hover:text-black/70 flex items-center gap-1.5 transition-colors"
                     >
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
                         <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -464,7 +450,7 @@ const handleRestart = () => {
             {currentNode?.id === 'thank_you' && (
               <div className="pt-4 border-t border-white/5">
                 {submissionStatus === 'sending' && (
-                  <p className="text-[10px] text-white/40 flex items-center gap-2">
+                  <p className="text-[10px] text-fg-muted flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" /> Capturing project details...
                   </p>
                 )}
@@ -489,7 +475,7 @@ const handleRestart = () => {
           {showInput && !isTyping && (
             <div 
               className={`flex flex-col flex-shrink-0 transition-all duration-200 ${shouldShake ? 'animate-shake' : ''}`} 
-              style={{ borderTop: '1px solid rgba(123,97,255,0.12)' }}
+              style={{ borderTop: '1px solid rgba(0,0,0,0.05)', background: '#ffffff' }}
             >
               {error && (
                 <div className="px-4 py-2 bg-red-500/10 text-[11px] text-red-400 font-medium flex items-center gap-2" style={{ borderBottom: '1px solid rgba(239,68,68,0.1)' }}>
@@ -503,7 +489,7 @@ const handleRestart = () => {
                 <div className="px-4 pt-3">
                   <button 
                     onClick={handleBack}
-                    className="text-[11px] text-white/40 hover:text-white/70 flex items-center gap-1.5 transition-colors"
+                    className="text-[11px] text-fg-muted hover:text-black/70 flex items-center gap-1.5 transition-colors"
                   >
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
                       <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -523,7 +509,7 @@ const handleRestart = () => {
                   }}
                   onKeyDown={e => e.key === 'Enter' && handleSubmit()}
                   placeholder={getPlaceholder()}
-                  className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 outline-none border-none"
+                  className="flex-1 bg-transparent text-sm text-black placeholder:text-fg-muted opacity-60 outline-none border-none"
                   autoComplete={currentNode?.inputField === 'email' ? 'email' : currentNode?.inputField === 'whatsapp' ? 'tel' : 'off'}
                 />
                 <button
@@ -532,12 +518,12 @@ const handleRestart = () => {
                   className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 disabled:opacity-30"
                   style={{
                     background: inputValue.trim()
-                      ? 'linear-gradient(135deg, #7B61FF, #5B3DD9)'
-                      : 'rgba(123,97,255,0.1)',
+                      ? '#000000'
+                      : 'rgba(0,0,0,0.05)',
                   }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke={inputValue.trim() ? "#fff" : "#8e8e93"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>
@@ -545,10 +531,10 @@ const handleRestart = () => {
           )}
 
           {/* ── Branding footer ── */}
-          <div className="px-4 py-2 flex-shrink-0 text-center"
-            style={{ borderTop: '1px solid rgba(123,97,255,0.06)' }}>
-            <span className="text-[10px] tracking-wider" style={{ color: 'rgba(232,230,240,0.2)' }}>
-              Powered by Luminexis
+          <div className="px-4 py-3 flex-shrink-0 text-center"
+            style={{ borderTop: '1px solid rgba(0,0,0,0.03)', background: '#FAFAFA' }}>
+            <span className="text-[10px] tracking-wider text-[#86868b] font-medium opacity-60">
+              SECURE END-TO-END ENCRYPTED
             </span>
           </div>
         </div>

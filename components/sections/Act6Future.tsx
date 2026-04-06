@@ -98,13 +98,13 @@ export default function Act6Future() {
       <div className="max-w-6xl w-full mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         {/* ── Principles ── */}
         <div data-reveal className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #7B61FF, transparent)' }} />
-          <span className="act-label mb-0" style={{ color: '#7B61FF' }}>The Luminexis Principles</span>
+          <span className="w-8 h-px"  />
+          <span className="act-label mb-0" >The Luminexis Principles</span>
         </div>
 
         <h2 data-reveal className="headline-lg mb-6">
           If your digital presence requires{' '}
-          <span className="gradient-text">structural clarity</span>{' '}
+          <span className="text-black">structural clarity</span>{' '}
           rather than surface improvement.
         </h2>
 
@@ -115,7 +115,7 @@ export default function Act6Future() {
         <div data-reveal className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
           {LUMINEXIS_PRINCIPLES.map((principle, i) => (
             <div key={principle.id} className="glass-card px-6 py-5 flex items-center gap-4 group">
-              <span className="font-mono text-sm font-bold flex-shrink-0" style={{ color: '#7B61FF' }}>
+              <span className="font-mono text-sm font-bold flex-shrink-0" >
                 {String(i + 1).padStart(2, '0')}
               </span>
               <p className="text-fg text-sm font-medium">{principle.text}</p>
@@ -126,19 +126,19 @@ export default function Act6Future() {
         {/* ── Contact Form ── */}
         <div id="contact" data-reveal className="scroll-mt-24">
           <div className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #22D3EE, transparent)' }} />
+            <span className="w-8 h-px"  />
             <span className="act-label mb-0">Get in Touch</span>
           </div>
 
           <h2 className="headline-lg mb-12">
             Ready to{' '}
-            <span className="gradient-text">Launch?</span>
+            <span className="text-black">Launch?</span>
           </h2>
 
           {submitted ? (
             <div data-reveal className="honor-card p-12 text-center">
               <div className="flex justify-center mb-6">
-                <Rocket className="w-12 h-12 text-cyan-400 drop-shadow-[0_0_16px_rgba(34,211,238,0.5)]" />
+                <Rocket className="w-12 h-12 text-black-400 drop-shadow-[0_0_16px_rgba(34,211,238,0.5)]" />
               </div>
               <h3 className="text-2xl font-bold text-fg mb-4">Message Received</h3>
               <p className="body-text max-w-md mx-auto">
@@ -160,11 +160,11 @@ export default function Act6Future() {
                     value={formState.engagement}
                     onChange={(e) => updateField('engagement', e.target.value)}
                     className="w-full px-4 py-3 rounded-lg bg-transparent text-fg text-sm outline-none transition-all duration-200"
-                    style={{ border: '1px solid rgba(123,97,255,0.2)', background: 'rgba(6,6,15,0.6)' }}
+                    style={{ border: '1px solid rgba(0,0,0,0.1)', background: 'rgba(255,255,255,0.5)' }}
                   >
-                    <option value="" style={{ background: '#0B0D17' }}>Select type</option>
+                    <option value="" style={{ background: '#FFFFFF' }}>Select type</option>
                     {ENGAGEMENT_TYPES.map((type) => (
-                      <option key={type} value={type} style={{ background: '#0B0D17' }}>{type}</option>
+                      <option key={type} value={type} style={{ background: '#FFFFFF' }}>{type}</option>
                     ))}
                   </select>
                 </div>
@@ -183,11 +183,11 @@ export default function Act6Future() {
                   rows={5}
                   className="w-full px-4 py-3 rounded-lg bg-transparent text-fg text-sm outline-none resize-none transition-all duration-200"
                   style={{
-                    border: '1px solid rgba(123,97,255,0.2)',
-                    background: 'rgba(6,6,15,0.6)',
+                    border: '1px solid rgba(0,0,0,0.1)',
+                    background: 'rgba(255,255,255,0.5)',
                   }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(123,97,255,0.5)'; e.currentTarget.style.boxShadow = '0 0 16px rgba(123,97,255,0.08)' }}
-                  onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(123,97,255,0.2)'; e.currentTarget.style.boxShadow = 'none' }}
+                  onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.3)'; e.currentTarget.style.boxShadow = '0 0 16px rgba(0,0,0,0.05)' }}
+                  onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.boxShadow = 'none' }}
                 />
               </div>
 
@@ -228,7 +228,7 @@ function FormField({ label, value, onChange, placeholder, type = 'text', require
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={`field-${label.toLowerCase()}`} className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
-        {label} {required && <span style={{ color: '#7B61FF' }}>*</span>}
+        {label} {required && <span >*</span>}
       </label>
       <input
         id={`field-${label.toLowerCase()}`}
@@ -238,9 +238,9 @@ function FormField({ label, value, onChange, placeholder, type = 'text', require
         placeholder={placeholder}
         required={required}
         className="w-full px-4 py-3 rounded-lg bg-transparent text-fg text-sm outline-none transition-all duration-200"
-        style={{ border: '1px solid rgba(123,97,255,0.2)', background: 'rgba(6,6,15,0.6)' }}
-        onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(123,97,255,0.5)'; e.currentTarget.style.boxShadow = '0 0 16px rgba(123,97,255,0.08)' }}
-        onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(123,97,255,0.2)'; e.currentTarget.style.boxShadow = 'none' }}
+        style={{ border: '1px solid rgba(0,0,0,0.1)', background: 'rgba(255,255,255,0.5)' }}
+        onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.3)'; e.currentTarget.style.boxShadow = '0 0 16px rgba(0,0,0,0.05)' }}
+        onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.boxShadow = 'none' }}
       />
     </div>
   )

@@ -5,10 +5,10 @@ import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { TECH_STACK } from '@/lib/data'
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Frontend:       '#7B61FF',
-  Backend:        '#22D3EE',
-  Database:       '#A855F7',
-  Infrastructure: '#34D399',
+  Frontend:       '#000000',
+  Backend:        '#000000',
+  Database:       '#000000',
+  Infrastructure: '#000000',
 }
 
 export default function TechStackSection() {
@@ -29,21 +29,16 @@ export default function TechStackSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} aria-label="Technology stack" className="section-container py-32 nebula-bg">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute bottom-[20%] right-[15%] w-[500px] h-[500px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 60%)', filter: 'blur(80px)' }} />
-      </div>
-
+    <section ref={sectionRef} aria-label="Technology stack" className="section-container py-32">
       <div className="max-w-6xl w-full mx-auto relative z-10">
         <div data-reveal className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #22D3EE, transparent)' }} />
+          <span className="w-8 h-px"  />
           <span className="act-label mb-0">Technology Stack</span>
         </div>
 
         <h2 data-reveal className="headline-lg mb-6">
           Powered by{' '}
-          <span className="gradient-text">Proven Technology.</span>
+          <span className="text-black">Proven Technology.</span>
         </h2>
 
         <p data-reveal className="body-text max-w-2xl mb-16">
@@ -52,7 +47,7 @@ export default function TechStackSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {TECH_STACK.map((stack, i) => {
-            const color = CATEGORY_COLORS[stack.category] || '#7B61FF'
+            const color = CATEGORY_COLORS[stack.category] || '#000000'
             return (
               <div key={i} data-reveal className="glass-card p-8 group relative overflow-hidden">
                 {/* Category glow */}
@@ -71,18 +66,17 @@ export default function TechStackSection() {
                         key={item}
                         className="font-mono text-xs px-3 py-2 rounded-lg transition-all duration-300 cursor-default"
                         style={{
-                          background: 'rgba(17,19,41,0.8)',
-                          border: `1px solid ${color}20`,
-                          color: 'var(--fg-muted)',
+                          background: '#f9f9f9',
+                          border: `1px solid rgba(0,0,0,0.05)`,
+                          color: '#000000',
+                          fontWeight: '500'
                         }}
                         onMouseEnter={e => {
-                          e.currentTarget.style.borderColor = `${color}50`
-                          e.currentTarget.style.color = color
-                          e.currentTarget.style.boxShadow = `0 0 16px ${color}15`
+                          e.currentTarget.style.borderColor = `rgba(0,0,0,0.2)`
+                          e.currentTarget.style.boxShadow = `0 4px 12px rgba(0,0,0,0.05)`
                         }}
                         onMouseLeave={e => {
-                          e.currentTarget.style.borderColor = `${color}20`
-                          e.currentTarget.style.color = 'var(--fg-muted)'
+                          e.currentTarget.style.borderColor = `rgba(0,0,0,0.05)`
                           e.currentTarget.style.boxShadow = 'none'
                         }}
                       >

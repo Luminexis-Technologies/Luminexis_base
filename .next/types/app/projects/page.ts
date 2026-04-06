@@ -1,4 +1,4 @@
-// File: C:\Users\Akash\Desktop\Lumin\Luminexis_base\app\projects\page.tsx
+// File: C:\Users\Akash\Desktop\New folder\Luminexis_base\app\projects\page.tsx
 import * as entry from '../../../../app/projects/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

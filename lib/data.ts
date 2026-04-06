@@ -275,8 +275,9 @@ export const SERVICES: Service[] = [
     icon: Layers,
     title: 'UI/UX Design',
     description:
-      'UI/UX Design for startups and enterprises across India, including Bangalore and Hyderabad.',
+      'User-centric digital experiences and conversion-focused interface design for startups and enterprises across industries.',
     tags: ['UX Research', 'UI Systems', 'Conversion Design'],
+    href: '/ui-ux-design-services',
     highlight: false,
     gradient: 'linear-gradient(135deg, rgba(34,211,238,0.06) 0%, rgba(99,102,241,0.04) 100%)',
     variant: 'fade',
@@ -288,8 +289,9 @@ export const SERVICES: Service[] = [
     icon: Code2,
     title: 'Web Development',
     description:
-      'Web Development services in India for scalable platforms in Mumbai and Chennai.',
+      'Scalable web applications and high-performance frontend engineering for modern digital businesses and global brands.',
     tags: ['React', 'Next.js', 'GSAP', 'Three.js'],
+    href: '/web-development-services',
     highlight: true,
     gradient: 'linear-gradient(135deg, rgba(34,211,238,0.10) 0%, rgba(99,102,241,0.07) 100%)',
     variant: 'fade',
@@ -301,8 +303,9 @@ export const SERVICES: Service[] = [
     icon: Server,
     title: 'Software Development',
     description:
-      'Software Development services including SaaS, enterprise applications, and automation systems.',
+      'Custom software solutions including SaaS platforms, enterprise applications, and cloud-based architecture.',
     tags: ['Node.js', 'PostgreSQL', 'REST', 'GraphQL'],
+    href: '/custom-software-development',
     highlight: false,
     gradient: 'linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(168,85,247,0.04) 100%)',
     variant: 'fade',
@@ -312,10 +315,11 @@ export const SERVICES: Service[] = [
   {
     id: 'platforms',
     icon: Rocket,
-    title: 'SEO Services',
+    title: 'SEO & Marketing',
     description:
-      'SEO Services in India helping businesses rank in Delhi, Pune, and across major cities.',
-    tags: ['Full-Stack', 'DevOps', 'CI/CD'],
+      'Technical SEO and performance marketing strategies to improve global visibility and rank across diverse markets.',
+    tags: ['Technical SEO', 'Performance', 'Rank Strategy'],
+    href: '/seo-services',
     highlight: false,
     gradient: 'linear-gradient(135deg, rgba(168,85,247,0.06) 0%, rgba(34,211,238,0.04) 100%)',
     variant: 'fade',

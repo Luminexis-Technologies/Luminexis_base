@@ -54,13 +54,13 @@ export default function EngagementStandardSection() {
 
       <div className="max-w-6xl w-full mx-auto relative z-10">
         <div data-reveal className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #22D3EE, transparent)' }} />
+          <span className="w-8 h-px"  />
           <span className="act-label mb-0">Engagement Standard</span>
         </div>
 
         <h2 data-reveal className="headline-lg mb-6">
           Who We{' '}
-          <span className="gradient-text">Work With.</span>
+          <span className="text-black">Work With.</span>
         </h2>
 
         <p data-reveal className="body-text max-w-2xl mb-16">
@@ -74,13 +74,13 @@ export default function EngagementStandardSection() {
                 style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%)' }} />
 
               <div className="relative z-10">
-                {(() => { const Icon = item.icon; return <Icon className="w-7 h-7 mb-4" style={{ color: '#22D3EE' }} /> })()}
+                {(() => { const Icon = item.icon; return <Icon className="w-7 h-7 mb-4"  /> })()}
                 <h3 className="text-lg font-semibold text-fg mb-3">{item.title}</h3>
                 <p className="body-text text-sm">{item.description}</p>
               </div>
 
               <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
-                style={{ background: 'linear-gradient(90deg, #22D3EE, #7B61FF)' }} />
+                 />
             </div>
           ))}
         </div>

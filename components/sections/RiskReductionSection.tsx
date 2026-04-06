@@ -54,13 +54,13 @@ export default function RiskReductionSection() {
 
       <div className="max-w-6xl w-full mx-auto relative z-10">
         <div data-reveal className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #A855F7, transparent)' }} />
-          <span className="act-label mb-0" style={{ color: '#A855F7' }}>Structural Integrity</span>
+          <span className="w-8 h-px"  />
+          <span className="act-label mb-0" >Structural Integrity</span>
         </div>
 
         <h2 data-reveal className="headline-lg mb-6">
           Risk Reduced.{' '}
-          <span className="gradient-text">Confidence Built.</span>
+          <span className="text-black">Confidence Built.</span>
         </h2>
 
         <p data-reveal className="body-text max-w-2xl mb-16">
@@ -73,7 +73,7 @@ export default function RiskReductionSection() {
               <div className="absolute top-0 right-0 w-32 h-32 rounded-full -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.1) 0%, transparent 70%)' }} />
               <div className="flex items-start gap-4">
-                {(() => { const Icon = item.icon; return <Icon className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: '#7B61FF' }} /> })()}
+                {(() => { const Icon = item.icon; return <Icon className="w-6 h-6 flex-shrink-0 mt-0.5"  /> })()}
                 <div>
                   <h3 className="text-lg font-semibold text-fg mb-2">{item.title}</h3>
                   <p className="body-text text-sm">{item.description}</p>

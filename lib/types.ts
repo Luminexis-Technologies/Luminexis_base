@@ -111,6 +111,8 @@ export interface Service extends AnimationMeta {
   highlight?: boolean
   /** CSS gradient string for the card's ambient background */
   gradient?: string
+  /** Internal link to detail page */
+  href?: string
 }
 
 // ─────────────────────────────────────────────

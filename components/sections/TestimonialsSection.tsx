@@ -63,13 +63,13 @@ export default function TestimonialsSection() {
         variants={containerVariants}
       >
         <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #7B61FF, transparent)' }} />
-          <span className="act-label mb-0" style={{ color: '#7B61FF' }}>Testimonials</span>
+          <span className="w-8 h-px"  />
+          <span className="act-label mb-0" >Testimonials</span>
         </motion.div>
 
         <motion.h2 variants={itemVariants} className="headline-lg mb-16">
           What Our{' '}
-          <span className="gradient-text">Partners Say.</span>
+          <span className="text-black">Partners Say.</span>
         </motion.h2>
 
         <motion.div 
@@ -78,7 +78,7 @@ export default function TestimonialsSection() {
           style={{ willChange: 'transform, opacity' }}
         >
           {/* Decorative quotation mark */}
-          <div className="absolute top-6 left-8 text-8xl font-serif leading-none pointer-events-none select-none opacity-5 text-[#7B61FF]">&ldquo;</div>
+          <div className="absolute top-6 left-8 text-8xl font-serif leading-none pointer-events-none select-none opacity-5 text-black">&ldquo;</div>
 
           <div className="relative z-10 min-h-[160px]">
             <AnimatePresence mode="wait">
@@ -97,7 +97,7 @@ export default function TestimonialsSection() {
                 <div className="flex items-center gap-4">
                   {/* Avatar optimized */}
                   <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0"
-                    style={{ background: 'linear-gradient(135deg, #7B61FF, #22D3EE)', color: '#fff' }}>
+                    >
                     {t.author ? t.author[0].toUpperCase() : '✦'}
                   </div>
                   <div>

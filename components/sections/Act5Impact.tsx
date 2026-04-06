@@ -35,7 +35,7 @@ export default function Act5Impact() {
   const ongoingProjects = PROJECTS.filter(p => p.status === 'Ongoing')
 
   return (
-    <section id="work" aria-label="Our projects and case studies" className="section-container py-32 nebula-bg overflow-hidden">
+    <section id="work" aria-label="Our projects and case studies" className="section-container py-32  overflow-hidden">
       {/* Background effects - Simplified for performance */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[15%] right-[10%] w-[400px] h-[400px] rounded-full opacity-20"
@@ -52,13 +52,13 @@ export default function Act5Impact() {
         variants={containerVariants}
       >
         <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px" style={{ background: 'linear-gradient(90deg, #22D3EE, transparent)' }} />
+          <span className="w-8 h-px"  />
           <span className="act-label mb-0">Strategic Work</span>
         </motion.div>
 
         <motion.h2 variants={itemVariants} className="headline-lg mb-6">
           Built with Intent,{' '}
-          <span className="gradient-text">Shipped with Precision.</span>
+          <span className="text-black">Shipped with Precision.</span>
         </motion.h2>
 
         <motion.p variants={itemVariants} className="body-text max-w-2xl mb-16">
@@ -85,8 +85,8 @@ export default function Act5Impact() {
         {ongoingProjects.length > 0 && (
           <div>
             <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
-              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#7B61FF' }} />
-              <span className="font-mono text-xs tracking-widest uppercase" style={{ color: '#7B61FF' }}>In Development</span>
+              <span className="w-2 h-2 rounded-full animate-pulse"  />
+              <span className="font-mono text-xs tracking-widest uppercase" >In Development</span>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {ongoingProjects.map((project) => (
@@ -111,7 +111,7 @@ function ProjectCard({ project }: { project: Project }) {
       <div className="relative h-56 overflow-hidden">
         <Image
           src={project.thumbnail ?? project.bgGradient}
-          alt={`web development services in Mumbai - ${project.title}`}
+          alt={`Professional web development project - ${project.title}`}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           loading="lazy"
@@ -140,7 +140,7 @@ function ProjectCard({ project }: { project: Project }) {
         {/* Bottom-left icon + year */}
         <div className="absolute bottom-4 left-5 z-10 flex items-center gap-2">
           {(() => { const Icon = project.icon; return <Icon className="w-5 h-5" style={{ color: project.accentColor }} /> })()}
-          <span className="font-mono text-[10px] text-white/50">{project.year}</span>
+          <span className="font-mono text-[10px] text-fg-muted">{project.year}</span>
         </div>
       </div>
 
