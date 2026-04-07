@@ -55,7 +55,7 @@ export default function CTASection() {
             className="relative z-10 flex flex-col sm:flex-row items-center gap-4"
           >
             <a
-              href="mailto:contact@luminexistechnologies.com"
+              href="tel:+91841077234"
               className="group inline-flex items-center justify-center px-10 py-4 bg-white text-[#111111] font-medium text-sm tracking-wide transition-all duration-300 rounded-full hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(255,255,255,0.15)] active:scale-[0.97]"
             >
               Get Free Strategy Call

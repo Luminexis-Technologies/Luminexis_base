@@ -67,12 +67,6 @@ export default function Navigation() {
             </Link>
           ))}
 
-          <Link
-            href="/contact"
-            className="px-6 py-2.5 bg-[#111111] text-white text-[13px] font-medium transition-all duration-300 rounded-full hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.97]"
-          >
-            Get Started
-          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -108,13 +102,6 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            onClick={() => setMenuOpen(false)}
-            className="mt-4 w-full text-center py-3.5 px-6 bg-[#111111] text-white font-medium rounded-full active:scale-[0.97] transition-transform"
-          >
-            Get Started
-          </Link>
         </div>
       </div>
     </nav>

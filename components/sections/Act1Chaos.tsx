@@ -8,30 +8,37 @@ export default function Act1Chaos() {
     <section
       id="hero"
       aria-label="Hero section — Luminexis Technologies"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-[90vh] lg:min-h-screen flex flex-col lg:flex-row items-center overflow-hidden"
       style={{ background: '#F7F7F7' }}
     >
-      {/* ── Left: Hero Image ── */}
-      <div className="absolute inset-0 lg:relative lg:w-1/2 lg:min-h-screen hidden lg:block">
+      {/* ── Visual Area ── */}
+      <div className="relative w-full lg:w-1/2 h-[300px] sm:h-[400px] md:h-[500px] lg:h-screen lg:min-h-screen">
         <Image
           src="/hero-workspace-coding.png"
-          alt="Modern workspace for scalable software development"
+          alt="Modern coding workspace"
           fill
           priority
           className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          sizes="100vw"
         />
-        {/* Gradient overlay: fades image into content area */}
+        {/* Gradient overlay for mobile (top to bottom) */}
         <div
-          className="absolute inset-0 z-10"
+          className="absolute inset-0 z-10 lg:hidden"
+          style={{
+            background: 'linear-gradient(to bottom, transparent 60%, #F7F7F7 100%)',
+          }}
+        />
+        {/* Gradient overlay for desktop (left to right) */}
+        <div
+          className="absolute inset-0 z-10 hidden lg:block"
           style={{
             background: 'linear-gradient(to right, transparent 40%, #F7F7F7 95%)',
           }}
         />
       </div>
 
-      {/* ── Right: Content ── */}
-      <div className="relative z-20 w-full lg:w-1/2 px-6 md:px-12 lg:px-16 xl:px-24 py-32 lg:py-0">
+      {/* ── Content Area ── */}
+      <div className="relative z-20 w-full lg:w-1/2 px-6 sm:px-12 lg:px-16 xl:px-24 py-12 sm:py-20 lg:py-0">
         <div className="max-w-xl mx-auto lg:mx-0 flex flex-col gap-8">
 
           {/* Subtle label */}
@@ -75,16 +82,16 @@ export default function Act1Chaos() {
             className="flex flex-col sm:flex-row gap-4 pt-2"
           >
             <motion.a
-              href="/contact"
+              href="tel:+91841077234"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               className="btn-primary min-w-[180px] justify-center"
-              aria-label="Get Started with Luminexis"
+              aria-label="Get Free Strategy Call with Luminexis"
             >
-              Get Started
+              Get Free Strategy Call
             </motion.a>
             <motion.a
-              href="mailto:contact@luminexistechnologies.com"
+              href="https://luminexistechnologies.com/contact"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               className="btn-secondary min-w-[180px] justify-center"

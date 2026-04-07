@@ -1,14 +1,16 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/process/page": "app/process/page.js",
+  "/privacy/page": "app/privacy/page.js",
   "/engineering/page": "app/engineering/page.js",
-  "/contact/page": "app/contact/page.js",
+  "/process/page": "app/process/page.js",
+  "/terms/page": "app/terms/page.js",
   "/custom-software-development/page": "app/custom-software-development/page.js",
-  "/projects/page": "app/projects/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/services/page": "app/services/page.js",
-  "/ui-ux-design-services/page": "app/ui-ux-design-services/page.js",
   "/page": "app/page.js",
-  "/web-development-services/page": "app/web-development-services/page.js",
-  "/about/page": "app/about/page.js"
+  "/about/page": "app/about/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/services/page": "app/services/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/projects/page": "app/projects/page.js",
+  "/ui-ux-design-services/page": "app/ui-ux-design-services/page.js",
+  "/web-development-services/page": "app/web-development-services/page.js"
 }
