@@ -2,9 +2,11 @@ import type { Metadata } from 'next'
 import LuminexisPage from './ClientHome'
 
 export const metadata: Metadata = {
-  title: 'Web Development & Custom Software Company | Luminexis Technologies',
-  description: 'Luminexis Technologies is a web development company delivering custom software, SaaS platforms, and scalable digital solutions for startups and enterprises.',
+  title: 'Software Development Company | Business Automation Services | Luminexis',
+  description: 'Luminexis Technologies is a software development company delivering business automation services, custom software, SaaS platforms, and scalable digital solutions for startups and enterprises.',
   keywords: [
+    'software development company',
+    'business automation services',
     'web development company',
     'custom software development company',
     'full stack development services',
@@ -19,8 +21,8 @@ export const metadata: Metadata = {
     'Luminexis Technologies',
   ],
   openGraph: {
-    title: 'Web Development & Software Solutions Company | Luminexis Technologies',
-    description: 'We architect high-performance digital systems — custom software, AI-powered solutions, and scalable SaaS platforms for startups and enterprises.',
+    title: 'Software Development & Business Automation | Luminexis Technologies',
+    description: 'We build scalable software and automate business systems — custom software, AI-powered solutions, and SaaS platforms for startups and enterprises.',
     url: 'https://luminexistechnologies.com',
   },
   alternates: {

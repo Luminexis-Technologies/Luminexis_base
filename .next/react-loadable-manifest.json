@@ -1,81 +1,46 @@
 {
-  "app\\ClientHome.tsx -> @/components/sections/Act3Design": {
-    "id": 3593,
-    "files": [
-      "static/chunks/3593.f7e1f55c248f0b9c.js"
-    ]
-  },
   "app\\ClientHome.tsx -> @/components/sections/Act4Engineering": {
     "id": 4896,
     "files": [
-      "static/chunks/1787-90da4d3fc4584fc7.js",
-      "static/chunks/4896.4fa19a7b53a6abb9.js"
-    ]
-  },
-  "app\\ClientHome.tsx -> @/components/sections/Act5Impact": {
-    "id": 6313,
-    "files": [
-      "static/chunks/1154-9836f396bf3dc1af.js",
-      "static/chunks/6313.a80168e0fe63c322.js"
-    ]
-  },
-  "app\\ClientHome.tsx -> @/components/sections/Act6Future": {
-    "id": 2013,
-    "files": [
-      "static/chunks/2013-29d8a5385a431906.js",
-      "static/chunks/5615.814948898b41a2d8.js"
+      "static/chunks/414-2f27d39e4ebec44a.js",
+      "static/chunks/896.db52560a6a6ab137.js"
     ]
   },
   "app\\ClientHome.tsx -> @/components/sections/BusinessIntentSection": {
-    "id": 8511,
+    "id": 9069,
     "files": [
-      "static/chunks/8511.550658dac6dce819.js"
+      "static/chunks/69.99ebca5339480a1b.js"
     ]
   },
-  "app\\ClientHome.tsx -> @/components/sections/EngagementStandardSection": {
-    "id": 6260,
+  "app\\ClientHome.tsx -> @/components/sections/CTASection": {
+    "id": 2702,
     "files": [
-      "static/chunks/6260.d721fc51fd02d28d.js"
+      "static/chunks/702.b73f01bce319ef28.js"
     ]
   },
   "app\\ClientHome.tsx -> @/components/sections/ProcessSection": {
     "id": 7449,
     "files": [
-      "static/chunks/7449-57f643f34d15e908.js",
-      "static/chunks/8216.16a0aa635d4651db.js"
-    ]
-  },
-  "app\\ClientHome.tsx -> @/components/sections/RiskReductionSection": {
-    "id": 7961,
-    "files": [
-      "static/chunks/7961.b7ca03fe5d7ac0e4.js"
-    ]
-  },
-  "app\\ClientHome.tsx -> @/components/sections/TechStackSection": {
-    "id": 4316,
-    "files": [
-      "static/chunks/4316-91d35ae96e836acb.js",
-      "static/chunks/6549.8e87319cf8f4460e.js"
+      "static/chunks/449.bc95b84293d42795.js"
     ]
   },
   "app\\ClientHome.tsx -> @/components/sections/TestimonialsSection": {
-    "id": 4302,
+    "id": 1842,
     "files": [
-      "static/chunks/6634.367e1b248100b44d.js",
-      "static/chunks/4302.fd0d9603b4ded1fc.js"
+      "static/chunks/842.007227591869c4df.js"
     ]
   },
   "app\\ClientHome.tsx -> @/components/ui/Chatbot": {
     "id": 6540,
     "files": [
-      "static/chunks/6540-d94cd2e7310fb97e.js",
-      "static/chunks/8059.e236292b03e2a1f9.js"
+      "static/chunks/540-6d198c6fe01feef1.js",
+      "static/chunks/59.31c73e7de3384794.js"
     ]
   },
   "app\\ClientHome.tsx -> @/components/ui/Footer": {
     "id": 9865,
     "files": [
-      "static/chunks/9865.52bef62869d2397f.js"
+      "static/chunks/865.f3c0f026c8210b98.js"
     ]
   }
 }

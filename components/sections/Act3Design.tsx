@@ -2,119 +2,105 @@
 
 import React from 'react'
 import { motion, Variants } from 'framer-motion'
-import Link from 'next/link'
 import { SERVICES } from '@/lib/data'
 
-// Optimized Animation Variants
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.15,
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
     },
   },
 }
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      ease: 'easeOut',
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 }
 
 export default function Act3Design() {
-  return (
-    <section id="act3" aria-label="Our services" className="section-container py-32 overflow-hidden">
-      {/* Background - Simplified */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full opacity-10"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)' }} />
-      </div>
+  // Show up to 4 services
+  const displayServices = SERVICES.slice(0, 4);
 
-      <motion.div 
-        className="max-w-6xl w-full mx-auto relative z-10"
+  return (
+    <section
+      id="services"
+      aria-label="Our services"
+      className="section-container"
+      style={{ background: '#FFFFFF' }}
+    >
+      <motion.div
+        className="max-w-6xl w-full mx-auto"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        viewport={{ once: true, margin: '-80px' }}
         variants={containerVariants}
       >
-        <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px"  />
-          <span className="act-label mb-0" >What We Build</span>
-        </motion.div>
+        {/* Section Header */}
+        <div className="text-center mb-16 md:mb-20">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 mb-6">
+            <span className="w-8 h-px bg-black/15" />
+            <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-[#6B7280]">
+              What We Do
+            </span>
+            <span className="w-8 h-px bg-black/15" />
+          </motion.div>
+          <motion.h2 variants={itemVariants} className="text-section-heading text-[#111111] mb-6">
+            High-Performance Digital Systems.
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-lg text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
+            We eliminate technical debt and design systems built for long-term commercial success. No templates, just engineering precision.
+          </motion.p>
+        </div>
 
-        <motion.h2 variants={itemVariants} className="headline-lg mb-6">
-          Every System,{' '}
-          <span className="text-black">Structurally Accountable.</span>
-        </motion.h2>
-
-        <motion.p variants={itemVariants} className="body-text max-w-2xl mb-16Leading-relaxed">
-          Interface decisions are made after structural planning — not before.
-          Every component is accountable to a commercial objective.
-        </motion.p>
-
+        {/* Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {SERVICES.map((service, i) => {
-            const Content = (
-              <motion.div 
-                key={service.id} 
-                variants={itemVariants} 
-                className="service-module p-8 group relative overflow-hidden glass-card h-full"
-                style={{ willChange: 'transform, opacity' }}
-              >
-                {/* Subtle hover glow reduced for perf */}
-                <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
-                  style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.15) 0%, transparent 70%)' }} />
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-6 font-bold text-black group-hover:scale-110 transition-transform duration-300 origin-left">
-                    {(() => { const Icon = service.icon; return <Icon className="w-8 h-8"  /> })()}
-                  </div>
-                  <h3 className="text-xl font-semibold text-fg mb-3 group-hover:text-black transition-colors">{service.title}</h3>
-                  <p className="body-text text-sm mb-6 leading-relaxed">{service.description}</p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-mono text-[10px] tracking-wider uppercase px-3 py-1.5 rounded-full transition-all duration-300"
-                        style={{
-                          border: '1px solid rgba(0,0,0,0.05)',
-                          color: '#666',
-                          background: '#f9f9f9',
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+          {displayServices.map((service) => (
+            <motion.a
+              key={service.id}
+              href={service.href || '#'}
+              variants={itemVariants}
+              className="card-premium group cursor-pointer block"
+            >
+              <div className="flex flex-col gap-6">
+                {/* Icon */}
+                <div className="w-12 h-12 flex items-center justify-center bg-[#111111] text-white rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                  {(() => { const Icon = service.icon; return <Icon className="w-5 h-5" /> })()}
                 </div>
 
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500 ease-out bg-black/10" />
-              </motion.div>
-            )
+                {/* Title & Description */}
+                <div className="flex flex-col gap-3">
+                  <h3 className="text-xl font-semibold text-[#111111] group-hover:text-black transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
 
-            return service.href ? (
-              <Link key={service.id} href={service.href} className="block transition-transform hover:-translate-y-1 duration-300">
-                {Content}
-              </Link>
-            ) : (
-              <div key={service.id}>{Content}</div>
-            )
-          })}
-        </div>
-        <div className="mt-16 flex justify-center">
-          <a href="/contact" className="cta-primary">
-            Discuss Your Project with Us
-          </a>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {service.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-medium tracking-wider uppercase px-3 py-1.5 rounded-full bg-[#F7F7F7] text-[#6B7280] border border-black/5"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.a>
+          ))}
         </div>
       </motion.div>
     </section>

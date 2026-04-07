@@ -1,22 +1,21 @@
 'use client'
 
 import React, { useEffect, useState, useRef } from 'react'
-import { motion, animate, Variants } from 'framer-motion'
-import { METRICS } from '@/lib/data'
+import { motion, animate, Variants, useInView } from 'framer-motion'
+import { AUTHORITY_STATS } from '@/lib/data'
 
-const STACK_LAYERS = [
-  { label: 'Rendering',    items: ['Next.js 14', 'RSC', 'Streaming'] },
-  { label: 'Interactions',  items: ['GSAP 3', 'React Three Fiber', 'Framer Motion'] },
-  { label: 'API Layer',    items: ['REST', 'GraphQL', 'Server Actions', 'tRPC'] },
-  { label: 'Database',     items: ['PostgreSQL', 'Prisma', 'Redis', 'Supabase'] },
-  { label: 'DevOps',       items: ['Vercel', 'Docker', 'GitHub Actions', 'Sentry'] },
+const TECH_STRATEGY = [
+  { label: 'Platform Architecture', items: ['Next.js 15', 'React Server Components', 'Edge Computing'] },
+  { label: 'Technical SEO Engine',   items: ['Metadata Systems', 'Structured Data', 'Performance Indexing'] },
+  { label: 'Data Infrastructure',    items: ['PostgreSQL', 'Prisma', 'Real-time Sync', 'Scalable Auth'] },
+  { label: 'Visual Engineering',     items: ['GSAP 3', 'Three.js', 'Framer Motion', 'Precision UI'] },
 ]
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.15 },
   },
 }
 
@@ -25,85 +24,69 @@ const itemVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 }
 
 export default function Act4Engineering() {
   return (
-    <section id="act4" aria-label="Engineering metrics and tech stack" className="py-32 px-6 md:px-12 lg:px-24 bg-white">
+    <section
+      id="engineering"
+      aria-label="Engineering metrics and authority"
+      className="section-container"
+      style={{ background: '#F7F7F7' }}
+    >
       <motion.div
-        className="max-w-5xl w-full mx-auto"
+        className="max-w-6xl w-full mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
         variants={containerVariants}
       >
-        {/* Section Label */}
-        <motion.p variants={itemVariants} className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868b] mb-4">
-          Performance
-        </motion.p>
-
-        {/* Heading */}
-        <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-tight leading-[1.08] mb-5">
-          Engineered for Performance.
-        </motion.h2>
-
-        {/* Description */}
-        <motion.p variants={itemVariants} className="text-lg md:text-xl text-[#6e6e73] max-w-xl mb-20 leading-relaxed">
-          Architecture decisions made before the first line of code. Measured outcomes. Zero compromise.
-        </motion.p>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-24">
-          {METRICS.map((metric, i) => (
-            <motion.div
-              key={i}
-              variants={itemVariants}
-              className="bg-white rounded-2xl p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-default"
-              style={{
-                boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04)',
-              }}
-            >
-              <Counter value={metric.value} prefix={metric.prefix} suffix={metric.suffix} />
-              <span className="text-[11px] font-medium tracking-[0.15em] uppercase text-[#86868b]">
-                {metric.label}
-              </span>
-            </motion.div>
-          ))}
+        {/* Section Header */}
+        <div className="text-center mb-16 md:mb-20">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 mb-6">
+            <span className="w-8 h-px bg-black/15" />
+            <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-[#6B7280]">
+              Results
+            </span>
+            <span className="w-8 h-px bg-black/15" />
+          </motion.div>
+          <motion.h2 variants={itemVariants} className="text-section-heading text-[#111111] mb-6">
+            Measurable Impact. Verified Data.
+          </motion.h2>
         </div>
 
-        {/* Tech Stack — Clean Horizontal Rows */}
-        <motion.p variants={itemVariants} className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868b] mb-8">
-          Technology Stack
-        </motion.p>
+        {/* Stats Grid */}
+        <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+          {AUTHORITY_STATS.map((stat, i) => (
+            <div key={i} className="flex flex-col items-center gap-2 p-6 rounded-2xl bg-white border border-black/[0.04]">
+              <Counter value={stat.value} />
+              <span className="text-[11px] font-medium tracking-wider uppercase text-[#6B7280] text-center">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </motion.div>
 
-        <div className="divide-y divide-black/[0.06]">
-          {STACK_LAYERS.map((layer, i) => (
+        {/* Tech Stack Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {TECH_STRATEGY.map((stack, i) => (
             <motion.div
               key={i}
               variants={itemVariants}
-              className="flex flex-col sm:flex-row sm:items-center gap-4 py-6"
+              className="flex flex-col gap-5 p-6 rounded-2xl bg-white border border-black/[0.04] group hover:shadow-lg transition-all duration-300"
             >
-              {/* Left — Label */}
-              <div className="flex items-center gap-3 sm:w-44 flex-shrink-0">
-                <div className="w-1.5 h-1.5 rounded-full bg-black/20" />
-                <span className="text-sm font-semibold tracking-wide text-black">
-                  {layer.label}
-                </span>
-              </div>
-
-              {/* Right — Tags */}
-              <div className="flex flex-wrap gap-2">
-                {layer.items.map((item) => (
-                  <span
-                    key={item}
-                    className="text-xs font-medium px-3.5 py-1.5 rounded-full bg-[#f5f5f7] text-black/80 transition-colors duration-200 hover:bg-[#e8e8ed] cursor-default"
-                  >
+              <h3 className="text-xs font-semibold tracking-wider uppercase text-[#111111] pb-3 border-b border-black/[0.06]">
+                {stack.label}
+              </h3>
+              <ul className="flex flex-col gap-2.5">
+                {stack.items.map((item) => (
+                  <li key={item} className="text-sm text-[#6B7280] group-hover:text-[#111111] transition-colors duration-300">
                     {item}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
           ))}
         </div>
@@ -112,36 +95,40 @@ export default function Act4Engineering() {
   )
 }
 
-function Counter({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
-  const [displayValue, setDisplayValue] = useState(0)
+function Counter({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const hasAnimated = useRef(false)
+  const [displayValue, setDisplayValue] = useState('0')
+  const isInView = useInView(ref, { once: true, margin: '-50px' })
 
   useEffect(() => {
-    if (hasAnimated.current) return
+    if (!isInView) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true
-          const controls = animate(0, value, {
-            duration: 2,
-            ease: 'easeOut',
-            onUpdate: (latest) => setDisplayValue(latest),
-          })
-          observer.disconnect()
-        }
+    const numericMatch = value.match(/[\d.]+/)
+    if (!numericMatch) {
+      setDisplayValue(value)
+      return
+    }
+
+    const num = parseFloat(numericMatch[0])
+    const suffix = value.replace(numericMatch[0], '')
+    const prefix = value.startsWith('₹') ? '₹' : ''
+    const cleanSuffix = suffix.replace('₹', '')
+
+    const controls = animate(0, num, {
+      duration: 2,
+      ease: [0.25, 0.46, 0.45, 0.94],
+      onUpdate: (latest) => {
+        const rounded = num % 1 === 0 ? Math.round(latest) : latest.toFixed(1)
+        setDisplayValue(`${prefix}${rounded}${cleanSuffix}`)
       },
-      { threshold: 0.5 }
-    )
+    })
 
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [value])
+    return () => controls.stop()
+  }, [value, isInView])
 
   return (
-    <span ref={ref} className="block text-3xl md:text-4xl font-bold mb-3 text-black tracking-tight">
-      {prefix}{Math.round(displayValue * 10) / 10}{suffix}
+    <span ref={ref} className="text-4xl md:text-5xl font-semibold tracking-tight text-[#111111]">
+      {displayValue}
     </span>
   )
 }

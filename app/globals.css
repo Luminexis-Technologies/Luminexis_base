@@ -4,22 +4,26 @@
 
 @layer base {
   :root {
-    /* ── Clean Light Theme ── */
-    --bg: #ffffff;
-    --bg-alt: #f9f9f9;
-    --bg-surface: #ffffff;
+    /* ── Apple-Style Premium Light Theme ── */
+    --bg: #F7F7F7;
+    --bg-alt: #FFFFFF;
+    --bg-surface: #000000;
     --fg: #111111;
-    --fg-muted: rgba(17, 17, 17, 0.6);
-    --border: rgba(0, 0, 0, 0.1);
-    --glow: rgba(0, 0, 0, 0.05);
-    --accent: #000000;
-    --accent-2: #333333;
-    --accent-dim: rgba(0, 0, 0, 0.05);
-    --cyan: #555555;
-    --cyan-dim: rgba(0, 0, 0, 0.05);
-    
-    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    --fg-muted: #6B7280;
+    --border: rgba(0, 0, 0, 0.06);
+    --glow: rgba(0, 0, 0, 0.02);
+    --accent: #111111;
+
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.04);
+    --shadow-hover: 0 12px 48px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+    --shadow-soft: 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-elevated: 0 20px 60px rgba(0,0,0,0.06);
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,111 +32,116 @@
   body {
     background-color: var(--bg);
     color: var(--fg);
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
 
-  ::selection { background: var(--accent); color: #fff; }
+  ::selection { background: #111111; color: #fff; }
 
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #f0f0f0; }
-  ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2); border-radius: 2px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.3); }
 }
 
 @layer components {
-  /* ── Section Container ── */
+  /* ── Apple-Style Section Container ── */
   .section-container {
-    @apply relative min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-24;
+    @apply relative flex flex-col px-6 md:px-12 lg:px-24 py-24 md:py-32;
     content-visibility: auto;
-    contain-intrinsic-size: 0 100vh;
   }
 
   .act-label {
-    @apply font-mono text-xs tracking-[0.25em] uppercase mb-4;
-    color: var(--fg-muted);
+    @apply font-mono text-[11px] tracking-[0.25em] uppercase mb-6 font-semibold text-fg-muted;
   }
 
   .headline-xl {
-    @apply text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[1.05] tracking-tight;
-    color: #111;
+    @apply text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-[-0.03em];
+    color: var(--fg);
   }
 
   .headline-lg {
-    @apply text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight;
-    color: #111;
+    @apply text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-[-0.025em];
+    color: var(--fg);
   }
 
   .body-text {
-    @apply text-base md:text-lg leading-relaxed;
-    color: var(--fg-muted);
+    @apply text-lg md:text-xl font-normal leading-relaxed text-fg-muted max-w-2xl;
   }
 
-  /* ── Clean Card ── */
-  .glass-card {
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: 12px;
+  /* ── Apple-Style Premium Card ── */
+  .card-premium {
+    @apply bg-white p-8 md:p-10 transition-all duration-300 ease-out;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.04);
   }
 
-  .glass-card:hover {
-    border-color: rgba(0,0,0,0.2);
+  .card-premium:hover {
+    transform: translateY(-4px) scale(1.01);
     box-shadow: var(--shadow-hover);
+    border-color: rgba(0,0,0,0.08);
   }
 
-  /* ── Minimalist Buttons ── */
-  .cta-primary {
-    @apply relative inline-flex items-center justify-center gap-3 px-10 py-4 font-bold text-sm tracking-[0.1em] uppercase;
-    background: #111111;
-    color: #ffffff;
-    border-radius: 50px;
-    transition: all 0.3s ease;
+  /* ── Apple-Style Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-black text-white font-medium text-sm tracking-wide transition-all duration-300 active:scale-[0.97];
+    border-radius: var(--radius-full);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    transform: translateY(-1px);
   }
 
-  .cta-primary:hover {
-    background: #333333;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent border border-black/20 text-[#111111] font-medium text-sm tracking-wide transition-all duration-300 active:scale-[0.97];
+    border-radius: var(--radius-full);
   }
-
-  .cta-secondary {
-    @apply relative inline-flex items-center justify-center gap-3 px-10 py-4 font-bold text-sm tracking-[0.1em] uppercase;
-    border: 2px solid #111111;
-    color: #111111;
-    border-radius: 50px;
-    background: transparent;
-    transition: all 0.3s ease;
-  }
-
-  .cta-secondary:hover {
-    background: rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
+  .btn-secondary:hover {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.4);
   }
 }
 
 @layer utilities {
-  .text-fg { color: var(--fg); }
+  .text-balance { text-wrap: balance; }
+  .text-brand { color: var(--fg); }
   .text-fg-muted { color: var(--fg-muted); }
   .text-accent { color: var(--accent); }
-  .text-accent-2 { color: var(--accent-2); }
-  .text-cyan { color: var(--cyan); }
-  .bg-surface { background-color: var(--bg); }
-  .bg-surface-alt { background-color: var(--bg-alt); }
+  .bg-brand { background-color: var(--fg); }
   .border-brand { border-color: var(--border); }
 }
 
-.scroll-content {
-  position: relative;
-  z-index: 10;
-  contain: layout style;
+/* ── Apple-Style Typography Scale ── */
+.text-hero-display {
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+.text-section-heading {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 600;
 }
 
-/* ── Typography and Helpers ── */
-.text-responsive-hero { font-size: clamp(2rem, 5vw + 1rem, 5.5rem); line-height: 1.05; }
-.text-responsive-heading { font-size: clamp(1.75rem, 4vw + 0.5rem, 4rem); line-height: 1.1; }
-.text-responsive-body { font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem); line-height: 1.7; }
+/* ── Fade in on scroll animation ── */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
@@ -141,6 +150,10 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .fade-in-section {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -157,16 +170,4 @@
 @media (prefers-color-scheme: dark) {
   .adaptive-logo-light { opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); }
   .adaptive-logo-dark { opacity: 0; pointer-events: none; }
-}
-
-/* ── Utilities for Image Background ── */
-.hero-bg {
-  background-image: url('/Luminexisbackground.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.hero-overlay {
-  background: rgba(255, 255, 255, 0.6); 
-  backdrop-filter: blur(4px);
 }

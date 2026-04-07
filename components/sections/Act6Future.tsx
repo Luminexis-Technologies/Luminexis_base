@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
-import { Rocket } from 'lucide-react'
+import { Rocket, Send } from 'lucide-react'
 import { LUMINEXIS_PRINCIPLES } from '@/lib/data'
 
 const ENGAGEMENT_TYPES = ['Interface Design', 'Frontend Engineering', 'Backend Systems', 'Full Digital Platform', 'SEO', 'Other']
@@ -20,10 +20,10 @@ export default function Act6Future() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         sectionRef.current!.querySelectorAll('[data-reveal]'),
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 20 },
         {
-          opacity: 1, y: 0, duration: 0.9, stagger: 0.14, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true },
+          opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
         }
       )
     }, sectionRef)
@@ -34,14 +34,12 @@ export default function Act6Future() {
     e.preventDefault()
     if (!formState.name || !formState.email || !formState.message) {
       setSendError('Please fill in all mandatory fields.')
-      setSending(false)
       return
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formState.email)) {
       setSendError('Please enter a valid email address.')
-      setSending(false)
       return
     }
 
@@ -75,7 +73,7 @@ export default function Act6Future() {
         setSendError(data.message ?? 'Submission failed. Please try again.')
       }
     } catch {
-      setSendError('Network error. Please check your connection and try again.')
+      setSendError('Network error. Please try again later.')
     } finally {
       setSending(false)
     }
@@ -86,136 +84,118 @@ export default function Act6Future() {
   }
 
   return (
-    <section ref={sectionRef} id="act6" aria-label="Contact and Principles" className="relative py-32 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-0 left-[50%] -translate-x-1/2 w-[800px] h-[800px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.06) 0%, transparent 50%)', filter: 'blur(100px)' }} />
-        <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.04) 0%, transparent 60%)', filter: 'blur(60px)' }} />
-      </div>
-
-      <div className="max-w-6xl w-full mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-        {/* ── Principles ── */}
-        <div data-reveal className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px"  />
-          <span className="act-label mb-0" >The Luminexis Principles</span>
-        </div>
-
-        <h2 data-reveal className="headline-lg mb-6">
-          If your digital presence requires{' '}
-          <span className="text-black">structural clarity</span>{' '}
-          rather than surface improvement.
-        </h2>
-
-        <p data-reveal className="body-text max-w-2xl mb-12">
-          We build digital systems that are structured, measurable, and built to hold — not to be replaced.
-        </p>
-
-        <div data-reveal className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
-          {LUMINEXIS_PRINCIPLES.map((principle, i) => (
-            <div key={principle.id} className="glass-card px-6 py-5 flex items-center gap-4 group">
-              <span className="font-mono text-sm font-bold flex-shrink-0" >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <p className="text-fg text-sm font-medium">{principle.text}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Contact Form ── */}
-        <div id="contact" data-reveal className="scroll-mt-24">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-px"  />
-            <span className="act-label mb-0">Get in Touch</span>
-          </div>
-
-          <h2 className="headline-lg mb-12">
-            Ready to{' '}
-            <span className="text-black">Launch?</span>
-          </h2>
-
-          {submitted ? (
-            <div data-reveal className="honor-card p-12 text-center">
-              <div className="flex justify-center mb-6">
-                <Rocket className="w-12 h-12 text-black-400 drop-shadow-[0_0_16px_rgba(34,211,238,0.5)]" />
+    <section ref={sectionRef} id="contact" aria-label="Contact and Principles" className="relative py-32 bg-white overflow-hidden">
+      <div className="max-w-6xl w-full mx-auto px-6 md:px-12 lg:px-24 relative z-10 flex flex-col gap-32">
+        
+        {/* ── Contact Section ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          
+          {/* Left: Contact Form */}
+          <div data-reveal className="flex flex-col gap-12">
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3 mb-2 font-mono text-xs tracking-widest uppercase text-[#6B7280]">
+                <span className="w-8 h-px bg-black/10"  />
+                <span>Connect</span>
               </div>
-              <h3 className="text-2xl font-bold text-fg mb-4">Message Received</h3>
-              <p className="body-text max-w-md mx-auto">
-                We&apos;ll review your inquiry and respond within 24-48 hours. Expect a thoughtful reply.
+              <h2 className="text-4xl md:text-6xl font-extrabold text-[#111111] leading-tight tracking-tighter">
+                Ready to{' '}
+                <span className="text-[#6B7280]">Launch?</span>
+              </h2>
+              <p className="text-base md:text-lg text-[#6B7280] leading-relaxed max-w-md">
+                Connect with our engineering studio and start your journey towards a scalable digital future.
               </p>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="honor-card p-8 md:p-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <FormField label="Name" value={formState.name} onChange={(v) => updateField('name', v)} placeholder="Your name" required />
-                <FormField label="Email" value={formState.email} onChange={(v) => updateField('email', v)} placeholder="you@company.com" type="email" required />
-                <FormField label="Company" value={formState.company} onChange={(v) => updateField('company', v)} placeholder="Company name" />
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="engagement" className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
-                    Engagement Type
-                  </label>
-                  <select
-                    id="engagement"
-                    value={formState.engagement}
-                    onChange={(e) => updateField('engagement', e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg bg-transparent text-fg text-sm outline-none transition-all duration-200"
-                    style={{ border: '1px solid rgba(0,0,0,0.1)', background: 'rgba(255,255,255,0.5)' }}
-                  >
-                    <option value="" style={{ background: '#FFFFFF' }}>Select type</option>
-                    {ENGAGEMENT_TYPES.map((type) => (
-                      <option key={type} value={type} style={{ background: '#FFFFFF' }}>{type}</option>
-                    ))}
-                  </select>
+
+            {submitted ? (
+              <div className="bg-[#F7F7F7] p-12 rounded-[32px] text-center border border-black/5">
+                <div className="flex justify-center mb-6">
+                  <Rocket className="w-12 h-12 text-[#111111]" />
                 </div>
-              </div>
-
-              {/* Message */}
-              <div className="mb-8">
-                <label htmlFor="message" className="font-mono text-xs tracking-widest uppercase mb-2 block" style={{ color: 'var(--fg-muted)' }}>
-                  Project Details
-                </label>
-                <textarea
-                  id="message"
-                  value={formState.message}
-                  onChange={(e) => updateField('message', e.target.value)}
-                  placeholder="Tell us about your project, goals, and timeline..."
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-transparent text-fg text-sm outline-none resize-none transition-all duration-200"
-                  style={{
-                    border: '1px solid rgba(0,0,0,0.1)',
-                    background: 'rgba(255,255,255,0.5)',
-                  }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.3)'; e.currentTarget.style.boxShadow = '0 0 16px rgba(0,0,0,0.05)' }}
-                  onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.boxShadow = 'none' }}
-                />
-              </div>
-
-              {/* Error message */}
-              {sendError && (
-                <p className="mb-4 text-sm font-mono px-4 py-3 rounded-lg" style={{
-                  background: 'rgba(239,68,68,0.08)',
-                  border: '1px solid rgba(239,68,68,0.25)',
-                  color: '#f87171',
-                }}>
-                  {sendError}
+                <h3 className="text-2xl font-bold text-[#111111] mb-4">Transmission Received</h3>
+                <p className="text-sm text-[#6B7280] max-w-sm mx-auto">
+                  Our engineering team will review your project details and respond within 24-48 hours. Expect a thoughtful reply.
                 </p>
-              )}
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField label="Name" value={formState.name} onChange={(v) => updateField('name', v)} placeholder="John Doe" required />
+                  <FormField label="Email" value={formState.email} onChange={(v) => updateField('email', v)} placeholder="john@company.com" type="email" required />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField label="Company" value={formState.company} onChange={(v) => updateField('company', v)} placeholder="Acme Inc." />
+                  <div className="flex flex-col gap-3">
+                    <label htmlFor="engagement" className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-[#111111]">
+                      Project Scope
+                    </label>
+                    <select
+                      id="engagement"
+                      value={formState.engagement}
+                      onChange={(e) => updateField('engagement', e.target.value)}
+                      className="w-full px-5 py-4 rounded-[16px] bg-[#F7F7F7] text-[#111111] text-sm outline-none transition-all duration-300 border border-black/5 focus:border-black/20 focus:bg-white"
+                    >
+                      <option value="">Select scope</option>
+                      {ENGAGEMENT_TYPES.map((type) => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <label htmlFor="message" className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-[#111111]">
+                    Tell us about your goals
+                  </label>
+                  <textarea
+                    id="message"
+                    value={formState.message}
+                    onChange={(e) => updateField('message', e.target.value)}
+                    placeholder="Project details, timeline, and current pain points..."
+                    rows={5}
+                    className="w-full px-5 py-4 rounded-[20px] bg-[#F7F7F7] text-[#111111] text-sm outline-none resize-none transition-all duration-300 border border-black/5 focus:border-black/20 focus:bg-white"
+                  />
+                </div>
 
-              <button
-                type="submit"
-                disabled={sending}
-                className="cta-primary w-full sm:w-auto justify-center"
-              >
-                {sending ? 'Sending...' : 'Send Transmission'}
-                {!sending && (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                {sendError && (
+                  <p className="text-xs font-bold text-red-500 bg-red-50 px-4 py-3 rounded-lg border border-red-100">
+                    {sendError}
+                  </p>
                 )}
-              </button>
-            </form>
-          )}
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="bg-black text-white px-10 py-5 rounded-full font-bold text-sm tracking-[0.2em] uppercase transition-all duration-300 hover:scale-[1.03] disabled:opacity-50 flex items-center justify-center gap-3 active:scale-95"
+                >
+                  {sending ? 'Sending...' : 'Send Transmission'}
+                  {!sending && <Send className="w-4 h-4"  />}
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Right: Principles */}
+          <div data-reveal className="bg-[#F7F7F7] p-12 md:p-16 rounded-[40px] border border-black/5 flex flex-col gap-12">
+            <div className="flex flex-col gap-4">
+               <h3 className="text-2xl font-bold text-[#111111]">Our Operating Principles</h3>
+               <p className="text-sm text-[#6B7280] leading-relaxed">
+                  We believe in structural integrity, commercial intent, and minimalist delivery. These principles guide every line of code we write.
+               </p>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {LUMINEXIS_PRINCIPLES.map((principle, i) => (
+                <div key={principle.id} className="flex flex-col gap-2 group">
+                  <div className="flex items-center gap-4">
+                    <span className="text-4xl font-black text-black/5 group-hover:text-black/10 transition-colors" >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h4 className="text-lg font-bold text-[#111111] ">{principle.text}</h4>
+                  </div>
+                  <p className="text-sm text-[#6B7280] pl-14 leading-relaxed group-hover:text-[#111111] transition-colors">{principle.subtext}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -226,9 +206,9 @@ function FormField({ label, value, onChange, placeholder, type = 'text', require
   label: string; value: string; onChange: (v: string) => void; placeholder: string; type?: string; required?: boolean
 }) {
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={`field-${label.toLowerCase()}`} className="font-mono text-xs tracking-widest uppercase" style={{ color: 'var(--fg-muted)' }}>
-        {label} {required && <span >*</span>}
+    <div className="flex flex-col gap-3">
+      <label htmlFor={`field-${label.toLowerCase()}`} className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-[#111111]">
+        {label} {required && <span className="text-[#6B7280] opacity-50" >*</span>}
       </label>
       <input
         id={`field-${label.toLowerCase()}`}
@@ -237,10 +217,7 @@ function FormField({ label, value, onChange, placeholder, type = 'text', require
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
-        className="w-full px-4 py-3 rounded-lg bg-transparent text-fg text-sm outline-none transition-all duration-200"
-        style={{ border: '1px solid rgba(0,0,0,0.1)', background: 'rgba(255,255,255,0.5)' }}
-        onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.3)'; e.currentTarget.style.boxShadow = '0 0 16px rgba(0,0,0,0.05)' }}
-        onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.boxShadow = 'none' }}
+        className="w-full px-5 py-4 rounded-[16px] bg-[#F7F7F7] text-[#111111] text-sm outline-none transition-all duration-300 border border-black/5 focus:border-black/20 focus:bg-white"
       />
     </div>
   )

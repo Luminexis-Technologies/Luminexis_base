@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'dark'
+type Theme = 'light'
 
 interface ThemeContextType {
   theme: Theme
@@ -10,7 +10,7 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
+  theme: 'light',
   toggleTheme: () => {},
 })
 
@@ -19,13 +19,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setMounted(true)
-    document.documentElement.classList.add('dark')
+    // Ensure light mode for Apple-style design
+    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.add('light')
   }, [])
 
   if (!mounted) return null
 
   return (
-    <ThemeContext.Provider value={{ theme: 'dark', toggleTheme: () => {} }}>
+    <ThemeContext.Provider value={{ theme: 'light', toggleTheme: () => {} }}>
       {children}
     </ThemeContext.Provider>
   )

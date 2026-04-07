@@ -6,20 +6,20 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap", // PERF: swap for faster FCP
+  display: "swap",
   preload: true,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  display: "swap", // PERF: swap for faster FCP
+  display: "swap",
   preload: false,
 });
 
-// ── Viewport (Next 14 best practice — separate from metadata) ──
+// ── Viewport ──
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
+  themeColor: "#F7F7F7",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -30,12 +30,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://luminexistechnologies.com"),
   title: {
     default:
-      "Web Development & Custom Software Company | Luminexis Technologies",
+      "Software Development Company | Business Automation Services | Luminexis",
     template: "%s | Luminexis Technologies",
   },
   description:
-    "Luminexis Technologies is a web development company delivering custom software, SaaS platforms, and scalable digital solutions for startups and enterprises.",
+    "Luminexis Technologies is a software development company specializing in business automation services, custom software, SaaS platforms, and scalable digital solutions for startups and enterprises.",
   keywords: [
+    "software development company",
+    "business automation services",
     "web development company",
     "custom software development company",
     "full stack development services",
@@ -62,8 +64,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Web Development & Software Solutions | Luminexis Technologies",
-    description: "Scalable web development, custom software, and AI-powered solutions for startups and enterprises.",
+    title: "Software Development & Business Automation | Luminexis Technologies",
+    description: "Scalable software development, business automation services, and AI-powered solutions for startups and enterprises.",
     url: "https://luminexistechnologies.com",
     siteName: "Luminexis Technologies",
     locale: "en_US",
@@ -73,16 +75,16 @@ export const metadata: Metadata = {
         url: "/logo-dark.png",
         width: 1200,
         height: 630,
-        alt: "Luminexis Technologies — Web Development & Software Solutions",
+        alt: "Luminexis Technologies — Software Development & Business Automation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Luminexis Technologies | Web Development & Custom Software Solutions",
+      "Luminexis Technologies | Software Development & Business Automation Services",
     description:
-      "Scalable web development, AI chatbot solutions, and enterprise software for modern businesses.",
+      "Custom software development, business automation, and scalable digital solutions for modern businesses.",
     images: ["/logo-dark.png"],
     creator: "@luminexis",
   },
@@ -101,7 +103,6 @@ export const metadata: Metadata = {
     canonical: "https://luminexistechnologies.com",
   },
   verification: {
-    // Add your Google Search Console verification code here
     // google: 'your-verification-code',
   },
 };
@@ -112,7 +113,10 @@ const orgJsonLd = {
   name: "Luminexis Technologies",
   url: "https://luminexistechnologies.com",
   sameAs: ["https://www.linkedin.com/company/yourpage"],
+  description: "A software development company specializing in business automation services, custom software, and scalable digital solutions.",
   knowsAbout: [
+    "Software Development",
+    "Business Automation",
     "Web Development",
     "Custom Software Development",
     "AI Chatbot Development",
@@ -132,7 +136,7 @@ const faqJsonLd = {
       name: "What services does Luminexis Technologies provide?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We provide web development, custom software development, AI chatbot solutions, SaaS platforms, and UI/UX design for startups and enterprises across industries.",
+        text: "We provide software development, business automation services, custom software development, AI chatbot solutions, SaaS platforms, and UI/UX design for startups and enterprises across industries.",
       },
     },
     {
@@ -173,7 +177,7 @@ const websiteJsonLd = {
   name: "Luminexis Technologies",
   url: "https://luminexistechnologies.com",
   description:
-    "Scalable web development, custom software, and AI-powered solutions for modern businesses",
+    "Software development company offering business automation services, custom software, and scalable digital solutions",
   potentialAction: {
     "@type": "SearchAction",
     target: "https://luminexistechnologies.com/?q={search_term_string}",

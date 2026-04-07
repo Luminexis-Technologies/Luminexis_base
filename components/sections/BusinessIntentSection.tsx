@@ -1,96 +1,116 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { Target, Shuffle, ShieldCheck, TrendingUp } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { motion, Variants } from 'framer-motion'
+import { Zap, Activity, Target, ShieldCheck } from 'lucide-react'
 
-const INTENT_PILLARS: { icon: LucideIcon; title: string; description: string; gradient: string }[] = [
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.15 },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+}
+
+const VALUES = [
   {
-    icon: Target,
-    title: 'Revenue Alignment',
-    description: 'Every system is mapped to a measurable revenue outcome. No decorative builds.',
-    gradient: 'from-nebula-500/20 to-transparent',
+    icon: Zap,
+    title: 'Performance Focused',
+    description: 'System speed is a commercial requirement for ranking and conversion.',
   },
   {
-    icon: Shuffle,
-    title: 'Decision Flow Control',
-    description: 'User pathways engineered to guide decisions — not just display content.',
-    gradient: 'from-stellar-400/20 to-transparent',
+    icon: Activity,
+    title: 'Data Driven',
+    description: 'Decisions based on architectural best practices and measurable business objectives.',
+  },
+  {
+    icon: Target,
+    title: 'Outcome Oriented',
+    description: 'Every system we build is measured by the revenue and growth it generates.',
   },
   {
     icon: ShieldCheck,
-    title: 'Trust Architecture',
-    description: 'Credibility signals built into structure — social proof, authority markers, consistency.',
-    gradient: 'from-aurora-violet/20 to-transparent',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Scalability Planning',
-    description: 'From day one, every system is designed to grow with your business trajectory.',
-    gradient: 'from-aurora-cyan/20 to-transparent',
+    title: 'Security First',
+    description: 'Enterprise-grade security hardened into every layer of the architecture.',
   },
 ]
 
-export default function BusinessIntentSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        sectionRef.current!.querySelectorAll('[data-reveal]'),
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1, y: 0, duration: 0.85, stagger: 0.13, ease: 'power3.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
+export default function AboutSection() {
   return (
-    <section ref={sectionRef} id="intent" aria-label="Commercial foundation and business intent" className="section-container py-32 nebula-bg">
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.06) 0%, transparent 70%)', filter: 'blur(60px)' }} />
-      </div>
+    <section
+      id="about"
+      aria-label="About Luminexis"
+      className="section-container"
+      style={{ background: '#FFFFFF' }}
+    >
+      <motion.div
+        className="max-w-6xl w-full mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+        variants={containerVariants}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-      <div className="max-w-6xl w-full mx-auto relative z-10">
-        <div data-reveal className="flex items-center gap-3 mb-6">
-          <span className="w-8 h-px"  />
-          <span className="act-label mb-0">Commercial Foundation</span>
+          {/* Left: Content */}
+          <div className="flex flex-col gap-8">
+            <motion.div variants={itemVariants} className="flex items-center gap-3">
+              <span className="w-8 h-px bg-black/15" />
+              <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-[#6B7280]">
+                About Us
+              </span>
+            </motion.div>
+
+            <motion.h2 variants={itemVariants} className="text-section-heading text-[#111111]">
+              Technical Precision.{' '}
+              <span className="text-[#6B7280]">Strategic Outcomes.</span>
+            </motion.h2>
+
+            <motion.p variants={itemVariants} className="text-lg text-[#6B7280] leading-relaxed">
+              At Luminexis, we engineer high-performance systems for long-term scalability and commercial impact. We partner with serious businesses that require architectural integrity.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6 pt-4">
+              <div className="flex flex-col gap-1">
+                <span className="text-3xl font-semibold text-[#111111]">100%</span>
+                <span className="text-xs text-[#6B7280]">Structural Accuracy</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3xl font-semibold text-[#111111]">₹10L+</span>
+                <span className="text-xs text-[#6B7280]">Average Project Value</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right: Value Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {VALUES.map((item, i) => (
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                className="p-6 rounded-2xl bg-[#F7F7F7] border border-black/[0.04] group hover:bg-white hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex flex-col gap-4">
+                  <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#111111] text-white group-hover:scale-110 transition-transform duration-300">
+                    <item.icon className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-[#111111]">{item.title}</h3>
+                  <p className="text-xs text-[#6B7280] leading-relaxed">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
-
-        <h2 data-reveal className="headline-lg mb-6">
-          Built Around{' '}
-          <span className="text-black">Commercial Intent.</span>
-        </h2>
-
-        <p data-reveal className="body-text max-w-2xl mb-16">
-          A digital system without commercial alignment is an expense without return.
-          Every component we build serves a measurable business function.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {INTENT_PILLARS.map((pillar, i) => (
-            <div
-              key={i}
-              data-reveal
-              className="glass-card p-8 group relative overflow-hidden"
-            >
-              {/* Hover accent bar */}
-              <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
-                 />
-
-              {(() => { const Icon = pillar.icon; return <Icon className="w-7 h-7 mb-4"  /> })()}
-              <h3 className="text-lg font-semibold text-fg mb-3">{pillar.title}</h3>
-              <p className="body-text text-sm">{pillar.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

@@ -6,19 +6,19 @@ import dynamic from 'next/dynamic'
 import Navigation from '@/components/ui/Navigation'
 import Act1Chaos from '@/components/sections/Act1Chaos'
 
-// ── Lazy-load below-fold sections for maximum speed and FCP compliance ──
-const SectionSkeleton = () => <section className="min-h-[50vh] bg-transparent flex items-center justify-center"><div className="w-8 h-8 border-2 border-black/10 border-t-black rounded-full animate-spin"></div></section>
+// ── Optimized Lazy-Loading ──
+const SectionSkeleton = () => <section className="min-h-[40vh] bg-[#F7F7F7] flex items-center justify-center" />
 
-const BusinessIntentSection = dynamic(() => import('@/components/sections/BusinessIntentSection'), { ssr: true, loading: () => <SectionSkeleton /> })
-const RiskReductionSection = dynamic(() => import('@/components/sections/RiskReductionSection'), { ssr: true, loading: () => <SectionSkeleton /> })
+// Above-fold critical components (Direct imports)
+import Act3Design from '@/components/sections/Act3Design'
+import Act5Impact from '@/components/sections/Act5Impact'
+
+// Below-fold dynamic components (Lazy-loaded)
 const ProcessSection = dynamic(() => import('@/components/sections/ProcessSection'), { ssr: true, loading: () => <SectionSkeleton /> })
-const Act3Design = dynamic(() => import('@/components/sections/Act3Design'), { ssr: true, loading: () => <SectionSkeleton /> })
-const TechStackSection = dynamic(() => import('@/components/sections/TechStackSection'), { ssr: true, loading: () => <SectionSkeleton /> })
-const Act4Engineering = dynamic(() => import('@/components/sections/Act4Engineering'), { ssr: true, loading: () => <SectionSkeleton /> })
-const Act5Impact = dynamic(() => import('@/components/sections/Act5Impact'), { ssr: true, loading: () => <SectionSkeleton /> })
 const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'), { ssr: true, loading: () => <SectionSkeleton /> })
-const EngagementStandardSection = dynamic(() => import('@/components/sections/EngagementStandardSection'), { ssr: true, loading: () => <SectionSkeleton /> })
-const Act6Future = dynamic(() => import('@/components/sections/Act6Future'), { ssr: true, loading: () => <SectionSkeleton /> })
+const Act4Engineering = dynamic(() => import('@/components/sections/Act4Engineering'), { ssr: true, loading: () => <SectionSkeleton /> })
+const AboutSection = dynamic(() => import('@/components/sections/BusinessIntentSection'), { ssr: true, loading: () => <SectionSkeleton /> })
+const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: true, loading: () => <SectionSkeleton /> })
 const Footer = dynamic(() => import('@/components/ui/Footer'), { ssr: true })
 const Chatbot = dynamic(() => import('@/components/ui/Chatbot'), { ssr: false })
 
@@ -26,10 +26,9 @@ function LuminexisPage() {
   const mainRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Defer greensock refresh for below-fold animations
     const timer = setTimeout(() => {
       ScrollTrigger.refresh()
-    }, 100)
+    }, 500)
 
     return () => {
       clearTimeout(timer)
@@ -42,42 +41,34 @@ function LuminexisPage() {
       <Navigation />
 
       <main ref={mainRef} className="scroll-content" role="main">
-        {/* Hero — Above the Fold (LCP critical) */}
+        {/* 01. HERO — Strategic Positioning */}
         <Act1Chaos />
 
-        {/* Business Intent */}
-        <BusinessIntentSection />
-
-        {/* Risk Reduction */}
-        <RiskReductionSection />
-
-        {/* Process */}
-        <ProcessSection />
-
-        {/* Services */}
+        {/* 02. SERVICES — Core Offerings */}
         <Act3Design />
 
-        {/* Tech Stack */}
-        <TechStackSection />
-
-        {/* Engineering / Metrics */}
-        <Act4Engineering />
-
-        {/* Case Studies */}
+        {/* 03. PORTFOLIO — Selected Work */}
         <Act5Impact />
 
-        {/* Testimonials */}
+        {/* 04. PROCESS — Engineering Lifecycle */}
+        <ProcessSection />
+
+        {/* 05. TESTIMONIALS — Social Proof */}
         <TestimonialsSection />
 
-        {/* Engagement Standard */}
-        <EngagementStandardSection />
+        {/* 06. AUTHORITY — Verified Metrics */}
+        <Act4Engineering />
 
-        {/* Contact */}
-        <Act6Future />
+        {/* 07. ABOUT — Brand Identity */}
+        <AboutSection />
+
+        {/* 08. CTA — High-Conversion Finale */}
+        <CTASection />
+
+        {/* FOOTER */}
         <Footer />
       </main>
 
-      {/* Chatbot Widget */}
       <Chatbot />
     </>
   )
