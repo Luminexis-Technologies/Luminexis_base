@@ -4,6 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap'
 import { Rocket, Send } from 'lucide-react'
 import { LUMINEXIS_PRINCIPLES } from '@/lib/data'
+import emailjs from '@emailjs/browser'
+
+// EmailJS public key – used to initialize the SDK once
+const EMAILJS_PUBLIC_KEY = 'ALdYdAKKYmC3KWuag'
+
 
 const ENGAGEMENT_TYPES = ['Interface Design', 'Frontend Engineering', 'Backend Systems', 'Full Digital Platform', 'SEO', 'Other']
 
@@ -30,8 +35,13 @@ export default function Act6Future() {
     return () => ctx.revert()
   }, [])
 
+  useEffect(() => {
+    // Initialise EmailJS SDK with the public key (runs once)
+    emailjs.init(EMAILJS_PUBLIC_KEY)
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    console.log('handleSubmit invoked');
     if (!formState.name || !formState.email || !formState.message) {
       setSendError('Please fill in all mandatory fields.')
       return
@@ -46,34 +56,47 @@ export default function Act6Future() {
     setSending(true)
     setSendError(null)
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-    if (!accessKey) {
-      setSendError('Email service is not configured. Please contact us directly.')
-      setSending(false)
-      return
-    }
+    const serviceId = 'service_jjdwc5i'
+    const templateId = 'template_vot36dj'
 
+    // No need for publicKey here – SDK already initialised
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject:    `[Luminexis] New inquiry from ${formState.name}`,
-          from_name:  'Luminexis Contact Form',
-          ...formState,
-        }),
+      console.log('EmailJS request payload:', {
+        serviceId,
+        templateId,
+        ...formState,
       })
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          subject: `[Luminexis] New inquiry from ${formState.name}`,
+          from_name: 'Luminexis Contact Form',
+          reply_to: formState.email,
+          to_name: 'Luminexis Team',
+          to_email: 'contact@luminexistechnologies.com',
+          ...formState,
+        }
+      )
 
-      const data = await res.json()
-      if (res.ok && data.success) {
-        setSubmitted(true)
-        setFormState({ name: '', email: '', company: '', engagement: '', message: '' })
+      console.log('EmailJS result:', result);
+        // Expose the result on the window object for easy inspection in DevTools
+        (window as any).emailResult = result;
+
+      if (result.status === 200) {
+        setSubmitted(true);
+        setFormState({ name: '', email: '', company: '', engagement: '', message: '' });
       } else {
-        setSendError(data.message ?? 'Submission failed. Please try again.')
+        // Show the response text from EmailJS if available
+        const errorMsg = result.text ? `Submission failed: ${result.text}` : 'Submission failed. Please try again.';
+        console.error('EmailJS submission error:', result);
+        setSendError(errorMsg);
       }
-    } catch {
-      setSendError('Network error. Please try again later.')
+    } catch (err: any) {
+      console.error('EmailJS error:', err);
+        // Expose error on the window object for debugging
+        (window as any).emailError = err;
+        setSendError(err?.text || err?.message || 'Network error. Please try again later.')
     } finally {
       setSending(false)
     }

@@ -33,14 +33,14 @@
   "app\\ClientHome.tsx -> @/components/ui/Chatbot": {
     "id": 6540,
     "files": [
-      "static/chunks/540-6d198c6fe01feef1.js",
-      "static/chunks/59.31c73e7de3384794.js"
+      "static/chunks/622-c250364f335d7e22.js",
+      "static/chunks/540-43523627dc96405d.js"
     ]
   },
   "app\\ClientHome.tsx -> @/components/ui/Footer": {
-    "id": 9865,
+    "id": 6964,
     "files": [
-      "static/chunks/865.f3c0f026c8210b98.js"
+      "static/chunks/936.b67fce186d81ed77.js"
     ]
   }
 }

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { CHAT_NODES, type ChatNode } from '@/lib/chatbot-flow'
+import emailjs from '@emailjs/browser'
 
 // ── Types ──
 type BubbleRole = 'bot' | 'user'
@@ -186,12 +187,18 @@ export default function Chatbot() {
     setSubmissionStatus('sending')
     console.log('--- SUBMITTING LEAD DATA ---', data)
 
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_CHATBOT_TEMPLATE_ID
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS is not configured for Chatbot.')
+      setSubmissionStatus('error')
+      return
+    }
+
     try {
-      // 🚀 Using Web3Forms for direct email delivery (configured in .env.local)
-      const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-      
       const payload = {
-        access_key: WEB3FORMS_KEY,
         subject: `[Luminexis ChatBot] New Lead: ${data.lead_name || 'N/A'}`,
         from_name: 'Luminexis ChatBot',
         ...data,
@@ -200,13 +207,14 @@ export default function Chatbot() {
           .join('\n'),
       }
 
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        payload,
+        { publicKey }
+      )
 
-      if (!response.ok) throw new Error('Failed to send data')
+      if (result.status !== 200) throw new Error('Failed to send data')
       
       setSubmissionStatus('success')
       console.log('Lead data captured successfully.')
