@@ -18,7 +18,7 @@ export default function Footer() {
     { label: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com' },
     { label: 'Instagram', icon: Instagram, href: 'https://instagram.com' },
     { label: 'WhatsApp', icon: MessageSquare, href: 'https://wa.me/918431077234' },
-    { label: 'Email', icon: Mail, href: 'mailto:info@luminexistechnologies.com' },
+    { label: 'Email', icon: Mail, href: 'mailto:luminexistechnologies@gmail.com' },
   ]
 
   return (
