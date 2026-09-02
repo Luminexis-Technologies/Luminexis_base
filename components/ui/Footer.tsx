@@ -84,8 +84,8 @@ export default function Footer() {
               Get in Touch
             </h4>
             <div className="flex flex-col gap-4">
-              <a href="mailto:info@luminexistechnologies.com" className="text-sm text-[#6B7280] hover:text-[#111111] transition-colors duration-300">
-                info@luminexistechnologies.com
+              <a href="mailto:luminexistechnologies@gmail.com" className="text-sm text-[#6B7280] hover:text-[#111111] transition-colors duration-300">
+                luminexistechnologies@gmail.com
               </a>
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-[#111111]/30 font-medium uppercase tracking-wider">Location</span>
