@@ -177,7 +177,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'sri-hari',
     title: 'Quest Pharma Solutions',
-    url: 'https://questpharma.solutions',
+    url: 'https://quest-neon.vercel.app/',
     category: 'Enterprise Compliance Platform',
     description: 'Problem: High-compliance pharmaceutical data silos. Solution: A unified GMP-compliant digital system. Result: +40% operational efficiency.',
     tags: ['Enterprise', 'Compliance', 'Custom Software'],
